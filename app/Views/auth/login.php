@@ -138,6 +138,9 @@
         <div class="text-center mt-4 name">
           Computer Based Test
         </div>
+        <?php if(session()->getFlashdata('message')){ ?>
+        <p class="text-center text-danger"><?= session()->getFlashdata('message')?></p>
+        <?php } ?>
         <form class="p-3 mt-3" method="post" action="">
           <div class="form-field d-flex align-items-center">
             <span class="fas fa-key"></span>
