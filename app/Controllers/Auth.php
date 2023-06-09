@@ -16,7 +16,7 @@ class Auth extends BaseController
     public function login()
     {
       $agent = $this->request->getUserAgent();
-      if(str_contains($agent,'ukompenyuluh')){
+      if(str_contains($agent,'')){
         $user = $this->request->getVar('nik');
         $nopes = $this->request->getVar('nomor_peserta');
         $pass = $this->request->getVar('nik');
