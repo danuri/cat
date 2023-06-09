@@ -214,12 +214,12 @@
                                             <td>: <?= session('nama')?></td>
                                           </tr>
                                           <tr>
-                                            <td>Formasi</td>
+                                            <td>Jabatan</td>
                                             <td>: <?= session('jabatan')?></td>
                                           </tr>
                                           <tr>
-                                            <td>Lokasi Formasi</td>
-                                            <td><?= session('lokasi_formasi')?></td>
+                                            <td>Satuan Kerja</td>
+                                            <td>: <?= session('lokasi_formasi')?></td>
                                           </tr>
                                         </tbody>
                                       </table>
