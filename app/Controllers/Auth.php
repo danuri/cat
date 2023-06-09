@@ -17,6 +17,8 @@ class Auth extends BaseController
 
     public function login()
     {
+      $agent = $this->request->getUserAgent();
+      if(str_contains($agent,'ukompenyuluh')){
         $user = $this->request->getVar('nik');
         $nopes = $this->request->getVar('nomor_peserta');
         $pass = $this->request->getVar('nik');
@@ -53,6 +55,9 @@ class Auth extends BaseController
         }else{
           return redirect()->back()->with('message', 'PIN Sesi tidak ditemukan');
         }
+      }else{
+        return redirect()->back()->with('message', 'Silahkan gunakan Safe Exam Browser');
+      }
     }
 
     public function logout()
