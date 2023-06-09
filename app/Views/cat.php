@@ -14,7 +14,7 @@
                 <!-- Dark Logo-->
                 <a href="index.html" class="logo logo-dark">
                     <span class="logo-sm">
-                        <img src="assets/images/logo-sm.png" alt="" height="22">
+                        <img src="<?= base_url()?>assets/images/logo-sm.png" alt="" height="22">
                     </span>
                     <span class="logo-lg">
                         <img src="https://www.freepnglogos.com/uploads/logo-depag-png/file-kementerian-agama-logo-wikimedia-commons-1.png" alt="" height="21">
@@ -23,10 +23,10 @@
                 <!-- Light Logo-->
                 <a href="index.html" class="logo logo-light">
                     <span class="logo-sm">
-                        <img src="assets/images/logo-sm.png" alt="" height="22">
+                        <img src="<?= base_url()?>assets/images/logo-sm.png" alt="" height="22">
                     </span>
                     <span class="logo-lg">
-                        <img src="assets/images/logo-light.png" alt="" height="21">
+                        <img src="<?= base_url()?>assets/images/logo-light.png" alt="" height="21">
                     </span>
                 </a>
                 <button type="button" class="btn btn-sm p-0 fs-20 header-item float-end btn-vertical-sm-hover" id="vertical-hover">
@@ -146,7 +146,7 @@
                 </div>
             </footer>
         </div>
-        <script src="assets/js/jquery.countdown.min.js"></script>
+        <script src="<?= base_url()?>assets/js/jquery.countdown.min.js"></script>
 
         <script type="text/javascript">
         	jQuery(document).ready(function($) {
