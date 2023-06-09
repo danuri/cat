@@ -37,6 +37,32 @@ $routes->get('logout', 'Auth::logout');
 $routes->get('/', 'Home::index', ["filter" => "user"]);
 $routes->get('mulai', 'Home::mulai', ["filter" => "user"]);
 $routes->get('cat', 'Cat::index', ["filter" => "user"]);
+$routes->post('cat/save', 'Cat::save', ["filter" => "user"]);
+$routes->get('cat/selesai', 'Cat::selesai', ["filter" => "user"]);
+
+$routes->group("admin", function ($routes) {
+    $routes->get('', 'Admin\Home::index');
+    $routes->get('ujian', 'Admin\Ujian::index');
+    $routes->get('ujian/lokasi', 'Admin\Ujian::lokasi');
+    $routes->get('ujian/lokasi/sesi', 'Admin\Ujian::lokasi');
+    $routes->get('ujian/lokasi/peserta', 'Admin\Ujian::peserta');
+    $routes->get('ujian/sesi', 'Admin\Ujian::sesi');
+    $routes->get('ujian/peserta/(:num)', 'Admin\Ujian::peserta/$1');
+
+    $routes->get('banksoal/choice', 'Admin\Banksoal::choice');
+    $routes->get('banksoal/addchoice', 'Admin\Banksoal::addchoice');
+    $routes->get('banksoal/deletechoice/(:num)', 'Admin\Banksoal::deletechoice/$1');
+    $routes->post('banksoal/addchoice', 'Admin\Banksoal::savechoice');
+
+    $routes->get('banksoal/essay', 'Admin\Banksoal::essay');
+    $routes->get('banksoal/addessay', 'Admin\Banksoal::addessay');
+    $routes->get('banksoal/deleteessay/(:num)', 'Admin\Banksoal::deleteessay/$1');
+    $routes->post('banksoal/addessay', 'Admin\Banksoal::saveessay');
+
+    $routes->get('wawancara', 'Admin\Wawancara::index');
+    $routes->get('api/peserta/(:any)', 'Admin\Api::peserta/$1');
+    $routes->get('wawancara/test/(:any)', 'Admin\Wawancara::test/$1');
+});
 
 /*
  * --------------------------------------------------------------------

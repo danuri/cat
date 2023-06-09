@@ -1,129 +1,159 @@
+<html><head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Login - CBT</title>
+  <style>
+  @font-face { font-family: Arial !important; font-display: swap !important; }
+  </style>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" rel="stylesheet">
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <style>
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: #f1f1f1;
+  }
 
-<!doctype html>
-<html lang="en" data-layout="vertical" data-topbar="light" data-sidebar="light" data-sidebar-size="lg" data-sidebar-image="none" data-preloader="disable">
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: #888;
+  }
 
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #555;
+    } /* Importing fonts from Google */
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap');
 
-<!-- Mirrored from themesbrand.com/invoika/layouts/auth-signin.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 06 Mar 2023 07:07:41 GMT -->
-<head>
+    /* Reseting */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
 
-    <meta charset="utf-8" />
-    <title>Sign In | Invoika - Admin & Dashboard Template</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta content="Premium Multipurpose Admin & Dashboard Template" name="description" />
-    <meta content="Themesbrand" name="author" />
-    <!-- App favicon -->
-    <link rel="shortcut icon" href="<?= base_url()?>/assets/images/favicon.ico">
+    body {
+      background: #ecf0f3;
+    }
 
-    <!-- Layout config Js -->
-    <script src="<?= base_url()?>/assets/js/layout.js"></script>
-    <!-- Bootstrap Css -->
-    <link href="<?= base_url()?>/assets/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
-    <!-- Icons Css -->
-    <link href="<?= base_url()?>/assets/css/icons.min.css" rel="stylesheet" type="text/css" />
-    <!-- App Css-->
-    <link href="<?= base_url()?>/assets/css/app.min.css" rel="stylesheet" type="text/css" />
+    .wrapper {
+      max-width: 350px;
+      min-height: 500px;
+      margin: 80px auto;
+      padding: 40px 30px 30px 30px;
+      background-color: #ecf0f3;
+      border-radius: 15px;
+      box-shadow: 13px 13px 20px #cbced1, -13px -13px 20px #fff;
+    }
 
-</head>
+    .logo {
+      width: 80px;
+      margin: auto;
+    }
 
-    <body class="auth-bg 100-vh">
-        <div class="bg-overlay bg-light"></div>
+    .logo img {
+      width: 100%;
+      height: 80px;
+      object-fit: cover;
+      border-radius: 50%;
+      box-shadow: 0px 0px 3px #5f5f5f,
+      0px 0px 0px 5px #ecf0f3,
+      8px 8px 15px #a7aaa7,
+      -8px -8px 15px #fff;
+    }
 
-        <div class="account-pages">
-            <div class="container">
-                <div class="row justify-content-center">
-                    <div class="col-md-6">
-                        <div class="auth-full-page-content d-flex min-vh-100 py-sm-5 py-4">
-                            <div class="w-100">
-                                <div class="d-flex flex-column h-100 py-0 py-xl-4">
+    .wrapper .name {
+      font-weight: 600;
+      font-size: 1.4rem;
+      letter-spacing: 1.3px;
+      padding-left: 10px;
+      color: #555;
+    }
 
-                                    <div class="text-center mb-5">
-                                        <a href="index.html">
-                                            <span class="logo-lg">
-                                                <img src="<?= base_url()?>/assets/images/logo-dark.png" alt="" height="21">
-                                            </span>
-                                        </a>
-                                    </div>
+    .wrapper .form-field input {
+      width: 100%;
+      display: block;
+      border: none;
+      outline: none;
+      background: none;
+      font-size: 1.2rem;
+      color: #666;
+      padding: 10px 15px 10px 10px;
+      /* border: 1px solid red; */
+    }
 
-                                    <div class="card my-auto overflow-hidden">
-                                            <div class="row g-0">
-                                                <div class="col-12">
-                                                    <div class="p-lg-5 p-4">
-                                                        <div class="text-center">
-                                                            <h5 class="mb-0">Welcome Back !</h5>
-                                                            <p class="text-muted mt-2">Sign in to continue to Invoika.</p>
-                                                        </div>
+    .wrapper .form-field {
+      padding-left: 10px;
+      margin-bottom: 20px;
+      border-radius: 20px;
+      box-shadow: inset 8px 8px 8px #cbced1, inset -8px -8px 8px #fff;
+    }
 
-                                                        <div class="mt-4">
-                                                            <form action="" class="auth-input" method="post">
-                                                              <div class="row mb-3">
-                                                                  <div class="col-lg-3">
-                                                                      <label for="nameInput" class="form-label">NIK</label>
-                                                                  </div>
-                                                                  <div class="col-lg-9">
-                                                                      <input type="text" class="form-control" id="nik" name="nik">
-                                                                  </div>
-                                                              </div>
-                                                              <div class="row mb-3">
-                                                                  <div class="col-lg-3">
-                                                                      <label for="nameInput" class="form-label">Nomor Peserta</label>
-                                                                  </div>
-                                                                  <div class="col-lg-9">
-                                                                      <input type="text" class="form-control" id="nomor_peserta" name="nomor_peserta">
-                                                                  </div>
-                                                              </div>
-                                                              <div class="row mb-3">
-                                                                  <div class="col-lg-3">
-                                                                      <label for="nameInput" class="form-label">PIN PESERTA</label>
-                                                                  </div>
-                                                                  <div class="col-lg-9">
-                                                                      <input type="text" class="form-control" id="pin" name="pin">
-                                                                  </div>
-                                                              </div>
-                                                              <div class="row mb-3">
-                                                                  <div class="col-lg-3">
-                                                                      <label for="nameInput" class="form-label">PIN SESI</label>
-                                                                  </div>
-                                                                  <div class="col-lg-9">
-                                                                      <input type="text" class="form-control" id="pinsesi" name="pinsesi">
-                                                                  </div>
-                                                              </div>
+    .wrapper .form-field .fas {
+      color: #555;
+    }
 
-                                                                <div class="mt-2">
-                                                                    <button class="btn btn-primary w-100" type="submit">Log In</button>
-                                                                </div>
-                                                            </form>
-                                                        </div>
+    .wrapper .btn {
+      box-shadow: none;
+      width: 100%;
+      height: 40px;
+      background-color: #2f6120;
+      color: #fff;
+      border-radius: 25px;
+      box-shadow: 3px 3px 3px #b1b1b1,
+      -3px -3px 3px #fff;
+      letter-spacing: 1.3px;
+    }
 
-                                                    </div>
-                                                </div>
+    .wrapper .btn:hover {
+      background-color: #039BE5;
+    }
 
+    .wrapper a {
+      text-decoration: none;
+      font-size: 0.8rem;
+      color: #03A9F4;
+    }
 
+    .wrapper a:hover {
+      color: #039BE5;
+    }
 
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- end col -->
-                </div>
-                <!-- end row -->
-            </div>
-            <!-- end container -->
+    @media(max-width: 380px) {
+      .wrapper {
+        margin: 30px 20px;
+        padding: 40px 15px 15px 15px;
+      }
+      }</style>
+    </head>
+    <body classname="snippet-body">
+      <div class="wrapper">
+        <div class="logo">
+          <img src="https://www.freepnglogos.com/uploads/logo-depag-png/file-kementerian-agama-logo-wikimedia-commons-1.png" alt="">
         </div>
-
-    <!-- JAVASCRIPT -->
-    <script src="<?= base_url()?>/assets/libs/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <script src="<?= base_url()?>/assets/libs/simplebar/simplebar.min.js"></script>
-    <script src="<?= base_url()?>/assets/libs/node-waves/waves.min.js"></script>
-    <script src="<?= base_url()?>/assets/libs/feather-icons/feather.min.js"></script>
-    <script src="<?= base_url()?>/assets/js/plugins.js"></script>
-
-    <!-- password-addon init -->
-    <script src="<?= base_url()?>/assets/js/pages/password-addon.init.js"></script>
-
-</body>
-
-
-<!-- Mirrored from themesbrand.com/invoika/layouts/auth-signin.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 06 Mar 2023 07:07:41 GMT -->
-</html>
+        <div class="text-center mt-4 name">
+          Computer Based Test
+        </div>
+        <form class="p-3 mt-3" method="post" action="">
+          <div class="form-field d-flex align-items-center">
+            <span class="far fa-user"></span>
+            <input type="text" name="nomor_peserta" id="nomor_peserta" placeholder="Nomor Peserta">
+          </div>
+          <div class="form-field d-flex align-items-center">
+            <span class="fas fa-key"></span>
+            <input type="text" name="nik" id="nik" placeholder="NIK">
+          </div>
+          <div class="form-field d-flex align-items-center">
+            <span class="fas fa-key"></span>
+            <input type="text" name="pinsesi" id="pinsesi" placeholder="PIN Ujian">
+          </div>
+          <button class="btn mt-3">Login</button>
+        </form>
+      </div>
+      <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"></script>
+    </body>
+    </html>

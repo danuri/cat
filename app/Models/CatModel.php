@@ -4,17 +4,17 @@ namespace App\Models;
 
 use CodeIgniter\Model;
 
-class UsersModel extends Model
+class CatModel extends Model
 {
     protected $DBGroup          = 'default';
-    protected $table            = 'users';
+    protected $table            = 'soal_peserta';
     protected $primaryKey       = 'id';
     protected $useAutoIncrement = true;
     protected $insertID         = 0;
     protected $returnType       = 'object';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
-    protected $allowedFields    = ['username','password','nama','role','status'];
+    protected $allowedFields    = ['ujian_id','category_id','soal_id','peserta_id','pertanyaan','p1','p2','p3','p4','p5','jawaban_soal','jawaban_peserta','jawaban_nilai'];
 
     // Dates
     protected $useTimestamps = true;

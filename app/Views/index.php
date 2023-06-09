@@ -3,7 +3,7 @@
 <head>
 
     <meta charset="utf-8" />
-    <title>Try Out CAT MB | Moderasi Beragama</title>
+    <title>Computer Assisted Test | Kementerian Agama</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta content="Premium Multipurpose Admin & Dashboard Template" name="description" />
     <meta content="Themesbrand" name="author" />
@@ -207,19 +207,19 @@
                                         <tbody>
                                           <tr>
                                             <td>Nomor Peserta</td>
-                                            <td></td>
+                                            <td>: <?= session('nomor_peserta')?></td>
                                           </tr>
                                           <tr>
                                             <td>Nama</td>
-                                            <td></td>
+                                            <td>: <?= session('nama')?></td>
                                           </tr>
                                           <tr>
                                             <td>Formasi</td>
-                                            <td></td>
+                                            <td>: <?= session('jabatan')?></td>
                                           </tr>
                                           <tr>
                                             <td>Lokasi Formasi</td>
-                                            <td>xx</td>
+                                            <td><?= session('lokasi_formasi')?></td>
                                           </tr>
                                         </tbody>
                                       </table>
@@ -229,19 +229,62 @@
                             </div><!-- end card -->
                         </div>
                         <div class="col-lg-6">
+                          <?php if($status == 1){ ?>
                             <div class="card">
-                                <div class="card-body">
-                                    <div class="table-responsive">
-                                      xxx
-                                    </div>
-                                    <!-- end table responsive -->
-                                </div><!-- end card-body -->
+                              <div class="card-body">
+                                <div class="table-responsive">
+                                  Nilai CAT Anda
+
+                                  <table class="table table-bordered">
+                                    <thead>
+                                      <th>Indikator</th>
+                                      <!-- <th>Bobot</th> -->
+                                      <th>Skor</th>
+                                      <!-- <th>Nilai Akhir</th> -->
+                                    </thead>
+                                    <tbody>
+                                      <?php
+                                      $total = 0;
+                                      foreach ($nilai as $row) {
+                                      ?>
+                                        <tr>
+                                          <td><?= $row->standar?></td>
+                                          <!-- <th></th> -->
+                                          <td><?= ($row->jumlah)?></td>
+                                          <!-- <th></th> -->
+                                        </tr>
+                                      <?php
+                                      $total = $total+($row->jumlah);
+                                      }
+                                      ?>
+                                      <tr>
+                                        <th>Total</th>
+                                        <th><?= $total?></th>
+                                        <!-- <th></th> -->
+                                      </tr>
+                                    </tbody>
+                                  </table>
+                                </div>
+                                <!-- end table responsive -->
+                              </div><!-- end card-body -->
                             </div><!-- end card -->
+                          <?php }else{ ?>
+                            <div class="card">
+                              <div class="card-body">
+                                <div class="table-responsive">
+                                  Anda belum melaksakan uji kompetensi. Klik Mulai untuk memulai ujian.
+                                </div>
+                                <!-- end table responsive -->
+                              </div><!-- end card-body -->
+                            </div><!-- end card -->
+                          <?php } ?>
                         </div>
                         <!-- end col -->
                     </div>
                     <div class="d-flex align-items-start gap-3 mt-4">
-                        <a href="mulai" class="btn btn-success btn-label right ms-auto"><i class="ri-arrow-right-line label-icon align-middle fs-16 ms-2"></i>Mulai</a>
+                      <?php if($status == 0){ ?>
+                        <a href="<?= site_url('mulai')?>" class="btn btn-success btn-label right ms-auto" onclick=""><i class="ri-arrow-right-line label-icon align-middle fs-16 ms-2"></i>Mulai</a>
+                      <?php } ?>
                     </div>
 
 
@@ -254,11 +297,11 @@
                 <div class="container-fluid">
                     <div class="row">
                         <div class="col-sm-6">
-                            <script>document.write(new Date().getFullYear())</script> © CAT Moderasi Beragama.
+                            <script>document.write(new Date().getFullYear())</script> © CAT Uji Kompetensi.
                         </div>
                         <div class="col-sm-6">
                             <div class="text-sm-end d-none d-sm-block">
-                                Biro Kepegawaian Kementerian Agama RI
+                                Direktorat Penerangan Agama Islam
                             </div>
                         </div>
                     </div>

@@ -1,4 +1,3 @@
-
 <!doctype html>
 <html lang="en" data-layout="vertical" data-topbar="light" data-sidebar="light" data-sidebar-size="lg" data-sidebar-image="none" data-preloader="disable" data-layout-style="detached" data-layout-mode="light" data-layout-width="fluid" data-layout-position="fixed">
 <head>
@@ -23,9 +22,10 @@
     <!-- App Css-->
     <link href="assets/css/app.min.css" rel="stylesheet" type="text/css" />
 
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 </head>
 
-<body>
+<body style="overflow: hidden; padding-right: 17px;">
 
     <!-- Begin page -->
     <div id="layout-wrapper">
@@ -41,7 +41,7 @@
                             <img src="assets/images/logo-sm.png" alt="" height="22">
                         </span>
                         <span class="logo-lg">
-                            <img src="assets/images/logo-dark.png" alt="" height="21">
+                            <img src="assets/images/paicat.png" alt="" height="50">
                         </span>
                     </a>
 
@@ -50,7 +50,7 @@
                             <img src="assets/images/logo-sm.png" alt="" height="22">
                         </span>
                         <span class="logo-lg">
-                            <img src="assets/images/logo-light.png" alt="" height="21">
+                            <img src="assets/images/paicat.png" alt="" height="21">
                         </span>
                     </a>
                 </div>
@@ -69,9 +69,6 @@
             </div>
 
             <div class="d-flex align-items-center">
-
-
-
 
                 <div class="ms-1 header-item d-none d-sm-flex">
                     <button type="button" class="btn btn-icon btn-topbar btn-ghost-primary rounded-circle" data-toggle="fullscreen">
@@ -92,7 +89,7 @@
                         <span class="d-flex align-items-center">
                             <img class="rounded-circle header-profile-user" src="assets/images/users/avatar-4.jpg" alt="Header Avatar">
                             <span class="text-start ms-xl-2">
-                                <span class="d-none d-xl-inline-block fw-medium user-name-text fs-16">Calvin D. <i class="las la-angle-down fs-12 ms-1"></i></span>
+                                <span class="d-none d-xl-inline-block fw-medium user-name-text fs-16"><?= session('nama')?> <i class="las la-angle-down fs-12 ms-1"></i></span>
                             </span>
                         </span>
                     </button>
@@ -156,7 +153,6 @@
     <script src="assets/libs/simplebar/simplebar.min.js"></script>
     <script src="assets/libs/node-waves/waves.min.js"></script>
     <script src="assets/libs/feather-icons/feather.min.js"></script>
-    <script src="assets/js/plugins.js"></script>
 
     <!-- Sweet Alerts js -->
     <script src="assets/libs/sweetalert2/sweetalert2.min.js"></script>
@@ -167,7 +163,4 @@
     <!-- App js -->
     <script src="assets/js/app.js"></script>
 </body>
-
-
-<!-- Mirrored from themesbrand.com/invoika/layouts/advance-ui-sweetalerts.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 06 Mar 2023 07:07:53 GMT -->
 </html>

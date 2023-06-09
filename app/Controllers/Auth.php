@@ -17,7 +17,7 @@ class Auth extends BaseController
     {
         $user = $this->request->getVar('nik');
         $nopes = $this->request->getVar('nomor_peserta');
-        $pass = $this->request->getVar('pin');
+        $pass = $this->request->getVar('nik');
         $pin = $this->request->getVar('pinsesi');
 
         $sesi = new SesiModel;
@@ -25,14 +25,16 @@ class Auth extends BaseController
 
         if($findsesi){
           $model = new PesertaModel;
-          $find = $model->where(['nik'=>$user,'nomor_peserta'=>$nopes,'pin'=>$pass,'sesi_id'=>$findsesi->id])->first();
+          $find = $model->where(['nomor_peserta'=>$nopes,'nik'=>$pass,'sesi_id'=>$findsesi->id])->first();
 
           if($find){
             $newdata = [
               'user_id'  => $find->id,
               'nik'  => $find->nik,
               'nomor_peserta'  => $find->nomor_peserta,
+              'ujian_id'  => $find->ujian_id,
               'nama'  => $find->nama,
+              'jabatan'  => $find->jabatan,
               'lokasi_formasi'  => $find->lokasi_formasi,
               'pin'  => $find->pin,
               'sesi_id'  => $find->sesi_id,
