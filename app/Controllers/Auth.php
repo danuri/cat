@@ -10,9 +10,7 @@ class Auth extends BaseController
 {
     public function index()
     {
-        // return view('auth/login');
-        $agent = $this->request->getUserAgent();
-        echo $agent;
+        return view('auth/login');
     }
 
     public function login()
