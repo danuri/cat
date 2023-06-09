@@ -32,6 +32,15 @@ class Banksoal extends BaseController
       return view('admin/banksoal/addchoice', $data);
     }
 
+    public function editchoice()
+    {
+      $model = new CategoryModel;
+
+      $data['cats'] = $model->findAll();
+
+      return view('admin/banksoal/editchoice', $data);
+    }
+
     public function savechoice()
     {
       $model = new ChoiceModel;

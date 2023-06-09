@@ -88,7 +88,7 @@
                         <span class="d-flex align-items-center">
                             <img class="rounded-circle header-profile-user" src="<?= base_url()?>assets/images/users/avatar-4.jpg" alt="Header Avatar">
                             <span class="text-start ms-xl-2">
-                                <span class="d-none d-xl-inline-block fw-medium user-name-text fs-16">Calvin D. <i class="las la-angle-down fs-12 ms-1"></i></span>
+                                <span class="d-none d-xl-inline-block fw-medium user-name-text fs-16"><?= session('nama')?> <i class="las la-angle-down fs-12 ms-1"></i></span>
                             </span>
                         </span>
                     </button>
