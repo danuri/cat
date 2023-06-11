@@ -254,7 +254,7 @@
         	?>
         	item = {}
         	item ["id"] = '<?php echo $soal->id;?>';
-        	item ["pertanyaan"] = '<?= $pertanyaan;?>';
+        	item ["pertanyaan"] = "<?php echo str_replace('"','',$pertanyaan);?>";
         	item ["p1"] = "<?php echo str_replace('"','',$p1);?>";
         	item ["p2"] = "<?php echo str_replace('"','',$p2);?>";
         	item ["p3"] = "<?php echo str_replace('"','',$p3);?>";
