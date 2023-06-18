@@ -7,14 +7,14 @@ use CodeIgniter\Model;
 class WawancaraModel extends Model
 {
     protected $DBGroup          = 'default';
-    protected $table            = 'wawancara';
+    protected $table            = 'soal_wawancara_peserta';
     protected $primaryKey       = 'id';
     protected $useAutoIncrement = true;
     protected $insertID         = 0;
     protected $returnType       = 'object';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
-    protected $allowedFields    = ['peserta_id','soal_id','pertanyaan','keterangan','max_nilai','nilai','pewawancara'];
+    protected $allowedFields    = ['ujian_id','peserta_id','soal_id','pertanyaan','kompetensi_dasar','kompetensi','kode','soal','nilai','catatan','created_by'];
 
     // Dates
     protected $useTimestamps = true;

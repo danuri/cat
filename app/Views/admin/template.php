@@ -187,7 +187,7 @@
                     <ul class="navbar-nav" id="navbar-nav">
                         <li class="menu-title"><span data-key="t-menu">Menu</span></li>
                         <li class="nav-item">
-                            <a class="nav-link menu-link" href="<?= site_url()?>">
+                            <a class="nav-link menu-link" href="<?= site_url('admin')?>">
                                 <i class="las la-house-damage"></i> <span data-key="t-dashboard">Dashboard</span>
                             </a>
                         </li>
@@ -198,6 +198,8 @@
                                 <i class="las la-calendar"></i> <span data-key="t-dashboard">Ujian</span>
                             </a>
                         </li> -->
+
+                        <?php if(session('role') == '1'){ ?>
                         <li class="nav-item">
                             <a class="nav-link menu-link" href="#sidepresensi" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarInvoiceManagement">
                                 <i class="las la-file-invoice"></i> <span data-key="t-invoices">CAT</span>
@@ -220,13 +222,15 @@
                                 </ul>
                             </div>
                         </li>
+                        <?php } ?>
                         <li class="nav-item">
                             <a class="nav-link menu-link" href="<?= site_url('admin/wawancara')?>">
                                 <i class="las la-calendar"></i> <span data-key="t-dashboard">Wawancara</span>
                             </a>
                         </li>
+                        <?php if(session('role') == '1'){ ?>
                         <li class="nav-item">
-                            <a class="nav-link menu-link" href="<?= site_url('users')?>">
+                            <a class="nav-link menu-link" href="<?= site_url('admin/users')?>">
                                 <i class="las la-calendar"></i> <span data-key="t-dashboard">Pengguna</span>
                             </a>
                         </li>
@@ -247,7 +251,7 @@
                                 </ul>
                             </div>
                         </li>
-
+                        <?php } ?>
                     </ul>
                 </div>
                 <!-- Sidebar -->

@@ -30,6 +30,11 @@ $routes->set404Override();
 // We get a performance increase by specifying the default
 // route since we don't have to scan directories.
 
+$routes->get('auth', 'Admin\Auth::index');
+$routes->get('auth/login', 'Admin\Auth::login');
+$routes->get('auth/logout', 'Admin\Auth::logout');
+$routes->get('auth/callback', 'Admin\Auth::callback');
+
 $routes->get('login', 'Auth::index');
 $routes->post('login', 'Auth::login');
 $routes->get('logout', 'Auth::logout');
@@ -40,8 +45,9 @@ $routes->get('cat', 'Cat::index', ["filter" => "user"]);
 $routes->post('cat/save', 'Cat::save', ["filter" => "user"]);
 $routes->get('cat/selesai', 'Cat::selesai', ["filter" => "user"]);
 
-$routes->group("admin", function ($routes) {
+$routes->group("admin", ["filter" => "auth"], function ($routes) {
     $routes->get('', 'Admin\Home::index');
+
     $routes->get('ujian', 'Admin\Ujian::index');
     $routes->get('ujian/lokasi', 'Admin\Ujian::lokasi');
     $routes->get('ujian/lokasi/sesi', 'Admin\Ujian::lokasi');
@@ -60,6 +66,12 @@ $routes->group("admin", function ($routes) {
     $routes->post('banksoal/addessay', 'Admin\Banksoal::saveessay');
 
     $routes->get('wawancara', 'Admin\Wawancara::index');
+    $routes->get('api/peserta/(:any)', 'Admin\Api::peserta/$1');
+    $routes->get('wawancara/test/(:any)', 'Admin\Wawancara::test/$1');
+    $routes->get('wawancara/getsoal/(:num)', 'Admin\Wawancara::getsoal/$1');
+    $routes->post('wawancara/test/(:any)', 'Admin\Wawancara::savenilai/$1');
+
+    $routes->get('users', 'Admin\Users::index');
     $routes->get('api/peserta/(:any)', 'Admin\Api::peserta/$1');
     $routes->get('wawancara/test/(:any)', 'Admin\Wawancara::test/$1');
 });

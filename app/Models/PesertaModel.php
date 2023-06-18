@@ -14,7 +14,7 @@ class PesertaModel extends Model
     protected $returnType       = 'object';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
-    protected $allowedFields    = ['nik','nomor_peserta','nama','jabatan','lokasi_formasi','pin','sesi_id'];
+    protected $allowedFields    = ['nik','nomor_peserta','nama','jabatan','jenis_peserta','lokasi_formasi','pin','sesi_id'];
 
     // Dates
     protected $useTimestamps = true;

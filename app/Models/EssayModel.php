@@ -39,4 +39,20 @@ class EssayModel extends Model
     protected $afterFind      = [];
     protected $beforeDelete   = [];
     protected $afterDelete    = [];
+
+    public function getsoal($jenjang)
+    {
+      $db = \Config\Database::connect('default', false);
+
+      $query = $this->db->query("SELECT kompetensi,kompetensi_dasar,kode FROM bank_soal_essay WHERE jenjang='$jenjang' GROUP BY kompetensi, kompetensi_dasar, kode")->getResult();
+      return $query;
+    }
+
+    public function getcontohsoal($kode)
+    {
+      $db = \Config\Database::connect('default', false);
+
+      $query = $this->db->query("SELECT soal FROM bank_soal_essay WHERE kode='$kode' GROUP BY soal")->getResult();
+      return $query;
+    }
 }
