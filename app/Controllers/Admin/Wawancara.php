@@ -128,7 +128,7 @@ class Wawancara extends BaseController
       $catatan = $this->request->getVar('catatan');
       $soal = $this->request->getVar('soal');
 
-      $update = $model->set(['nilai'=>$nilai,'catatan'=>$catatan,'soal'=>$soal])->where(['id'=>$id])->update();
+      $update = $model->set(['nilai'=>$nilai,'catatan'=>$catatan,'soal'=>$soal,'created_by'=>session('nip')])->where(['id'=>$id])->update();
 
       return redirect()->back()->with('message', 'Nilai telah disimpan');
     }
