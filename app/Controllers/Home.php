@@ -33,6 +33,12 @@ class Home extends BaseController
   		$user_id = session('nomor_peserta');
   		$peserta = $model->getRow('peserta', ['nomor_peserta' => $user_id]);
 
+  		$soalpeserta = $model->getRow('soal_peserta', ['peserta_id' => $user_id]);
+
+      if($soalpeserta){
+        return redirect()->to('cat');
+      }
+
   		if(!$model->getRow('peserta_log', ['ujian_id' => $peserta->ujian_id, 'peserta_id' => $peserta->nomor_peserta])){
   			$now     = strtotime(date('Y-m-d H:i:s'));
   			$minutes = 90;
