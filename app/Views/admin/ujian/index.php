@@ -22,7 +22,7 @@
 
     <div class="row pb-4 gy-3">
       <div class="col-sm-4">
-        <a href="<?= site_url('pelaporan/ketidakhadiran/add')?>" class="btn btn-primary"><i class="las la-plus me-1"></i> Laporan Baru</a>
+        <a href="<?= site_url('admin/ujian/add')?>" class="btn btn-primary"><i class="las la-plus me-1"></i> Buat Ujian</a>
       </div>
 
       <div class="col-sm-auto ms-auto">
@@ -40,24 +40,26 @@
               <table class="table table-bordered table-striped datatable smalltext">
                 <thead>
                   <tr>
-                    <th width="7%">ID</th>
-                    <th width="30%">UJIAN</th>
-                    <th width="10%">LAMA UJIAN</th>
+                    <th>CREATED AT</th>
+                    <th>UJIAN</th>
+                    <th>LAMA UJIAN</th>
+                    <th>KOMPOSISI SOAL</th>
                     <th>AKSI</th>
                   </tr>
                 </thead>
                 <tbody>
                   <?php foreach ($ujian as $row) {?>
                     <tr>
-                      <td><?= $row->id?></td>
+                      <td><?= $row->created_at?></td>
                       <td><?= $row->nama?></td>
                       <td><?= $row->lama_ujian?></td>
-                      <td><a href="<?= site_url('admin/ujian/lokasi/'.$row->id)?>" class="btn btn-primary">Lokasi</a> <a href="<?= site_url('admin/ujian/sesi/'.$row->id)?>" class="btn btn-warning">Sesi</a> <a href="<?= site_url('admin/ujian/peserta/'.$row->id)?>" class="btn btn-danger">Peserta</a> <a href="<?= site_url('admin/ujian/hasil/'.$row->id)?>" class="btn btn-success">Hasil</a></td>
+                      <td><?= $row->soal?></td>
+                      <td><a href="<?= site_url('admin/ujian/edit/'.$row->id)?>" class="btn btn-sm btn-primary">Edit</a> <a href="<?= site_url('admin/ujian/soal/'.$row->id)?>" class="btn btn-sm btn-warning">Soal</a> <a href="<?= site_url('admin/ujian/peserta/'.$row->id)?>" class="btn btn-sm btn-danger">Peserta</a> <a href="<?= site_url('admin/ujian/hasil/'.$row->id)?>" class="btn btn-sm btn-success">Hasil</a></td>
                     </tr>
                   <?php } ?>
                 </tbody>
               </table>
-            </div>            
+            </div>
           </div>
         </div>
       </div>

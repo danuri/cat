@@ -55,6 +55,14 @@ $routes->group("admin", ["filter" => "auth"], function ($routes) {
     $routes->get('ujian/sesi', 'Admin\Ujian::sesi');
     $routes->get('ujian/peserta/(:num)', 'Admin\Ujian::peserta/$1');
 
+    $routes->get('ujian/add', 'Admin\Ujian::add');
+    $routes->post('ujian/add', 'Admin\Ujian::save');
+    $routes->get('ujian/edit/(:num)', 'Admin\Ujian::edit/$1');
+    $routes->post('ujian/edit/(:num)', 'Admin\Ujian::saveedit/$1');
+
+    $routes->get('ujian/soal/(:num)', 'Admin\Ujian::soal/$1');
+    $routes->post('ujian/soal/(:num)', 'Admin\Ujian::savesoal/$1');
+
     $routes->get('banksoal/choice', 'Admin\Banksoal::choice');
     $routes->get('banksoal/addchoice', 'Admin\Banksoal::addchoice');
     $routes->get('banksoal/deletechoice/(:num)', 'Admin\Banksoal::deletechoice/$1');

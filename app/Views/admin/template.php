@@ -3,7 +3,7 @@
 <head>
 
     <meta charset="utf-8" />
-    <title>Computer Based Test | Kementerian Agama RI</title>
+    <title>Computer Assisted Test | Kementerian Agama RI</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta content="Pelaporan Presensi" name="description" />
     <meta content="Danunih" name="author" />
@@ -162,7 +162,7 @@
                         <img src="<?= base_url()?>/assets/images/logo-sm.png" alt="" height="22">
                     </span>
                     <span class="logo-lg">
-                        <img src="<?= base_url()?>/assets/images/logo-dark.png" alt="" height="21">
+                        CAT Kemenag
                     </span>
                 </a>
                 <!-- Light Logo-->
@@ -192,7 +192,7 @@
                             </a>
                         </li>
 
-                        <li class="menu-title"><i class="ri-more-fill"></i> <span data-key="t-pages">CBT</span></li>
+                        <li class="menu-title"><i class="ri-more-fill"></i> <span data-key="t-pages">CAT</span></li>
                         <!-- <li class="nav-item">
                             <a class="nav-link menu-link" href="<?= site_url('admin/ujian')?>">
                                 <i class="las la-calendar"></i> <span data-key="t-dashboard">Ujian</span>
@@ -200,28 +200,11 @@
                         </li> -->
 
                         <?php if(session('role') == '1'){ ?>
-                        <li class="nav-item">
-                            <a class="nav-link menu-link" href="#sidepresensi" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarInvoiceManagement">
-                                <i class="las la-file-invoice"></i> <span data-key="t-invoices">CAT</span>
-                            </a>
-                            <div class="collapse menu-dropdown" id="sidepresensi">
-                                <ul class="nav nav-sm flex-column">
-                                    <li class="nav-item">
-                                        <a href="<?= site_url('admin/banksoal/choice')?>" class="nav-link" data-key="t-invoice"> Lokasi </a>
-                                    </li>
-
-                                    <li class="nav-item">
-                                        <a href="<?= site_url('admin/banksoal/essay')?>" class="nav-link" data-key="t-add-invoice"> Sesi </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="<?= site_url('admin/banksoal/essay')?>" class="nav-link" data-key="t-add-invoice"> Peserta </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="<?= site_url('admin/banksoal/essay')?>" class="nav-link" data-key="t-add-invoice"> Hasil </a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </li>
+                          <li class="nav-item">
+                              <a class="nav-link menu-link" href="<?= site_url('admin/ujian')?>">
+                                  <i class="las la-calendar"></i> <span data-key="t-dashboard">Manajemen Ujian</span>
+                              </a>
+                          </li>
                         <?php } ?>
                         <li class="nav-item">
                             <a class="nav-link menu-link" href="<?= site_url('admin/wawancara')?>">
@@ -235,10 +218,10 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link menu-link" href="#sidepresensi" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarInvoiceManagement">
+                            <a class="nav-link menu-link" href="#sidesoal" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarInvoiceManagement">
                                 <i class="las la-file-invoice"></i> <span data-key="t-invoices">Bank Soal</span>
                             </a>
-                            <div class="collapse menu-dropdown" id="sidepresensi">
+                            <div class="collapse menu-dropdown" id="sidesoal">
                                 <ul class="nav nav-sm flex-column">
                                     <li class="nav-item">
                                         <a href="<?= site_url('admin/banksoal/choice')?>" class="nav-link" data-key="t-invoice"> Pilihan Ganda </a>
@@ -279,7 +262,7 @@
                         </div>
                         <div class="col-sm-6">
                             <div class="text-sm-end d-none d-sm-block">
-                                by Biro Kepegegawaian
+                                by Biro Kepegawaian
                             </div>
                         </div>
                     </div>

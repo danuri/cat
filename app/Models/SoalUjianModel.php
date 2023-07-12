@@ -4,17 +4,17 @@ namespace App\Models;
 
 use CodeIgniter\Model;
 
-class UjianModel extends Model
+class SoalUjianModel extends Model
 {
     protected $DBGroup          = 'default';
-    protected $table            = 'ujian';
+    protected $table            = 'ujian_soal';
     protected $primaryKey       = 'id';
     protected $useAutoIncrement = true;
     protected $insertID         = 0;
     protected $returnType       = 'object';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
-    protected $allowedFields    = ['nama','keterangan','status','waktu_ujian','lama_ujian','pin','created_by'];
+    protected $allowedFields    = ['ujian_id','category_id','category_name','jumlah_soal'];
 
     // Dates
     protected $useTimestamps = true;

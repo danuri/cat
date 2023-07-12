@@ -42,8 +42,18 @@
                   <tr>
                     <th>NIP</th>
                     <th>NAMA</th>
+                    <th>HAPUS</th>
                   </tr>
                 </thead>
+                <tbody>
+                  <?php foreach ($users as $row) {?>
+                    <tr>
+                      <td><?= $row->username?></td>
+                      <td><?= $row->nama?></td>
+                      <td><a href="#">Hapus</a></td>
+                    </tr>
+                  <?php } ?>
+                </tbody>
               </table>
             </div>
           </div>

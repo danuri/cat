@@ -23,6 +23,7 @@
     <div class="row pb-4 gy-3">
       <div class="col-sm-4">
         <a href="<?= site_url('pelaporan/ketidakhadiran/add')?>" class="btn btn-primary"><i class="las la-plus me-1"></i> Peserta Baru</a>
+        <a href="#" class="btn btn-success"><i class="las la-plus me-1"></i> Import</a>
       </div>
 
       <div class="col-sm-auto ms-auto">
@@ -35,7 +36,8 @@
     <div class="row">
       <div class="col-xl-12">
         <div class="card">
-          <div class="table-responsive">
+          <div class="card-body">
+            <div class="table-responsive">
             <table class="table table-bordered table-striped datatable smalltext">
               <thead>
                 <tr>
@@ -51,12 +53,13 @@
                     <td><?= $row->nomor_peserta?></td>
                     <td><?= $row->nama?></td>
                     <td><?= $row->jabatan?></td>
-                    <td><a href="<?= site_url('admin/ujian/lokasi/'.$row->id)?>" class="btn btn-primary">Detail</a></td>
+                    <td><a href="<?= site_url('admin/ujian/lokasi/'.$row->id)?>" class="btn btn-sm btn-primary">Detail</a></td>
                   </tr>
                 <?php } ?>
               </tbody>
             </table>
           </div>
+        </div>
         </div>
       </div>
     </div>
