@@ -43,17 +43,17 @@
                     <th>CREATED AT</th>
                     <th>UJIAN</th>
                     <th>LAMA UJIAN</th>
-                    <th>KOMPOSISI SOAL</th>
+                    <!-- <th>KOMPOSISI SOAL</th> -->
                     <th>AKSI</th>
                   </tr>
                 </thead>
                 <tbody>
                   <?php foreach ($ujian as $row) {?>
                     <tr>
-                      <td><?= $row->created_at?></td>
+                      <td><?= $row->waktu_ujian?></td>
                       <td><?= $row->nama?></td>
                       <td><?= $row->lama_ujian?></td>
-                      <td><?= $row->soal?></td>
+                      <!-- <td><?= $row->soal?></td> -->
                       <td><a href="<?= site_url('admin/ujian/edit/'.$row->id)?>" class="btn btn-sm btn-primary">Edit</a> <a href="<?= site_url('admin/ujian/soal/'.$row->id)?>" class="btn btn-sm btn-warning">Soal</a> <a href="<?= site_url('admin/ujian/peserta/'.$row->id)?>" class="btn btn-sm btn-danger">Peserta</a> <a href="<?= site_url('admin/ujian/hasil/'.$row->id)?>" class="btn btn-sm btn-success">Hasil</a></td>
                     </tr>
                   <?php } ?>
