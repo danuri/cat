@@ -41,7 +41,7 @@
                             <img src="<?= base_url()?>assets/images/logo-sm.png" alt="" height="22">
                         </span>
                         <span class="logo-lg">
-                            <img src="<?= base_url()?>assets/images/paicat.png" alt="" height="50">
+                            CAT Kemenag
                         </span>
                     </a>
 
@@ -50,7 +50,7 @@
                             <img src="<?= base_url()?>assets/images/logo-sm.png" alt="" height="22">
                         </span>
                         <span class="logo-lg">
-                            <img src="<?= base_url()?>assets/images/paicat.png" alt="" height="21">
+                            CAT Kemenag
                         </span>
                     </a>
                 </div>

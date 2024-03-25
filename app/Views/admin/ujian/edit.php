@@ -36,7 +36,7 @@
       <div class="col-xl-12">
         <div class="card">
           <div class="card-body">
-            <form class="" action="" method="post">
+            <form class="<?= site_url('admin/ujian/edit')?>" action="" method="post">
               <div class="row mb-3">
                   <div class="col-lg-3">
                       <label for="namaujian" class="form-label">Nama Ujian</label>
@@ -50,7 +50,7 @@
                       <label for="keterangan" class="form-label">Keterangan</label>
                   </div>
                   <div class="col-lg-9">
-                      <textarea name="keterangan" id="keterangan" class="form-control" rows="3"><?= $ujian->keterangan?></textarea>
+                      <textarea name="keterangan" id="keterangan" class="form-control" rows="3"><?= $ujian->ket?></textarea>
                   </div>
               </div>
               <div class="row mb-3">
@@ -69,16 +69,8 @@
                       <label for="waktuujian" class="form-label">Tanggal Ujian</label>
                   </div>
                   <div class="col-lg-9">
-                    <input type="date" class="form-control" id="waktuujian" name="waktuujian" value="<?= $ujian->waktu_ujian?>">
+                    <input type="datetime-local" class="form-control" id="waktuujian" name="waktuujian" value="<?= $ujian->waktu_ujian?>">
                     <p>Ujian tidak dapat berlangsung sebelum waktu yang ditentukan</p>
-                  </div>
-              </div>
-              <div class="row mb-3">
-                  <div class="col-lg-3">
-                      <label for="pin" class="form-label">PIN Ujian</label>
-                  </div>
-                  <div class="col-lg-9">
-                    <input type="number" class="form-control" id="pin" name="pin" value="<?= $ujian->pin?>">
                   </div>
               </div>
               <div class="text-end">

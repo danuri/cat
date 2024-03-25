@@ -139,7 +139,7 @@
                         </div>
                         <div class="col-sm-6">
                             <div class="text-sm-end d-none d-sm-block">
-                                Direktorat Penerangan Agama Islam
+                                Biro Kepegawaian
                             </div>
                         </div>
                     </div>

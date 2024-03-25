@@ -28,11 +28,10 @@ class Ujian extends BaseController
 
       $data = [
           'nama' => $this->request->getVar('namaujian'),
-          'keterangan' => $this->request->getVar('keterangan'),
+          'ket' => $this->request->getVar('keterangan'),
           'waktu_ujian' => $this->request->getVar('waktuujian'),
           'lama_ujian' => $this->request->getVar('lamaujian'),
           'status' => 0,
-          'pin' => $this->request->getVar('pin'),
           'updated_by' => session('nip')
       ];
       $update = $model->insert($data);
@@ -53,11 +52,10 @@ class Ujian extends BaseController
 
       $data = [
           'nama' => $this->request->getVar('namaujian'),
-          'keterangan' => $this->request->getVar('keterangan'),
+          'ket' => $this->request->getVar('keterangan'),
           'waktu_ujian' => $this->request->getVar('waktuujian'),
           'lama_ujian' => $this->request->getVar('lamaujian'),
           'status' => 0,
-          'pin' => $this->request->getVar('pin'),
           'updated_by' => session('nip')
       ];
       $update = $model->update($id,$data);
