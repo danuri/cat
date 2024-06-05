@@ -248,7 +248,7 @@
                                       foreach ($nilai as $row) {
                                       ?>
                                         <tr>
-                                          <td><?= $row->standar?></td>
+                                          <td><?= $row->nama?></td>
                                           <!-- <th></th> -->
                                           <td><?= ($row->jumlah)?></td>
                                           <!-- <th></th> -->
