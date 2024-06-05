@@ -55,7 +55,7 @@ class CrudModel extends Model
                                   (SELECT id,category_id,(
                                   	CASE
                                   		WHEN category_id = '13' THEN jawaban_nilai
-                                  		WHEN jawaban_soal = jawaban_peserta THEN '1' ELSE '0'
+                                  		WHEN jawaban_soal = jawaban_peserta THEN '5' ELSE '0'
                                   	 END
                                   	) nilai
                                   FROM soal_peserta WHERE peserta_id='$nopes') b
