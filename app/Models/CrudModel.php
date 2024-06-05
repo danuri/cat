@@ -50,7 +50,7 @@ class CrudModel extends Model
       //                             FROM soal_peserta WHERE peserta_id='$nopes') b
       //                             INNER JOIN bank_soal_category c ON b.category_id = c.id
       //                             GROUP BY b.category_id")->getResult();
-        $query = $this->db->query("SELECT b.category_id, c.jenis, SUM(b.nilai) jumlah, c.standar
+        $query = $this->db->query("SELECT b.category_id, c.jenis, SUM(b.nilai) jumlah, c.nama
                                   FROM
                                   (SELECT id,category_id,(
                                   	CASE
@@ -60,7 +60,7 @@ class CrudModel extends Model
                                   	) nilai
                                   FROM soal_peserta WHERE peserta_id='$nopes') b
                                   INNER JOIN bank_soal_category c ON b.category_id = c.id
-                                  GROUP BY c.standar")->getResult();
+                                  GROUP BY c.nama")->getResult();
         return $query;
       }
 
