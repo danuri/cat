@@ -4,6 +4,7 @@ namespace App\Controllers;
 use App\Models\CrudModel;
 use App\Models\CatModel;
 use App\Models\LogModel;
+use App\Models\MapModel;
 
 class Home extends BaseController
 {
@@ -68,11 +69,16 @@ class Home extends BaseController
   	{
       $model = new CrudModel;
       $cat = new CatModel;
+      $map = new MapModel;
 
-      $categories = $model->getResult('bank_soal_category');
+      $ujian_id = session('ujian_id');
+      // $peserta = $model->getRow('peserta', ['nomor_peserta' => $user_id]);
+
+      $categories = $map->where('ujian_id',$ujian_id)->findAll();
+      // $categories = $model->getResult('bank_soal_category');
       $soal = array();
       foreach ($categories as $row) {
-        $getsoal = $model->getSoal($row->id,$row->jumlah_soal);
+        $getsoal = $model->getSoal($row->category_id,$row->jumlah_soal);
 
         foreach ($getsoal as $rs) {
           $soal[] = [
