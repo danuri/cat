@@ -8,19 +8,19 @@
     <meta content="Premium Multipurpose Admin & Dashboard Template" name="description" />
     <meta content="Biro Kepegawaian" name="author" />
     <!-- App favicon -->
-    <link rel="shortcut icon" href="<?= base_url()?>assets/images/favicon.ico">
+    <link rel="shortcut icon" href="<?= base_url()?>xassets/images/favicon.ico">
 
     <!-- Sweet Alert css-->
-    <link href="<?= base_url()?>assets/libs/sweetalert2/sweetalert2.min.css" rel="stylesheet" type="text/css" />
+    <link href="<?= base_url()?>xassets/libs/sweetalert2/sweetalert2.min.css" rel="stylesheet" type="text/css" />
 
     <!-- Layout config Js -->
-    <script src="<?= base_url()?>assets/js/layout.js"></script>
+    <script src="<?= base_url()?>xassets/js/layout.js"></script>
     <!-- Bootstrap Css -->
-    <link href="<?= base_url()?>assets/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="<?= base_url()?>xassets/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
     <!-- Icons Css -->
-    <link href="<?= base_url()?>assets/css/icons.min.css" rel="stylesheet" type="text/css" />
+    <link href="<?= base_url()?>xassets/css/icons.min.css" rel="stylesheet" type="text/css" />
     <!-- App Css-->
-    <link href="<?= base_url()?>assets/css/app.min.css" rel="stylesheet" type="text/css" />
+    <link href="<?= base_url()?>xassets/css/app.min.css" rel="stylesheet" type="text/css" />
 
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 </head>
@@ -38,7 +38,7 @@
                 <div class="navbar-brand-box horizontal-logo">
                     <a href="index.html" class="logo logo-dark">
                         <span class="logo-sm">
-                            <img src="<?= base_url()?>assets/images/logo-sm.png" alt="" height="22">
+                            <img src="<?= base_url()?>xassets/images/logo-sm.png" alt="" height="22">
                         </span>
                         <span class="logo-lg">
                             CAT Kemenag
@@ -47,7 +47,7 @@
 
                     <a href="index.html" class="logo logo-light">
                         <span class="logo-sm">
-                            <img src="<?= base_url()?>assets/images/logo-sm.png" alt="" height="22">
+                            <img src="<?= base_url()?>xassets/images/logo-sm.png" alt="" height="22">
                         </span>
                         <span class="logo-lg">
                             CAT Kemenag
@@ -87,7 +87,7 @@
                 <div class="dropdown header-item">
                     <button type="button" class="btn" id="page-header-user-dropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <span class="d-flex align-items-center">
-                            <img class="rounded-circle header-profile-user" src="<?= base_url()?>assets/images/users/avatar-4.jpg" alt="Header Avatar">
+                            <img class="rounded-circle header-profile-user" src="<?= base_url()?>xassets/images/users/avatar-4.jpg" alt="Header Avatar">
                             <span class="text-start ms-xl-2">
                                 <span class="d-none d-xl-inline-block fw-medium user-name-text fs-16"><?= session('nama')?> <i class="las la-angle-down fs-12 ms-1"></i></span>
                             </span>
@@ -149,18 +149,18 @@
     </div>
 
     <!-- JAVASCRIPT -->
-    <script src="<?= base_url()?>assets/libs/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <script src="<?= base_url()?>assets/libs/simplebar/simplebar.min.js"></script>
-    <script src="<?= base_url()?>assets/libs/node-waves/waves.min.js"></script>
-    <script src="<?= base_url()?>assets/libs/feather-icons/feather.min.js"></script>
+    <script src="<?= base_url()?>xassets/libs/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="<?= base_url()?>xassets/libs/simplebar/simplebar.min.js"></script>
+    <script src="<?= base_url()?>xassets/libs/node-waves/waves.min.js"></script>
+    <script src="<?= base_url()?>xassets/libs/feather-icons/feather.min.js"></script>
 
     <!-- Sweet Alerts js -->
-    <script src="<?= base_url()?>assets/libs/sweetalert2/sweetalert2.min.js"></script>
+    <script src="<?= base_url()?>xassets/libs/sweetalert2/sweetalert2.min.js"></script>
 
     <!-- Sweet alert init js-->
-    <script src="<?= base_url()?>assets/js/pages/sweetalerts.init.js"></script>
+    <script src="<?= base_url()?>xassets/js/pages/sweetalerts.init.js"></script>
 
     <!-- App js -->
-    <script src="<?= base_url()?>assets/js/app.js"></script>
+    <script src="<?= base_url()?>xassets/js/app.js"></script>
 </body>
 </html>
