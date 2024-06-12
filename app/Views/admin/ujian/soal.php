@@ -37,7 +37,7 @@
                     <tr>
                       <td><?= $row->standar.' - '.$row->nama?></td>
                       <td><?= $row->jumlah_soal?></td>
-                      <td><a href="<?= site_url('admin/ujian/soal/delete/'.$row->id)?>" onclick="return confirm('Soal akan dihapus?')" class="btn btn-sm btn-danger">Hapus</a></td>
+                      <td><a href="<?= site_url('admin/ujian/soal/delete/'.encrypt($row->id))?>" onclick="return confirm('Soal akan dihapus?')" class="btn btn-sm btn-danger">Hapus</a></td>
                     </tr>
                   <?php } ?>
                 </tbody>
