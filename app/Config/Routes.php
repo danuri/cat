@@ -49,19 +49,30 @@ $routes->group("admin", ["filter" => "auth"], function ($routes) {
     $routes->get('', 'Admin\Home::index');
 
     $routes->get('ujian', 'Admin\Ujian::index');
-    $routes->get('ujian/lokasi', 'Admin\Ujian::lokasi');
-    $routes->get('ujian/lokasi/sesi', 'Admin\Ujian::lokasi');
-    $routes->get('ujian/lokasi/peserta', 'Admin\Ujian::peserta');
-    $routes->get('ujian/sesi', 'Admin\Ujian::sesi');
-    $routes->get('ujian/peserta/(:num)', 'Admin\Ujian::peserta/$1');
 
     $routes->get('ujian/add', 'Admin\Ujian::add');
     $routes->post('ujian/add', 'Admin\Ujian::save');
-    $routes->get('ujian/edit/(:num)', 'Admin\Ujian::edit/$1');
-    $routes->post('ujian/edit/(:num)', 'Admin\Ujian::saveedit/$1');
+    $routes->get('ujian/edit/(:any)', 'Admin\Ujian::edit/$1');
+    $routes->post('ujian/edit/(:any)', 'Admin\Ujian\Home::edit/$1');
 
-    $routes->get('ujian/soal/(:num)', 'Admin\Ujian::soal/$1');
-    $routes->post('ujian/soal/(:num)', 'Admin\Ujian::savesoal/$1');
+    $routes->get('ujian/detail/(:any)', 'Admin\Ujian\Home::detail/$1');
+
+    $routes->get('ujian/lokasi/(:any)', 'Admin\Ujian\Lokasi::index/$1');
+    $routes->post('ujian/lokasi/add/(:any)', 'Admin\Ujian\Lokasi::add/$1');
+    $routes->get('ujian/lokasi/delete/(:any)/(:any)', 'Admin\Lokasi::delete/$1/$2');
+
+    $routes->get('ujian/sesi/(:any)', 'Admin\Ujian\Sesi::index/$1');
+    $routes->post('ujian/sesi/add/(:any)', 'Admin\Ujian\Sesi::add/$1');
+    $routes->get('ujian/sesi/delete/(:any)/(:any)', 'Admin\Ujian::delete/$1/$2');
+
+    $routes->get('ujian/peserta/(:any)', 'Admin\Ujian\Peserta::index/$1');
+    $routes->post('ujian/peserta/add/(:any)', 'Admin\Ujian\Peserta::add/$1');
+    $routes->get('ujian/peserta/delete/(:any)/(:any)', 'Admin\Peserta::delete/$1/$2');
+
+    $routes->get('ujian/soal/delete/(:any)', 'Admin\Ujian\Soal::delete/$1');
+    $routes->post('ujian/soal/add', 'Admin\Ujian\Soal::add');
+    $routes->get('ujian/soal/(:any)', 'Admin\Ujian\Soal::index/$1');
+
 
     $routes->get('banksoal/choice', 'Admin\Banksoal::choice');
     $routes->get('banksoal/addchoice', 'Admin\Banksoal::addchoice');

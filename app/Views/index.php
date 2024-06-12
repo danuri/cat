@@ -35,7 +35,7 @@
             <div class="d-flex">
                 <!-- LOGO -->
                 <div class="navbar-brand-box horizontal-logo">
-                    <a href="index.html" class="logo logo-dark">
+                    <a href="<?= site_url()?>" class="logo logo-dark">
                         <span class="logo-sm">
                             <img src="<?= base_url()?>assets/images/logo-sm.png" alt="" height="22">
                         </span>
@@ -44,7 +44,7 @@
                         </span>
                     </a>
 
-                    <a href="index.html" class="logo logo-light">
+                    <a href="<?= site_url()?>" class="logo logo-light">
                         <span class="logo-sm">
                             <img src="<?= base_url()?>assets/images/logo-sm.png" alt="" height="22">
                         </span>
@@ -135,7 +135,7 @@
             <!-- LOGO -->
             <div class="navbar-brand-box">
                 <!-- Dark Logo-->
-                <a href="index.html" class="logo logo-dark">
+                <a href="<?= site_url()?>" class="logo logo-dark">
                     <span class="logo-sm">
                         <img src="<?= base_url()?>assets/images/logo-sm.png" alt="" height="22">
                     </span>
@@ -144,7 +144,7 @@
                     </span>
                 </a>
                 <!-- Light Logo-->
-                <a href="index.html" class="logo logo-light">
+                <a href="<?= site_url()?>" class="logo logo-light">
                     <span class="logo-sm">
                         <img src="<?= base_url()?>assets/images/logo-sm.png" alt="" height="22">
                     </span>
@@ -164,7 +164,7 @@
                     </div>
                     <ul class="navbar-nav" id="navbar-nav">
                         <li class="nav-item">
-                            <a class="nav-link menu-link" href="index.html">
+                            <a class="nav-link menu-link" href="<?= site_url()?>">
                                 <i class="las la-house-damage"></i> <span data-key="t-dashboard">Informasi Peserta</span>
                             </a>
                         </li>
@@ -189,9 +189,6 @@
         <!-- Vertical Overlay-->
         <div class="vertical-overlay"></div>
 
-        <!-- ============================================================== -->
-        <!-- Start right Content here -->
-        <!-- ============================================================== -->
         <div class="main-content">
 
             <div class="page-content">
@@ -202,8 +199,8 @@
                         <div class="col-lg-6">
                             <div class="card">
                                 <div class="card-body">
-                                    <div class="table-responsive">
-                                      <table class="table">
+                                  <div class="table-responsive table-card">
+                                    <table class="table table-bordered table-centered align-middle table-nowrap mb-0">
                                         <tbody>
                                           <tr>
                                             <td>Nomor Peserta</td>
@@ -231,12 +228,13 @@
                         <div class="col-lg-6">
                           <?php if($status == 1){ ?>
                             <div class="card">
+                              <div class="card-header align-items-center d-flex">
+                                <h4 class="card-title mb-0 flex-grow-1">Hasil CAT</h4>
+                              </div>
                               <div class="card-body">
-                                <div class="table-responsive">
-                                  Nilai CAT Anda
-
-                                  <table class="table table-bordered">
-                                    <thead>
+                                <div class="table-responsive table-card">
+                                  <table class="table table-bordered table-centered align-middle table-nowrap mb-0">
+                                    <thead class="text-muted table-light">
                                       <th>Indikator</th>
                                       <!-- <th>Bobot</th> -->
                                       <th>Skor</th>
@@ -246,15 +244,15 @@
                                       <?php
                                       $total = 0;
                                       foreach ($nilai as $row) {
-                                      ?>
+                                        ?>
                                         <tr>
                                           <td><?= $row->nama?></td>
                                           <!-- <th></th> -->
                                           <td><?= ($row->jumlah)?></td>
                                           <!-- <th></th> -->
                                         </tr>
-                                      <?php
-                                      $total = $total+($row->jumlah);
+                                        <?php
+                                        $total = $total+($row->jumlah);
                                       }
                                       ?>
                                       <tr>
@@ -265,8 +263,7 @@
                                     </tbody>
                                   </table>
                                 </div>
-                                <!-- end table responsive -->
-                              </div><!-- end card-body -->
+                              </div>
                             </div><!-- end card -->
                           <?php }else{ ?>
                             <div class="card">

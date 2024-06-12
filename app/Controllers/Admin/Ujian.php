@@ -4,8 +4,7 @@ namespace App\Controllers\Admin;
 
 use App\Controllers\BaseController;
 use App\Models\UjianModel;
-use App\Models\PesertaModel;
-use App\Models\SoalUjianModel;
+use App\Models\MapModel;
 use App\Models\CategoryModel;
 
 class Ujian extends BaseController
@@ -39,6 +38,15 @@ class Ujian extends BaseController
       return redirect()->back()->with('message', 'Ujian telah ditambahkan');
     }
 
+    public function detail($id)
+    {
+      $model = new UjianModel;
+      $ujianid = decrypt($id);
+      $data['ujian'] = $model->find($ujianid);
+      $data['ujianid'] = $id;
+      return view('admin/ujian/detail', $data);
+    }
+
     public function edit($id)
     {
       $model = new UjianModel;
@@ -63,21 +71,19 @@ class Ujian extends BaseController
       return redirect()->back()->with('message', 'Ujian telah diupdate');
     }
 
-    public function soal($id)
+
+
+    public function sesi($id)
     {
-      $model = new SoalUjianModel;
-      $data['soal'] = $model->where('ujian_id',$id)->findAll();
+      $model = new MapModel;
+      $data['sesi'] = $model->where('ujian_id',$id)->findAll();
+
 
       $catm = new CategoryModel;
       $data['categories'] = $catm->findAll();
 
-      return view('admin/ujian/soal', $data);
-    }
+      $data['ujian_id'] = $id;
 
-    public function peserta($id)
-    {
-      $model = new PesertaModel;
-      $data['peserta'] = $model->where('ujian_id',$id)->findAll();
-      return view('admin/ujian/peserta', $data);
+      return view('admin/ujian/soal', $data);
     }
 }

@@ -1,7 +1,7 @@
 <html><head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Login - CBT</title>
+  <title>Login - CAT</title>
   <style>
   @font-face { font-family: Arial !important; font-display: swap !important; }
   </style>
@@ -136,7 +136,7 @@
           <img src="https://www.freepnglogos.com/uploads/logo-depag-png/file-kementerian-agama-logo-wikimedia-commons-1.png" alt="">
         </div>
         <div class="text-center mt-4 name">
-          Computer Based Test
+          Computer Assisted Test
         </div>
         <?php if(session()->getFlashdata('message')){ ?>
         <p class="text-center text-danger"><?= session()->getFlashdata('message')?></p>

@@ -1,4 +1,4 @@
-<?= $this->extend('admin/template') ?>
+<?= $this->extend('admin/template_ujian') ?>
 
 <?= $this->section('content') ?>
 
@@ -37,28 +37,48 @@
       <div class="col-xl-12">
         <div class="card">
           <div class="card-body">
-            <div class="table-responsive">
+            <div class="row mb-5">
+              <div class="col-3">
+                <select class="form-select" name="">
+                  <option value="">Filter Lokasi</option>
+                </select>
+              </div>
+              <div class="col-3">
+                <select class="form-select" name="">
+                  <option value="">Filter Sesi</option>
+                </select>
+              </div>
+              <div class="col-3">
+                <select class="form-select" name="">
+                  <option value="">Filter Ruang</option>
+                </select>
+              </div>
+            </div>
             <table class="table table-bordered table-striped datatable smalltext">
               <thead>
                 <tr>
-                  <th>NOMOR PESERTA</th>
-                  <th>NAMA</th>
-                  <th>JABATAN</th>
-                  <th>AKSI</th>
+                  <th>Peserta</th>
+                  <th>Lokasi Formasi</th>
+                  <th>Detail Ujian</th>
+                  <th>Aksi</th>
                 </tr>
               </thead>
               <tbody>
                 <?php foreach ($peserta as $row) {?>
                   <tr>
-                    <td><?= $row->nomor_peserta?></td>
-                    <td><?= $row->nama?></td>
-                    <td><?= $row->jabatan?></td>
+                    <td>
+                      <?= $row->nik?><br>
+                      <?= $row->nomor_peserta?><br>
+                      <?= $row->nama?><br>
+                      <?= $row->jabatan?>
+                    </td>
+                    <td><?= $row->lokasi_formasi?></td>
+                    <td>-</td>
                     <td><a href="<?= site_url('admin/ujian/lokasi/'.$row->id)?>" class="btn btn-sm btn-primary">Detail</a></td>
                   </tr>
                 <?php } ?>
               </tbody>
             </table>
-          </div>
         </div>
         </div>
       </div>

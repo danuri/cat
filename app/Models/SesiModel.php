@@ -14,7 +14,7 @@ class SesiModel extends Model
     protected $returnType       = 'object';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
-    protected $allowedFields    = ['lokasi','tanggal','sesi','ruang','pin'];
+    protected $allowedFields    = ['ujian_id','kode_lokasi','lokasi','tanggal','sesi','ruang','pin'];
 
     // Dates
     protected $useTimestamps = true;

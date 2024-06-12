@@ -1,4 +1,4 @@
-<?= $this->extend('admin/template') ?>
+<?= $this->extend('admin/template_ujian') ?>
 
 <?= $this->section('content') ?>
 
@@ -7,27 +7,13 @@
     <div class="row">
       <div class="col-12">
         <div class="page-title-box d-sm-flex align-items-center justify-content-between">
-          <h4 class="mb-sm-0">Data Ujian</h4>
+          <h4 class="mb-sm-0">Soal Ujian</h4>
 
           <div class="page-title-right">
-            <ol class="breadcrumb m-0">
-              <li class="breadcrumb-item"><a href="javascript: void(0);">Ujian</a></li>
-              <li class="breadcrumb-item active">Data Ujian</li>
-            </ol>
+            <button type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#addSoal">
+            Tambah Kategori Soal
+            </button>
           </div>
-
-        </div>
-      </div>
-    </div>
-
-    <div class="row pb-4 gy-3">
-      <div class="col-sm-4">
-        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addSoal">
-        Tambah Kategori Soal
-        </button>
-      </div>
-      <div class="col-sm-auto ms-auto">
-        <div class="d-flex gap-3">
 
         </div>
       </div>
@@ -49,9 +35,9 @@
                 <tbody>
                   <?php foreach ($soal as $row) {?>
                     <tr>
-                      <td><?= $row->category_name?></td>
+                      <td><?= $row->standar.' - '.$row->nama?></td>
                       <td><?= $row->jumlah_soal?></td>
-                      <td><a href="<?= site_url('admin/soal/delete/'.$row->id)?>" onclick="return confirm('Soal akan dihapus?')" class="btn btn-sm btn-primary">Hapus</a></td>
+                      <td><a href="<?= site_url('admin/ujian/soal/delete/'.$row->id)?>" onclick="return confirm('Soal akan dihapus?')" class="btn btn-sm btn-danger">Hapus</a></td>
                     </tr>
                   <?php } ?>
                 </tbody>
@@ -72,7 +58,7 @@
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"> </button>
           </div>
           <div class="modal-body">
-            <form class="" action="" method="post">
+            <form class="" action="<?= site_url('admin/ujian/soal/add')?>" method="post" id="addsoal">
               <div class="row mb-3">
                   <div class="col-lg-3">
                       <label for="pin" class="form-label">Kategori Soal</label>
@@ -80,7 +66,7 @@
                   <div class="col-lg-9">
                     <select class="form-select" name="category_id">
                       <?php foreach ($categories as $row) {
-                        echo '<option value="'.$row->id.'">'.$row->nama.'</option>';
+                        echo '<option value="'.$row->id.'">'.$row->standar.' - '.$row->nama.'</option>';
                       } ?>
                     </select>
                   </div>
@@ -91,13 +77,14 @@
                   </div>
                   <div class="col-lg-9">
                     <input type="number" class="form-control" id="jumlah_soal" name="jumlah_soal">
+                    <input type="hidden" name="ujian_id" value="<?= $ujianid?>">
                   </div>
               </div>
             </form>
           </div>
           <div class="modal-footer">
               <button type="button" class="btn btn-light" data-bs-dismiss="modal">Tutup</button>
-              <button type="button" class="btn btn-primary ">Simpan</button>
+              <button type="button" class="btn btn-primary" onclick="$('#addsoal').submit()">Simpan</button>
           </div>
         </div>
     </div>
@@ -108,4 +95,10 @@
 <script src="<?= base_url()?>/assets/js/jquery/jquery.min.js"></script>
 <script src="<?= base_url()?>/assets/js/vendor/tables/datatables/datatables.min.js"></script>
 <script src="<?= base_url()?>/assets/js/custom.js"></script>
+
+<script type="text/javascript">
+  $(document).ready(function() {
+  });
+
+</script>
 <?= $this->endSection() ?>
