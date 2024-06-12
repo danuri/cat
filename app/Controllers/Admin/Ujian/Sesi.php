@@ -3,6 +3,7 @@
 namespace App\Controllers\Admin\Ujian;
 
 use App\Controllers\BaseController;
+use App\Models\LokasiModel;
 use App\Models\SesiModel;
 
 class Sesi extends BaseController
