@@ -69,9 +69,9 @@ $routes->group("admin", ["filter" => "auth"], function ($routes) {
     $routes->post('ujian/peserta/add/(:any)', 'Admin\Ujian\Peserta::add/$1');
     $routes->get('ujian/peserta/delete/(:any)/(:any)', 'Admin\Peserta::delete/$1/$2');
 
+    $routes->get('ujian/soal/(:any)', 'Admin\Ujian\Soal::index/$1');
     $routes->get('ujian/soal/delete/(:any)', 'Admin\Ujian\Soal::delete/$1');
     $routes->post('ujian/soal/add', 'Admin\Ujian\Soal::add');
-    $routes->get('ujian/soal/(:any)', 'Admin\Ujian\Soal::index/$1');
 
 
     $routes->get('banksoal/choice', 'Admin\Banksoal::choice');

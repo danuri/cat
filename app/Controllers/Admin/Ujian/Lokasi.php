@@ -12,7 +12,7 @@ class Lokasi extends BaseController
         $model = new LokasiModel;
         $ujianid = decrypt($id);
         $data['lokasi'] = $model->where('ujian_id',$ujianid)->findAll();
-        $data['ujianid'] = $id;
+        $data['ujianid'] = $ujianid;
 
         return view('admin/ujian/lokasi', $data);
     }

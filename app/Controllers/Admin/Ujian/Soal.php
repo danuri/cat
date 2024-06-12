@@ -19,28 +19,31 @@ class Soal extends BaseController
       $builder->select('map_soal.*, bank_soal_category.standar, bank_soal_category.nama');
       $builder->join('bank_soal_category', 'bank_soal_category.id = map_soal.category_id');
       $builder->where('map_soal.ujian_id', $ujianid);
+      // return $query;
       $query = $builder->get();
       $data['soal'] = $query->getResult();
+      // $data['soal'] = $query;
 
 
       $catm = new CategoryModel;
       $data['categories'] = $catm->findAll();
 
-      $data['ujianid'] = $id;
+      $data['ujianid'] = $ujianid;
 
       return view('admin/ujian/soal', $data);
     }
 
-    public function add()
+    public function add($id)
     {
+      $ujianid = decrypt($id);
       $model = new MapModel;
 
       $data = [
-          'ujian_id' => $this->request->getVar('ujian_id'),
+          'ujian_id' => $ujianid,
           'category_id' => $this->request->getVar('category_id'),
           'jumlah_soal' => $this->request->getVar('jumlah_soal')
       ];
-      
+
       $insert = $model->insert($data);
 
       return redirect()->back()->with('message', 'Soal telah ditambahkan');

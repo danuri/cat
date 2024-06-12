@@ -58,7 +58,7 @@
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"> </button>
           </div>
           <div class="modal-body">
-            <form class="" action="<?= site_url('admin/ujian/soal/add')?>" method="post" id="addsoal">
+            <form class="" action="<?= site_url('admin/ujian/soal/add/'.$ujianid)?>" method="post" id="addsoal">
               <div class="row mb-3">
                   <div class="col-lg-3">
                       <label for="pin" class="form-label">Kategori Soal</label>

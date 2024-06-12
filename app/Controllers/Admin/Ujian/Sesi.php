@@ -14,7 +14,7 @@ class Sesi extends BaseController
       $ujianid = decrypt($id);
       $data['sesi'] = $model->where('ujian_id',$ujianid)->findAll();
       $data['lokasi'] = $lmodel->where('ujian_id',$ujianid)->findAll();
-      $data['ujianid'] = $id;
+      $data['ujianid'] = $ujianid;
 
       return view('admin/ujian/sesi', $data);
     }

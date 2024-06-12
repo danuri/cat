@@ -17,7 +17,7 @@ class Home extends BaseController
       $model = new UjianModel;
       $ujianid = decrypt($id);
       $data['ujian'] = $model->find($ujianid);
-      $data['ujianid'] = $id;
+      $data['ujianid'] = $ujianid;
       return view('admin/ujian/detail', $data);
     }
 

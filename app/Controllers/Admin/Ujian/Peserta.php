@@ -12,7 +12,7 @@ class Peserta extends BaseController
       $model = new PesertaModel;
       $ujianid = decrypt($id);
       $data['peserta'] = $model->where('ujian_id',$ujianid)->findAll();
-      $data['ujianid'] = $id;
+      $data['ujianid'] = $ujianid;
       return view('admin/ujian/peserta', $data);
     }
 }
