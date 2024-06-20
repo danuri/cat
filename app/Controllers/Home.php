@@ -5,6 +5,7 @@ use App\Models\CrudModel;
 use App\Models\CatModel;
 use App\Models\LogModel;
 use App\Models\MapModel;
+use App\Models\UjianModel;
 
 class Home extends BaseController
 {
@@ -12,6 +13,7 @@ class Home extends BaseController
     {
         $model = new LogModel;
         $crud = new CrudModel;
+		$ujian = new UjianModel;
 
         $user_id = session('nomor_peserta');
 
@@ -20,8 +22,10 @@ class Home extends BaseController
         if($log && $log->status == 1){
           $data['status'] = 1;
           $data['nilai'] = $crud->getNilai(session('nomor_peserta'));
+		  $data['ujian'] = $ujian->where(['id' => session('ujian_id')])->first();
         }else{
           $data['status'] = 0;
+		  $data['ujian'] = $ujian->where(['id' => session('ujian_id')])->first();
         }
 
         return view('index', $data);
@@ -30,11 +34,13 @@ class Home extends BaseController
     public function mulai()
   	{
       $model = new CrudModel;
+	  $ujian = new UjianModel;
 
   		$user_id = session('nomor_peserta');
   		$peserta = $model->getRow('peserta', ['nomor_peserta' => $user_id]);
 
   		$soalpeserta = $model->getRow('soal_peserta', ['peserta_id' => $user_id]);
+		$data_ujian = $ujian->where(['id' => session('ujian_id')])->first();
 
       if($soalpeserta){
         return redirect()->to('cat');
@@ -42,7 +48,7 @@ class Home extends BaseController
 
   		if(!$model->getRow('peserta_log', ['ujian_id' => $peserta->ujian_id, 'peserta_id' => $peserta->nomor_peserta])){
   			$now     = strtotime(date('Y-m-d H:i:s'));
-  			$minutes = 90;
+  			$minutes = $data_ujian->lama_ujian;
   			$seconds = ($minutes * 60);
   			$future  = ($now + $seconds);
 

@@ -6,6 +6,7 @@ use App\Controllers\BaseController;
 use App\Models\CatModel;
 use App\Models\LogModel;
 use App\Models\CrudModel;
+use App\Models\UjianModel;
 
 class Cat extends BaseController
 {
@@ -13,6 +14,7 @@ class Cat extends BaseController
     {
       $cat = new CatModel;
       $log = new LogModel;
+      $ujian = new UjianModel;
 
       $user_id = session('nomor_peserta');
 
@@ -20,6 +22,7 @@ class Cat extends BaseController
       // $data['jumlah']   = 0;
       $data['jumlah']   = $cat->where(['peserta_id' => session('nomor_peserta'), 'ujian_id' => session('ujian_id'), 'jawaban_peserta !=' => null])->countAllResults();
       $data['log']      = $log->where(['peserta_id'=>$user_id])->first();
+      $data['ujian'] = $ujian->where(['id'=>session('ujian_id')])->first();
       return view('cat', $data);
     }
 

@@ -218,6 +218,10 @@
                                             <td>Satuan Kerja</td>
                                             <td>: <?= session('lokasi_formasi')?></td>
                                           </tr>
+                                          <tr>
+                                            <td>Ujian</td>
+                                            <td>: <?= $ujian->ket ?></td>
+                                          </tr>
                                         </tbody>
                                       </table>
                                     </div>

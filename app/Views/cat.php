@@ -28,13 +28,14 @@
                     <span class="logo-lg">
                         <img src="<?= base_url()?>xassets/images/logo-light.png" alt="" height="21">
                     </span>
-                </a>
+                </a>                
                 <button type="button" class="btn btn-sm p-0 fs-20 header-item float-end btn-vertical-sm-hover" id="vertical-hover">
                     <i class="ri-record-circle-line"></i>
                 </button>
-            </div>
+                
+            </div>                     
 
-            <div id="scrollbar" class="p-3">
+            <div id="scrollbar" class="p-3">              
               <h4>NOMOR SOAL</h4>
               <?php
               $n = 1;
@@ -52,14 +53,17 @@
         <!-- ============================================================== -->
         <!-- Start right Content here -->
         <!-- ============================================================== -->
-        <div class="main-content">
-
+        <div class="main-content"> 
             <div class="page-content">
-                <div class="container-fluid">
-
-                    <div class="row">
-                        <div class="col-lg-12">
-                          <div class="card card-body">
+                <div class="container-fluid">            
+                    <div class="row">                        
+                        <div class="card card-body">
+                          <div class="row">
+                            <div class="col">
+                              <span id="ujian_ket"><strong><?= $ujian->ket?></strong></span>                              
+                            </div>
+                          </div>
+                          <br>
                             <div class="row">
                               <div class="col">
                                 Batas Waktu<br>
@@ -114,7 +118,6 @@
                                     <!-- end table responsive -->
                                 </div><!-- end card-body -->
                             </div><!-- end card -->
-                        </div>
                         <!-- end col -->
                     </div>
                     <div class="soalstart">
@@ -125,10 +128,10 @@
                       <button type="button" class="btn btn-primary btn-label right ms-auto save">Simpan</button>
         						</div>
 
-
+                    </div>
                 </div>
                 <!-- container-fluid -->
-            </div>
+        </div>
             <!-- End Page-content -->
 
             <footer class="footer">
@@ -154,6 +157,7 @@
         		$('#clock').countdown('<?php echo $log->finish_time;?>', function(event) {
         		  $(this).html(event.strftime('%H:%M:%S'));
         		});
+            $('.ujian_ket').html('<?php echo $ujian->ket;?>');
         		//console.log(jsonObj[0]['pertanyaan']);
         		loadsoal(1);
             // $("#paging").niceScroll({cursorcolor:"#b3b3b3",autohidemode:false});
