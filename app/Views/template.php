@@ -30,9 +30,9 @@
     <!-- Begin page -->
     <div id="layout-wrapper">
 
-        <header id="page-topbar">
+    <header id="page-topbar">
     <div class="layout-width">
-        <div class="navbar-header">
+        <div class="navbar-header" id="navbar-nav">
             <div class="d-flex">
                 <!-- LOGO -->
                 <div class="navbar-brand-box horizontal-logo">
@@ -55,13 +55,13 @@
                     </a>
                 </div>
 
-                <!--<button type="button" class="btn btn-sm px-3 fs-16 header-item vertical-menu-btn topnav-hamburger" id="topnav-hamburger-icon">
+                <button type="button" class="btn btn-sm px-3 fs-16 header-item vertical-menu-btn topnav-hamburger" id="topnav-hamburger-icon">
                     <span class="hamburger-icon">
                         <span></span>
                         <span></span>
                         <span></span>
                     </span>
-                </button>-->
+                </button>
 
                 <!-- App Search-->
 
@@ -162,5 +162,6 @@
 
     <!-- App js -->
     <script src="<?= base_url()?>xassets/js/app.js"></script>
+    
 </body>
 </html>

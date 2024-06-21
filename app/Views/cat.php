@@ -270,7 +270,6 @@
         	<?php
         	}
         	?>
-        	//console.log(jsonObj[0]);
-
+        	//console.log(jsonObj[0]);          
         </script>
 <?= $this->endSection() ?>
