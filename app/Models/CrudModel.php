@@ -64,6 +64,27 @@ class CrudModel extends Model
         return $query;
       }
 
+      public function getNilaiV2($nopes, $ujian_id)
+      {
+      //   $query = $this->db->query("SELECT b.category_id, SUM(b.nilai) jumlah, c.nama
+      //                             FROM
+      //                             (SELECT id,category_id,(CASE WHEN jawaban_soal = jawaban_peserta THEN '1' ELSE '0' END) nilai
+      //                             FROM soal_peserta WHERE peserta_id='$nopes') b
+      //                             INNER JOIN bank_soal_category c ON b.category_id = c.id
+      //                             GROUP BY b.category_id")->getResult();
+        $query = $this->db->query("SELECT b.category_id, c.jenis, SUM(b.nilai) jumlah, c.nama
+                                  FROM
+                                  (SELECT id,category_id,(
+                                  	CASE
+                                  		WHEN jawaban_soal = jawaban_peserta THEN '2' ELSE '0'
+                                  	 END
+                                  	) nilai
+                                  FROM soal_peserta WHERE peserta_id='$nopes' AND ujian_id='$ujian_id') b
+                                  INNER JOIN bank_soal_category c ON b.category_id = c.id
+                                  GROUP BY c.nama")->getResult();
+        return $query;
+      }
+
       public function getAccess($kodesatker)
       {
         $query = $this->db->query("SELECT

@@ -17,11 +17,11 @@ class Home extends BaseController
 
         $user_id = session('nomor_peserta');
 
-        $log = $model->where(['peserta_id'=>$user_id])->first();
+        $log = $model->where(['peserta_id'=>$user_id, 'ujian_id'=>session('ujian_id')])->first();
 
         if($log && $log->status == 1){
           $data['status'] = 1;
-          $data['nilai'] = $crud->getNilai(session('nomor_peserta'));
+          $data['nilai'] = $crud->getNilaiV2(session('nomor_peserta'), session('ujian_id'));
 		  $data['ujian'] = $ujian->where(['id' => session('ujian_id')])->first();
         }else{
           $data['status'] = 0;
@@ -37,9 +37,9 @@ class Home extends BaseController
 	  $ujian = new UjianModel;
 
   		$user_id = session('nomor_peserta');
-  		$peserta = $model->getRow('peserta', ['nomor_peserta' => $user_id]);
+  		$peserta = $model->getRow('peserta', ['nomor_peserta' => $user_id, 'ujian_id' => session('ujian_id')]);
 
-  		$soalpeserta = $model->getRow('soal_peserta', ['peserta_id' => $user_id]);
+  		$soalpeserta = $model->getRow('soal_peserta', ['peserta_id' => $user_id, 'ujian_id' => session('ujian_id')]);
 		$data_ujian = $ujian->where(['id' => session('ujian_id')])->first();
 
       if($soalpeserta){

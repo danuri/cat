@@ -18,10 +18,10 @@ class Cat extends BaseController
 
       $user_id = session('nomor_peserta');
 
-      $data['soals']    = $cat->where(['peserta_id'=>$user_id])->findAll();
+      $data['soals']    = $cat->where(['peserta_id'=>$user_id, 'ujian_id'=>session('ujian_id')])->findAll();
       // $data['jumlah']   = 0;
       $data['jumlah']   = $cat->where(['peserta_id' => session('nomor_peserta'), 'ujian_id' => session('ujian_id'), 'jawaban_peserta !=' => null])->countAllResults();
-      $data['log']      = $log->where(['peserta_id'=>$user_id])->first();
+      $data['log']      = $log->where(['peserta_id'=>$user_id, 'ujian_id'=>session('ujian_id')])->first();
       $data['ujian'] = $ujian->where(['id'=>session('ujian_id')])->first();
       return view('cat', $data);
     }
@@ -32,7 +32,7 @@ class Cat extends BaseController
       $log = new LogModel;
 
       $user_id = session('nomor_peserta');
-      $ceklog		= $log->where(['peserta_id'=>$user_id])->first();
+      $ceklog		= $log->where(['peserta_id'=>$user_id, 'ujian_id'=>session('ujian_id')])->first();
 
 			if(strtotime($ceklog->finish_time) <= time() || $ceklog->status == 1){
 				echo '0';
@@ -67,7 +67,7 @@ class Cat extends BaseController
     {
       $log = new LogModel;
 
-      $log->set(['status'=>1])->where(['peserta_id'=>session('nomor_peserta')])->update();
+      $log->set(['status'=>1])->where(['peserta_id'=>session('nomor_peserta'), 'ujian_id'=>session('ujian_id')])->update();
 
       return redirect()->to('');
     }
