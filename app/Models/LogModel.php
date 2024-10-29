@@ -14,7 +14,7 @@ class LogModel extends Model
     protected $returnType       = 'object';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
-    protected $allowedFields    = ['ujian_id','peserta_id','status','start_time','finish_time'];
+    protected $allowedFields    = ['ujian_id','peserta_id','status','start_time','finish_time','finish_nilai'];
 
     // Dates
     protected $useTimestamps = true;

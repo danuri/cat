@@ -66,12 +66,6 @@ class CrudModel extends Model
 
       public function getNilaiV2($nopes, $ujian_id)
       {
-      //   $query = $this->db->query("SELECT b.category_id, SUM(b.nilai) jumlah, c.nama
-      //                             FROM
-      //                             (SELECT id,category_id,(CASE WHEN jawaban_soal = jawaban_peserta THEN '1' ELSE '0' END) nilai
-      //                             FROM soal_peserta WHERE peserta_id='$nopes') b
-      //                             INNER JOIN bank_soal_category c ON b.category_id = c.id
-      //                             GROUP BY b.category_id")->getResult();
         $query = $this->db->query("SELECT b.category_id, c.jenis, SUM(b.nilai) jumlah, c.nama
                                   FROM
                                   (SELECT id,category_id,(
@@ -82,6 +76,72 @@ class CrudModel extends Model
                                   FROM soal_peserta WHERE peserta_id='$nopes' AND ujian_id='$ujian_id') b
                                   INNER JOIN bank_soal_category c ON b.category_id = c.id
                                   GROUP BY c.nama")->getResult();
+        return $query;
+      }
+
+      public function getNilaiV3($nopes, $ujian_id)
+      {
+        $query = $this->db->query("SELECT b.category_id, c.jenis, SUM(b.nilai) jumlah, c.nama
+                                  FROM
+                                  (SELECT a.id, a.category_id, (
+                                  	CASE 
+                                  		WHEN a.value_type = '1' THEN (
+                                  			CASE
+	                                  			WHEN a.jawaban_soal = a.jawaban_peserta THEN a.bobot
+	                                  			ELSE '0'                                 		
+                                  			END
+                                  		)
+                                  		WHEN a.value_type = '2' THEN (
+                                  			CASE
+	                                  			WHEN a.jawaban_soal = a.jawaban_peserta THEN a.bobot
+	                                  			ELSE '0'                                 		
+                                  			END
+                                  		)
+                                  		WHEN a.value_type = '3' THEN (
+                                  			CASE 
+                                  				WHEN a.jawaban_peserta = a.p1 THEN a.bobot_p1
+                                  				WHEN a.jawaban_peserta = a.p2 THEN a.bobot_p2
+                                  				WHEN a.jawaban_peserta = a.p3 THEN a.bobot_p3
+                                  				WHEN a.jawaban_peserta = a.p4 THEN a.bobot_p4
+                                  				WHEN a.jawaban_peserta = a.p5 THEN a.bobot_p5
+                                  			END                                  			
+                                  		)
+                                  	END                                 	
+                                  	) nilai
+                                  FROM soal_peserta a WHERE a.peserta_id='$nopes' AND ujian_id='$ujian_id') b
+                                  INNER JOIN bank_soal_category c ON b.category_id = c.id
+                                  GROUP BY c.nama")->getResult();
+        return $query;
+      }
+
+      public function getNilaiV4($nopes, $ujian_id)
+      {
+        $query = $this->db->query("SELECT SUM(CASE 
+                                  		WHEN a.value_type = '1' THEN (
+                                  			CASE
+	                                  			WHEN a.jawaban_soal = a.jawaban_peserta THEN a.bobot
+	                                  			ELSE '0'                                 		
+                                  			END
+                                  		)
+                                  		WHEN a.value_type = '2' THEN (
+                                  			CASE
+	                                  			WHEN a.jawaban_soal = a.jawaban_peserta THEN a.bobot
+	                                  			ELSE '0'                                 		
+                                  			END
+                                  		)
+                                  		WHEN a.value_type = '3' THEN (
+                                  			CASE 
+                                  				WHEN a.jawaban_peserta = a.p1 THEN a.bobot_p1
+                                  				WHEN a.jawaban_peserta = a.p2 THEN a.bobot_p2
+                                  				WHEN a.jawaban_peserta = a.p3 THEN a.bobot_p3
+                                  				WHEN a.jawaban_peserta = a.p4 THEN a.bobot_p4
+                                  				WHEN a.jawaban_peserta = a.p5 THEN a.bobot_p5
+                                          ELSE '0'
+                                  			END                                  			
+                                  		)
+                                  	END) as nilai
+                              FROM soal_peserta a
+                              WHERE a.peserta_id='$nopes' AND ujian_id='$ujian_id'")->getResult();
         return $query;
       }
 

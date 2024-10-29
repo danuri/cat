@@ -40,7 +40,7 @@
               <?php
               $n = 1;
               foreach ($soals as $soal){?>
-                <button type="button" class="nomor btn <?php echo ($soal->jawaban_peserta > 0)? 'btn-success':'btn-danger';?> btn-page" id="btn<?php echo $n;?>" onclick="loadsoal(<?php echo $n;?>);"><?php echo $n;?></button>
+                <button type="button" class="nomor btn <?php echo ($soal['jawaban_peserta'] > 0)? 'btn-success':'btn-danger';?> btn-page" id="btn<?php echo $n;?>" onclick="loadsoal(<?php echo $n;?>);"><?php echo $n;?></button>
                 <?php $n++;} ?>
             </div>
 
@@ -60,7 +60,9 @@
                         <div class="card card-body">
                           <div class="row">
                             <div class="col">
-                              <span id="ujian_ket"><strong><?= $ujian->ket?></strong></span>                              
+                              <span id="ujian_ket"><strong><?= $ujian->ket?></strong></span>   
+                              <br>
+                              <span id="kategori"><strong></strong></span>                           
                             </div>
                           </div>
                           <br>
@@ -225,13 +227,17 @@
         		$('#p2').html(jsonObj[number]['p2']);
         		$('#p3').html(jsonObj[number]['p3']);
         		$('#p4').html(jsonObj[number]['p4']);
-        		$('#p5').html(jsonObj[number]['p5']);
+        		$('#p5').html(jsonObj[number]['p5']); 
         		if(jsonObj[number]['j'] > 0){
         			$('#jawaban'+jsonObj[number]['j']).prop("checked", true);
 
         		}else{
         			$('input[name=jawaban]').prop("checked", false);
         		}
+            
+            const spanKategori = document.getElementById("kategori");
+            spanKategori.innerText = jsonObj[number]['category_name'];
+            console.log(jsonObj);
         	}
 
         	function savejawaban() {
@@ -241,30 +247,38 @@
         	jsonObj = [];
         	<?php
         	foreach ($soals as $soal) {
-        		$pertanyaan = str_replace('\u0000', '', json_encode($soal->pertanyaan));
-        		$p1 = str_replace('\u0000', '', json_encode($soal->p1));
-        		$p2 = str_replace('\u0000', '', json_encode($soal->p2));
-        		$p3 = str_replace('\u0000', '', json_encode($soal->p3));
-        		$p4 = str_replace('\u0000', '', json_encode($soal->p4));
-        		$p5 = str_replace('\u0000', '', json_encode($soal->p5));
+        		$pertanyaan = str_replace('\u0000', '', json_encode($soal['pertanyaan']));
+            $pertanyaan = str_replace('\n', '<br>', json_encode($soal['pertanyaan']));
+        		$p1 = str_replace('\u0000', '', json_encode($soal['p1']));
+            $p1 = str_replace('\n', '<br>', json_encode($soal['p1']));
+        		$p2 = str_replace('\u0000', '', json_encode($soal['p2']));
+            $p2 = str_replace('\n', '<br>', json_encode($soal['p2']));
+        		$p3 = str_replace('\u0000', '', json_encode($soal['p3']));
+            $p3 = str_replace('\n', '<br>', json_encode($soal['p3']));
+        		$p4 = str_replace('\u0000', '', json_encode($soal['p4']));
+            $p4 = str_replace('\n', '<br>', json_encode($soal['p4']));
+        		$p5 = str_replace('\u0000', '', json_encode($soal['p5']));
+            $p5 = str_replace('\n', '<br>', json_encode($soal['p5']));
 
-            if($soal->category_id == 13){
-        			$p1 = explode('##',$soal->p1)[0];
-        			$p2 = explode('##',$soal->p2)[0];
-        			$p3 = explode('##',$soal->p3)[0];
-        			$p4 = explode('##',$soal->p4)[0];
-        			$p5 = explode('##',$soal->p5)[0];
+            if($soal['category_id'] == 13){
+        			$p1 = explode('##',$soal['p1'])[0];
+        			$p2 = explode('##',$soal['p2'])[0];
+        			$p3 = explode('##',$soal['p3'])[0];
+        			$p4 = explode('##',$soal['p4'])[0];
+        			$p5 = explode('##',$soal['p5'])[0];
         		}
         	?>
         	item = {}
-        	item ["id"] = '<?php echo $soal->id;?>';
+        	item ["id"] = '<?php echo $soal['id'];?>';
         	item ["pertanyaan"] = "<?php echo str_replace('"','',$pertanyaan);?>";
         	item ["p1"] = "<?php echo str_replace('"','',$p1);?>";
         	item ["p2"] = "<?php echo str_replace('"','',$p2);?>";
         	item ["p3"] = "<?php echo str_replace('"','',$p3);?>";
         	item ["p4"] = "<?php echo str_replace('"','',$p4);?>";
         	item ["p5"] = "<?php echo str_replace('"','',$p5);?>";
-        	item ["j"] = '<?php echo $soal->jawaban_peserta;?>';
+        	item ["j"] = '<?php echo $soal['jawaban_peserta'];?>';
+        	item ["category_id"] = '<?php echo $soal['category_id'];?>';
+          item ["category_name"] = '<?php echo $soal['category_name'];?>';         
 
         	jsonObj.push(item);
         	<?php

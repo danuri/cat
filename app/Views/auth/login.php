@@ -146,10 +146,10 @@
             <span class="fas fa-key"></span>
             <input type="text" name="nik" id="nik" placeholder="NIP">
           </div>
-          <div class="form-field d-flex align-items-center">
+          <!--<div class="form-field d-flex align-items-center">
             <span class="far fa-user"></span>
             <input type="text" name="nomor_peserta" id="nomor_peserta" placeholder="Nomor Peserta">
-          </div>
+          </div>-->
           <div class="form-field d-flex align-items-center">
             <span class="fas fa-key"></span>
             <input type="text" name="pinsesi" id="pinsesi" placeholder="PIN Ujian">

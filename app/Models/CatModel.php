@@ -14,7 +14,7 @@ class CatModel extends Model
     protected $returnType       = 'object';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
-    protected $allowedFields    = ['ujian_id','category_id','soal_id','peserta_id','pertanyaan','p1','p2','p3','p4','p5','jawaban_soal','jawaban_peserta','jawaban_nilai'];
+    protected $allowedFields    = ['ujian_id','category_id','soal_id','peserta_id','pertanyaan','p1','p2','p3','p4','p5','jawaban_soal','jawaban_peserta','jawaban_nilai', 'value_type', 'bobot_p1', 'bobot_p2', 'bobot_p3', 'bobot_p4', 'bobot_p5', 'bobot'];
 
     // Dates
     protected $useTimestamps = true;

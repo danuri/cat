@@ -18,7 +18,8 @@ class Auth extends BaseController
       // $agent = $this->request->getUserAgent();
       // if(str_contains($agent,'ukompenyuluh')){
         $user = $this->request->getVar('nik');
-        $nopes = $this->request->getVar('nomor_peserta');
+        //$nopes = $this->request->getVar('nomor_peserta');
+        $nopes = $user;
         $pass = $this->request->getVar('nik');
         $pin = $this->request->getVar('pinsesi');
 

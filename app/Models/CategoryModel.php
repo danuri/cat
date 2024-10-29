@@ -14,7 +14,7 @@ class CategoryModel extends Model
     protected $returnType       = 'object';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
-    protected $allowedFields    = ['nama','nilai','passing_grade'];
+    protected $allowedFields    = ['nama','nilai','passing_grade','value_type'];
 
     // Dates
     protected $useTimestamps = true;

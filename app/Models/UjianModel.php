@@ -14,7 +14,7 @@ class UjianModel extends Model
     protected $returnType       = 'object';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
-    protected $allowedFields    = ['nama','ket','status','waktu_ujian','lama_ujian','pin','created_by'];
+    protected $allowedFields    = ['nama','ket','status','waktu_ujian','lama_ujian','pin','created_by','show_hasil'];
 
     // Dates
     protected $useTimestamps = true;

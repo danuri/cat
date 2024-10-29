@@ -231,6 +231,16 @@
                         </div>
                         <div class="col-lg-6">
                           <?php if($status == 1){ ?>
+                            <?php if($ujian->show_hasil == 'N') { ?>
+                                <div class="card">
+                              <div class="card-body">
+                                <div class="table-responsive">
+                                  Anda sudah selesai melaksanakan uji kompetensi. Terima kasih.
+                                </div>
+                                <!-- end table responsive -->
+                              </div><!-- end card-body -->
+                            </div><!-- end card -->
+                            <?php }else{ ?>
                             <div class="card">
                               <div class="card-header align-items-center d-flex">
                                 <h4 class="card-title mb-0 flex-grow-1">Hasil CAT</h4>
@@ -252,7 +262,7 @@
                                         <tr>
                                           <td><?= $row->nama?></td>
                                           <!-- <th></th> -->
-                                          <td><?= ($row->jumlah)?></td>
+                                          <td><?= ($row->jumlah)??0?></td>
                                           <!-- <th></th> -->
                                         </tr>
                                         <?php
@@ -269,11 +279,12 @@
                                 </div>
                               </div>
                             </div><!-- end card -->
-                          <?php }else{ ?>
+                            <?php } ?>                            
+                          <?php } else{ ?>
                             <div class="card">
                               <div class="card-body">
                                 <div class="table-responsive">
-                                  Anda belum melaksakan uji kompetensi. Klik Mulai untuk memulai ujian.
+                                  Anda belum melaksanakan uji kompetensi. Klik Mulai untuk memulai ujian.
                                 </div>
                                 <!-- end table responsive -->
                               </div><!-- end card-body -->
