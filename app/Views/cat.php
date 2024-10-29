@@ -99,19 +99,19 @@
                                   <div class="pilihan">
                                     <form class="" action="index.html" method="post">
                                     <div class="form-group">
-                                      <input type="radio" name="jawaban" id="jawaban1" value="1"> a. <span id="p1"></span>
+                                      <input type="radio" name="jawaban" id="jawaban1" value="1"> a. <label id="p1" for="jawaban1"></label>
                                     </div>
                                     <div class="form-group">
-                                      <input type="radio" name="jawaban" id="jawaban2" value="2"> b. <span id="p2"></span>
+                                      <input type="radio" name="jawaban" id="jawaban2" value="2"> b. <label id="p2" for="jawaban2"></label>
                                     </div>
                                     <div class="form-group">
-                                      <input type="radio" name="jawaban" id="jawaban3" value="3"> c. <span id="p3"></span>
+                                      <input type="radio" name="jawaban" id="jawaban3" value="3"> c. <label id="p3" for="jawaban3"></label>
                                     </div>
                                     <div class="form-group">
-                                      <input type="radio" name="jawaban" id="jawaban4" value="4"> d. <span id="p4"></span>
+                                      <input type="radio" name="jawaban" id="jawaban4" value="4"> d. <label id="p4" for="jawaban4"></label>
                                     </div>
                                     <div class="form-group">
-                                      <input type="radio" name="jawaban" id="jawaban5" value="5"> e. <span id="p5"></span>
+                                      <input type="radio" name="jawaban" id="jawaban5" value="5"> e. <label id="p5" for="jawaban5"></label>
                                     </div>
                                     <input type="hidden" name="soal_id" id="soal_id">
                                     <input type="hidden" name="nourut" id="nourut">
