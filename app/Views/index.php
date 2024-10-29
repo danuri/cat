@@ -234,8 +234,9 @@
                             <?php if($ujian->show_hasil == 'N') { ?>
                                 <div class="card">
                               <div class="card-body">
-                                <div class="table-responsive">
+                                <div class="table-responsive" style="color:green"><strong>
                                   Anda sudah selesai melaksanakan uji kompetensi. Terima kasih.
+                                </strong>
                                 </div>
                                 <!-- end table responsive -->
                               </div><!-- end card-body -->
