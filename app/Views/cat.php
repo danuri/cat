@@ -158,16 +158,16 @@
         <script type="text/javascript">
         	jQuery(document).ready(function($) {
         		$('.soal_terjawab').html('<?php echo $jumlah;?>');
+            //moment.tz.setDefault("Asia/Jakarta");
+            var finishTime = moment.tz("<?= $log->finish_time?>","Asia/Jakarta");
 
-            var finishTime = moment.tz("<?= $log->finish_time?>", "Asia/Jakarta");
-
-        		$('#clock').countdown(finishTime, function(event) {
+        		$('#clock').countdown(finishTime.toDate(), function(event) {
         		  $(this).html(event.strftime('%H:%M:%S'));
         		});
         		// $('#clock').countdown('<?php echo $log->finish_time;?>', function(event) {
         		//   $(this).html(event.strftime('%H:%M:%S'));
         		// });
-            $('.ujian_ket').html('<?php echo $ujian->ket;?>');
+            // $('.ujian_ket').html('<?php echo $ujian->ket;?>');
         		//console.log(jsonObj[0]['pertanyaan']);
         		loadsoal(1);
             // $("#paging").niceScroll({cursorcolor:"#b3b3b3",autohidemode:false});
