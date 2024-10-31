@@ -176,11 +176,12 @@
         			var jawaban = $('input[name=jawaban]:checked').val();
         			var soal_id = $('#soal_id').val();
         			var nourut = $('#nourut').val();
-        			if(parseInt($('.soal_terjawab').html()) >= 130){
-        				var soal_terjawab = $('.soal_terjawab').html();
-        			}else{
-        				var soal_terjawab = parseInt($('.soal_terjawab').html())+1;
-        			}
+        			// if(parseInt($('.soal_terjawab').html()) >= 130){
+        			// 	var soal_terjawab = $('.soal_terjawab').html();
+        			// }else{
+        			// 	var soal_terjawab = parseInt($('.soal_terjawab').html())+1;
+        			// }
+              var soal_terjawab = parseInt($('.soal_terjawab').html())+1;
         			console.log(parseInt($('.soal_terjawab').html()));
 
         			$.post( "<?php echo site_url('cat/save');?>",
