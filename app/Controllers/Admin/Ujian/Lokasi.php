@@ -23,9 +23,9 @@ class Lokasi extends BaseController
 
       $data = [
           'ujian_id' => $id,
-          'lokasi' => $this->request->getVar('category_id'),
-          'titik_lokasi' => $this->request->getVar('jumlah_soal'),
-          'alamat' => $this->request->getVar('jumlah_soal'),
+          'lokasi' => $this->request->getVar('lokasi'),
+          'titik_lokasi' => $this->request->getVar('titik_lokasi'),
+          'alamat' => $this->request->getVar('alamat'),
           'username' => $this->request->getVar('username'),
           'password' => md5($this->request->getVar('password'))
       ];
@@ -36,6 +36,7 @@ class Lokasi extends BaseController
 
     public function delete($id)
     {
+      $id = decrypt($id);
       $model = new LokasiModel;
       $insert = $model->delete($id);
 

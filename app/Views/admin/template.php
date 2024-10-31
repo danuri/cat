@@ -173,11 +173,16 @@
           </a>
         </li>
 
-        <li>
-          <a href="<?= site_url('admin/banksoal')?>" class=" waves-effect">
-            <i class="uil-file-question-alt"></i>
-            <span>Bank Soal</span>
-          </a>
+        <li class="">
+            <a href="javascript: void(0);" class="has-arrow waves-effect" aria-expanded="false">
+                <i class="uil-file-question-alt"></i>
+                <span>Bank Soal</span>
+            </a>
+            <ul class="sub-menu mm-collapse" aria-expanded="false" style="height: 0px;">
+                <li><a href="<?= site_url('admin/banksoal/category')?>">Kategori</a></li>
+                <li><a href="<?= site_url('admin/banksoal/choice')?>">Soal Pilihan</a></li>
+                <li><a href="<?= site_url('admin/banksoal/essay')?>">Soal Essay</a></li>
+            </ul>
         </li>
 
       </ul>
@@ -197,11 +202,11 @@
       <div class="container-fluid">
         <div class="row">
           <div class="col-sm-6">
-            <script>document.write(new Date().getFullYear())</script> © Minible.
+            <script>document.write(new Date().getFullYear())</script> © CAT Kemenag.
           </div>
           <div class="col-sm-6">
             <div class="text-sm-end d-none d-sm-block">
-              Crafted with <i class="mdi mdi-heart text-danger"></i> by <a href="https://themesbrand.com/" target="_blank" class="text-reset">Themesbrand</a>
+              Crafted with <i class="mdi mdi-heart text-danger"></i> by <a href="https://ropeg.kemenag.go.id" target="_blank" class="text-reset">Datin Biro Kepegawaian</a>
             </div>
           </div>
         </div>

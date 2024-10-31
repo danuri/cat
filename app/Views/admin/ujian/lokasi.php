@@ -87,7 +87,7 @@
                     <tr>
                       <td><?= $row->lokasi?></td>
                       <td><?= $row->titik_lokasi?></td>
-                      <td><a href="<?= site_url('admin/ujian/lokasi/delete/'.$ujianid.'/'.$row->id)?>" class="btn btn-sm btn-danger" onclick="return confirm('Lokasi akan dihapus?')">Delete</a></td>
+                      <td><a href="<?= site_url('admin/ujian/lokasi/delete/'.encrypt($row->id))?>" class="btn btn-sm btn-danger" onclick="return confirm('Lokasi akan dihapus?')">Delete</a></td>
                     </tr>
                   <?php } ?>
                 </tbody>

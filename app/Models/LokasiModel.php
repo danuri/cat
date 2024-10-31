@@ -14,7 +14,7 @@ class LokasiModel extends Model
     protected $returnType       = 'object';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
-    protected $allowedFields    = ['ujian_id','lokasi','lokasi_titik','alamat','username','password'];
+    protected $allowedFields    = ['ujian_id','lokasi','titik_lokasi','alamat','username','password'];
 
     // Dates
     protected $useTimestamps = true;

@@ -24,7 +24,7 @@
       <div class="col-xl-12">
         <div class="card">
           <div class="card-body">
-            <form class="" action="<?= site_url('admin/ujian/edit/'.$ujianid)?>" method="post">
+            <form class="" action="<?= site_url('admin/ujian/edit/'.encrypt($ujianid))?>" method="post">
               <div class="row mb-3">
                   <div class="col-lg-3">
                       <label for="namaujian" class="form-label">Nama Ujian</label>

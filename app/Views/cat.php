@@ -28,14 +28,14 @@
                     <span class="logo-lg">
                         <img src="<?= base_url()?>xassets/images/logo-light.png" alt="" height="21">
                     </span>
-                </a>                
+                </a>
                 <button type="button" class="btn btn-sm p-0 fs-20 header-item float-end btn-vertical-sm-hover" id="vertical-hover">
                     <i class="ri-record-circle-line"></i>
                 </button>
-                
-            </div>                     
 
-            <div id="scrollbar" class="p-3">              
+            </div>
+
+            <div id="scrollbar" class="p-3">
               <h4>NOMOR SOAL</h4>
               <?php
               $n = 1;
@@ -53,16 +53,16 @@
         <!-- ============================================================== -->
         <!-- Start right Content here -->
         <!-- ============================================================== -->
-        <div class="main-content"> 
+        <div class="main-content">
             <div class="page-content">
-                <div class="container-fluid">            
-                    <div class="row">                        
+                <div class="container-fluid">
+                    <div class="row">
                         <div class="card card-body">
                           <div class="row">
                             <div class="col">
-                              <span id="ujian_ket"><strong><?= $ujian->ket?></strong></span>   
+                              <span id="ujian_ket"><strong><?= $ujian->ket?></strong></span>
                               <br>
-                              <span id="kategori"><strong></strong></span>                           
+                              <span id="kategori"><strong></strong></span>
                             </div>
                           </div>
                           <br>
@@ -152,13 +152,21 @@
             </footer>
         </div>
         <script src="<?= base_url()?>xassets/js/jquery.countdown.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/moment-timezone/0.5.46/moment-timezone.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/moment-timezone/0.5.46/moment-timezone-with-data-1970-2030.js"></script>
 
         <script type="text/javascript">
         	jQuery(document).ready(function($) {
         		$('.soal_terjawab').html('<?php echo $jumlah;?>');
-        		$('#clock').countdown('<?php echo $log->finish_time;?>', function(event) {
+
+            var finishTime = moment.tz("<?= $log->finish_time?>", "Asia/Jakarta");
+
+        		$('#clock').countdown(finishTime, function(event) {
         		  $(this).html(event.strftime('%H:%M:%S'));
         		});
+        		// $('#clock').countdown('<?php echo $log->finish_time;?>', function(event) {
+        		//   $(this).html(event.strftime('%H:%M:%S'));
+        		// });
             $('.ujian_ket').html('<?php echo $ujian->ket;?>');
         		//console.log(jsonObj[0]['pertanyaan']);
         		loadsoal(1);
@@ -227,14 +235,14 @@
         		$('#p2').html(jsonObj[number]['p2']);
         		$('#p3').html(jsonObj[number]['p3']);
         		$('#p4').html(jsonObj[number]['p4']);
-        		$('#p5').html(jsonObj[number]['p5']); 
+        		$('#p5').html(jsonObj[number]['p5']);
         		if(jsonObj[number]['j'] > 0){
         			$('#jawaban'+jsonObj[number]['j']).prop("checked", true);
 
         		}else{
         			$('input[name=jawaban]').prop("checked", false);
         		}
-            
+
             const spanKategori = document.getElementById("kategori");
             spanKategori.innerText = jsonObj[number]['category_name'];
             console.log(jsonObj);
@@ -278,12 +286,12 @@
         	item ["p5"] = "<?php echo str_replace('"','',$p5);?>";
         	item ["j"] = '<?php echo $soal['jawaban_peserta'];?>';
         	item ["category_id"] = '<?php echo $soal['category_id'];?>';
-          item ["category_name"] = '<?php echo $soal['category_name'];?>';         
+          item ["category_name"] = '<?php echo $soal['category_name'];?>';
 
         	jsonObj.push(item);
         	<?php
         	}
         	?>
-        	//console.log(jsonObj[0]);          
+        	//console.log(jsonObj[0]);
         </script>
 <?= $this->endSection() ?>

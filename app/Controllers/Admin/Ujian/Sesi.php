@@ -23,14 +23,15 @@ class Sesi extends BaseController
     public function add($id)
     {
       $model = new SesiModel;
-
+      $ujianid = decrypt($id);
       $data = [
-          'ujian_id' => $id,
-          'kode_lokasi' => $this->request->getVar('lokasi'),
+          'ujian_id' => $ujianid,
+          'kode_lokasi' => $this->request->getVar('kode_lokasi'),
+          'lokasi' => $this->request->getVar('lokasi'),
           'ruang' => $this->request->getVar('ruang'),
           'sesi' => $this->request->getVar('sesi'),
           'tanggal' => $this->request->getVar('tanggal'),
-          'pin' => md5($this->request->getVar('pin'))
+          'pin' => $this->request->getVar('pin')
       ];
       $insert = $model->insert($data);
 

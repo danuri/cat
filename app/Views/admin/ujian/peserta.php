@@ -22,7 +22,7 @@
 
     <div class="row pb-4 gy-3">
       <div class="col-sm-4">
-        <a href="<?= site_url('pelaporan/ketidakhadiran/add')?>" class="btn btn-primary"><i class="las la-plus me-1"></i> Peserta Baru</a>
+        <a href="<?= site_url('admin/ujian/peserta/add/'.encrypt($ujianid))?>" class="btn btn-primary"><i class="las la-plus me-1"></i> Peserta Baru</a>
         <a href="#" class="btn btn-success"><i class="las la-plus me-1"></i> Import</a>
       </div>
 
@@ -69,12 +69,12 @@
                     <td>
                       <?= $row->nik?><br>
                       <?= $row->nomor_peserta?><br>
-                      <?= $row->nama?><br>
+                      <b><?= $row->nama?></b><br>
                       <?= $row->jabatan?>
                     </td>
                     <td><?= $row->lokasi_formasi?></td>
-                    <td>-</td>
-                    <td><a href="<?= site_url('admin/ujian/lokasi/'.$row->id)?>" class="btn btn-sm btn-primary">Detail</a></td>
+                    <td><a href="<?= site_url('admin/ujian/peserta/detail/'.encrypt($row->id))?>" class="btn btn-sm btn-success">Lihat</a></td>
+                    <td><a href="#" onclick="alert('Data tidak bisa dihapus karna memiliki riwayat ujian')" class="btn btn-sm btn-primary">Delete</a></td>
                   </tr>
                 <?php } ?>
               </tbody>

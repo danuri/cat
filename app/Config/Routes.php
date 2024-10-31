@@ -57,22 +57,26 @@ $routes->group("admin", ["filter" => "auth"], function ($routes) {
 
     $routes->get('ujian/detail/(:any)', 'Admin\Ujian\Home::detail/$1');
 
+    $routes->get('ujian/lokasi/delete/(:any)', 'Admin\Ujian\Lokasi::delete/$1');
     $routes->get('ujian/lokasi/(:any)', 'Admin\Ujian\Lokasi::index/$1');
     $routes->post('ujian/lokasi/add/(:any)', 'Admin\Ujian\Lokasi::add/$1');
-    $routes->get('ujian/lokasi/delete/(:any)/(:any)', 'Admin\Lokasi::delete/$1/$2');
 
     $routes->get('ujian/sesi/(:any)', 'Admin\Ujian\Sesi::index/$1');
     $routes->post('ujian/sesi/add/(:any)', 'Admin\Ujian\Sesi::add/$1');
     $routes->get('ujian/sesi/delete/(:any)/(:any)', 'Admin\Ujian::delete/$1/$2');
 
+    $routes->get('ujian/peserta/detail/(:any)', 'Admin\Ujian\Peserta::detail/$1');
     $routes->get('ujian/peserta/(:any)', 'Admin\Ujian\Peserta::index/$1');
     $routes->post('ujian/peserta/add/(:any)', 'Admin\Ujian\Peserta::add/$1');
     $routes->get('ujian/peserta/delete/(:any)/(:any)', 'Admin\Peserta::delete/$1/$2');
 
     $routes->get('ujian/soal/(:any)', 'Admin\Ujian\Soal::index/$1');
     $routes->get('ujian/soal/delete/(:any)', 'Admin\Ujian\Soal::delete/$1');
-    $routes->post('ujian/soal/add', 'Admin\Ujian\Soal::add');
+    $routes->post('ujian/soal/add/(:any)', 'Admin\Ujian\Soal::add/$1');
 
+
+    $routes->get('banksoal/category', 'Admin\Banksoal::index');
+    $routes->get('banksoal/category/edit/(:any)', 'Admin\Banksoal::categoryEdit/$1');
 
     $routes->get('banksoal/choice', 'Admin\Banksoal::choice');
     $routes->get('banksoal/addchoice', 'Admin\Banksoal::addchoice');

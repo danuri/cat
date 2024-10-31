@@ -17,18 +17,19 @@
       <div class="col-xl-4">
         <div class="card">
           <div class="card-body">
-            <form class="" action="<?= site_url('admin/ujian/soal/add')?>" method="post" id="addsoal">
+            <form class="" action="<?= site_url('admin/ujian/sesi/add/'.encrypt($ujianid))?>" method="post" id="addsoal">
 
               <div class="row mb-3">
                   <div class="col-lg-5">
                       <label for="lokasi" class="form-label">Lokasi</label>
                   </div>
                   <div class="col-lg-7">
-                    <select class="form-select" name="lokasi" id="lokasi">
+                    <select class="form-select" name="kode_lokasi" id="kodelokasi">
                       <?php foreach ($lokasi as $row) {?>
                         <option value="<?= $row->id?>"><?= $row->lokasi?></option>
                       <?php }?>
                     </select>
+                    <input type="hidden" name="lokasi" id="lokasi" value="">
                   </div>
               </div>
               <div class="row mb-3">
@@ -90,7 +91,7 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <?php foreach ($lokasi as $row) {?>
+                  <?php foreach ($sesi as $row) {?>
                     <tr>
                       <td><?= $row->kode_lokasi?></td>
                       <td><?= $row->ruang?></td>
@@ -136,6 +137,11 @@
 
 <script type="text/javascript">
   $(document).ready(function() {
+    $('#lokasi').val($("#kodelokasi option:selected" ).text());
+
+    $('#kodelokasi').on('change', function() {
+      $('#lokasi').val($("#kodelokasi option:selected" ).text());
+    });
   });
 
 </script>

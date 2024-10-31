@@ -43,7 +43,7 @@
                     <th>ID</th>
                     <th>Pertanyaan</th>
                     <th>Pilihan Jawaban</th>
-                    <th>Aksi</th>
+                    <th width="20%">Aksi</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -58,7 +58,7 @@
                         d. <?= $row->p4?><br>
                         e. <?= $row->p5?>
                       </td>
-                      <td><a href="<?= site_url('admin/ujian/lokasi/'.$row->id)?>" class="btn btn-primary">Edit</a> <a href="<?= site_url('admin/banksoal/deletechoice/'.$row->id)?>" class="btn btn-danger" onclick="return confirm('Soal akan dihapus?')">Delete</a></td>
+                      <td><a href="<?= site_url('admin/ujian/lokasi/'.$row->id)?>" class="btn btn-primary btn-sm">Edit</a> <a href="<?= site_url('admin/banksoal/deletechoice/'.$row->id)?>" class="btn btn-danger btn-sm" onclick="return confirm('Soal akan dihapus?')">Delete</a></td>
                     </tr>
                   <?php } ?>
                 </tbody>

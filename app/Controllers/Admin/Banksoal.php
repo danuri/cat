@@ -11,7 +11,15 @@ class Banksoal extends BaseController
 {
     public function index()
     {
-        //
+      $model = new CategoryModel;
+
+      $data['cats'] = $model->findAll();
+      return view('admin/banksoal/category', $data);
+    }
+
+    public function categoryEdit($id)
+    {
+      // code...
     }
 
     public function choice()
