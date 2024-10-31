@@ -152,7 +152,7 @@
             </footer>
         </div>
         <script src="<?= base_url()?>xassets/js/jquery.countdown.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/moment-timezone/0.5.46/moment-timezone.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.30.1/moment-with-locales.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/moment-timezone/0.5.46/moment-timezone-with-data-1970-2030.js"></script>
 
         <script type="text/javascript">
