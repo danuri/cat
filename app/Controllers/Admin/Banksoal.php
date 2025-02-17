@@ -6,14 +6,17 @@ use App\Controllers\BaseController;
 use App\Models\ChoiceModel;
 use App\Models\CategoryModel;
 use App\Models\EssayModel;
+use App\Models\CrudModel;
 
 class Banksoal extends BaseController
 {
     public function index()
     {
       $model = new CategoryModel;
+      $crud = new CrudModel;
 
       $data['cats'] = $model->findAll();
+      $data['choice_type'] = $crud->getResult('bank_soal_choice_type');
       return view('admin/banksoal/category', $data);
     }
 

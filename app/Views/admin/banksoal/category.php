@@ -10,7 +10,7 @@
           <h4 class="mb-sm-0">Bank Soal</h4>
 
           <div class="page-title-right">
-            <a href="" class="btn btn-primary"><i class="las la-plus me-1"></i> Tambah Kategori Baru</a>
+            <a href="javascript:;" class="btn btn-primary" onclick="addcategory()"><i class="fas fa-plus"></i> Tambah Kategori Baru</a>
           </div>
         </div>
       </div>
@@ -40,7 +40,10 @@
                       <td><?= $row->nama?></td>
                       <td><?= $row->jenis?></td>
                       <td><?= $row->nilai?></td>
-                      <td><a href="<?= site_url('admin/banksoal/category/edit/'.$row->id)?>" class="btn btn-primary btn-sm">Edit</a> <a href="<?= site_url('admin/banksoal/category/delete/'.encrypt($row->id))?>" class="btn btn-danger btn-sm" onclick="return confirm('Kategori akan dihapus?')">Delete</a></td>
+                      <td>
+                        <a href="<?= site_url('admin/banksoal/category/edit/'.$row->id)?>" class="btn btn-primary btn-sm">Edit</a> 
+                        <a href="<?= site_url('admin/banksoal/category/delete/'.encrypt($row->id))?>" class="btn btn-danger btn-sm" onclick="return confirm('Kategori akan dihapus?')">Delete</a>
+                      </td>
                     </tr>
                   <?php } ?>
                 </tbody>
@@ -53,4 +56,60 @@
     </div>
   </div>
 </div>
+
+<div class="modal fade" id="addcategory" role="dialog" data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="title" id="defaultModalLabel">Tambah Kategori Ujian</h4>
+        </div>
+        <div class="modal-body" id="">
+          <form class="" action="<?php echo site_url('admin/banksoal/category/add');?>" method="post" id="tambahcategory" enctype="multipart/form-data">
+            <div class="form-group">
+              <label for="">Standar</label>
+              <input type="text" class="form-control" name="standar" id="standar">
+            </div>
+			      <div class="form-group">
+              <label for="">Nama</label>
+              <input type="text" class="form-control" name="nama" id="nama">
+            </div>
+			      <div class="form-group">
+              <label for="">Jenis</label>
+              <select class="form-control" name="jenis" id="jenis">
+                <option value="choice">Pilihan Ganda</option>
+                <option value="interview">Wawancara</option>
+              </select>
+            </div>
+            <div class="form-group" id="tipePilihanGroup" style="display: none;">
+              <label for="">Tipe Pilihan</label>
+              <input type="text" class="form-control" name="tipe_pilihan" id="tipe_pilihan">
+            </div>
+          </form>
+        </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary waves-effect" onclick="$('#tambahkategori').submit()">SIMPAN</button>
+        <button type="button" class="btn btn-danger waves-effect" data-bs-dismiss="modal">BATAL</button>
+      </div>
+    </div>
+  </div>
+</div>
+<?= $this->endSection() ?>
+<?= $this->section('script') ?>
+<script src="<?= base_url()?>/assets/js/jquery/jquery.min.js"></script>
+<script>
+  $(document).ready(function() {
+    $('#jenis').change(function() {
+      if ($(this).val() === 'choice') {
+        $('#tipePilihanGroup').show();
+      } else {
+        $('#tipePilihanGroup').hide();
+      }
+    });
+  });
+
+    function addpenguji() {
+      $('#tambahpenguji').trigger('reset');
+      $('#addpenguji').modal('show');
+    }
+</script>
 <?= $this->endSection() ?>

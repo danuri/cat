@@ -99,11 +99,11 @@ class CrudModel extends Model
                                   		)
                                   		WHEN a.value_type = '3' THEN (
                                   			CASE 
-                                  				WHEN a.jawaban_peserta = a.p1 THEN a.bobot_p1
-                                  				WHEN a.jawaban_peserta = a.p2 THEN a.bobot_p2
-                                  				WHEN a.jawaban_peserta = a.p3 THEN a.bobot_p3
-                                  				WHEN a.jawaban_peserta = a.p4 THEN a.bobot_p4
-                                  				WHEN a.jawaban_peserta = a.p5 THEN a.bobot_p5
+                                  				WHEN a.jawaban_peserta = '1' THEN a.bobot_p1
+                                  				WHEN a.jawaban_peserta = '2' THEN a.bobot_p2
+                                  				WHEN a.jawaban_peserta = '3' THEN a.bobot_p3
+                                  				WHEN a.jawaban_peserta = '4' THEN a.bobot_p4
+                                  				WHEN a.jawaban_peserta = '5' THEN a.bobot_p5
                                   			END                                  			
                                   		)
                                   	END                                 	
@@ -131,11 +131,11 @@ class CrudModel extends Model
                                   		)
                                   		WHEN a.value_type = '3' THEN (
                                   			CASE 
-                                  				WHEN a.jawaban_peserta = a.p1 THEN a.bobot_p1
-                                  				WHEN a.jawaban_peserta = a.p2 THEN a.bobot_p2
-                                  				WHEN a.jawaban_peserta = a.p3 THEN a.bobot_p3
-                                  				WHEN a.jawaban_peserta = a.p4 THEN a.bobot_p4
-                                  				WHEN a.jawaban_peserta = a.p5 THEN a.bobot_p5
+                                  				WHEN a.jawaban_peserta = '1' THEN a.bobot_p1
+                                  				WHEN a.jawaban_peserta = '2' THEN a.bobot_p2
+                                  				WHEN a.jawaban_peserta = '3' THEN a.bobot_p3
+                                  				WHEN a.jawaban_peserta = '4' THEN a.bobot_p4
+                                  				WHEN a.jawaban_peserta = '5' THEN a.bobot_p5
                                           ELSE '0'
                                   			END                                  			
                                   		)

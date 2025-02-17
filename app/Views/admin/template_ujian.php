@@ -8,7 +8,7 @@
   <meta content="Computer Assisted Test" name="description" />
   <meta content="Danunih" name="author" />
   <!-- App favicon -->
-  <link rel="shortcut icon" href="<?= base_url()?>assets/images/favicon.ico">
+  <link rel="shortcut icon" href="<?= base_url()?>assets/images/biro-sdm-ico.ico">
 
   <!-- DataTables -->
   <link href="<?= base_url()?>assets/libs/datatables.net-bs4/css/dataTables.bootstrap4.min.css" rel="stylesheet" type="text/css" />
@@ -37,19 +37,19 @@
           <div class="navbar-brand-box">
             <a href="/" class="logo logo-dark">
               <span class="logo-sm">
-                <img src="<?= base_url()?>assets/images/logo-sm.png" alt="" height="22">
+                <img src="<?= base_url()?>assets/images/logo-sm-biro-sdm.png" alt="" height="22">
               </span>
               <span class="logo-lg">
-                <img src="<?= base_url()?>assets/images/logo-dark.png" alt="" height="20">
+                <img src="<?= base_url()?>assets/images/biro-sdm.png" alt="" height="20">
               </span>
             </a>
 
             <a href="/" class="logo logo-light">
               <span class="logo-sm">
-                <img src="<?= base_url()?>assets/images/logo-sm.png" alt="" height="22">
+                <img src="<?= base_url()?>assets/images/logo-sm-biro-sdm.png" alt="" height="22">
               </span>
               <span class="logo-lg">
-                <img src="<?= base_url()?>assets/images/logo-light.png" alt="" height="20">
+                <img src="<?= base_url()?>assets/images/biro-sdm.png" alt="" height="20">
               </span>
             </a>
           </div>
@@ -130,19 +130,19 @@
   <div class="navbar-brand-box">
     <a href="/" class="logo logo-dark">
       <span class="logo-sm">
-        <img src="https://ropeg.kemenag.go.id/logo-ropeg.png" alt="" height="22">
+        <img src="<?= base_url()?>assets/images/logo-sm-biro-sdm.png" alt="" height="35">
       </span>
       <span class="logo-lg">
-        <img src="https://ropeg.kemenag.go.id/logo-ropeg.png" alt="" height="20">
+        <img src="<?= base_url()?>assets/images/biro-sdm.png" alt="" height="40">
       </span>
     </a>
 
     <a href="/" class="logo logo-light">
       <span class="logo-sm">
-        <img src="https://ropeg.kemenag.go.id/logo-ropeg.png" alt="" height="22">
+        <img src="<?= base_url()?>assets/images/logo-sm-biro-sdm.png" alt="" height="35">
       </span>
       <span class="logo-lg">
-        <img src="https://ropeg.kemenag.go.id/logo-ropeg.png" alt="" height="20">
+        <img src="<?= base_url()?>assets/images/biro-sdm.png" alt="" height="40">
       </span>
     </a>
   </div>
@@ -215,7 +215,7 @@
           </div>
           <div class="col-sm-6">
             <div class="text-sm-end d-none d-sm-block">
-              Crafted with <i class="mdi mdi-heart text-danger"></i> by <a href="https://ropeg.kemenag.go.id" target="_blank" class="text-reset">Datin Biro Kepegawaian</a>
+              Crafted with <i class="mdi mdi-heart text-danger"></i> by <a href="https://ropeg.kemenag.go.id" target="_blank" class="text-reset">Biro Sumber Daya Manusia</a>
             </div>
           </div>
         </div>

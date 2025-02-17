@@ -12,7 +12,7 @@
 
           <div class="page-title-right">
             <ol class="breadcrumb m-0">
-              <li class="breadcrumb-item"><a href="javascript: void(0);">Minible</a></li>
+              <li class="breadcrumb-item"><a href="javascript: void(0);">Admin CAT</a></li>
               <li class="breadcrumb-item active">Dashboard</li>
             </ol>
           </div>
@@ -29,16 +29,16 @@
               <div id="total-revenue-chart"></div>
             </div>
             <div>
-              <h4 class="mb-1 mt-1">$<span data-plugin="counterup">34,152</span></h4>
-              <p class="text-muted mb-0">Total Revenue</p>
+              <!-- <h4 class="mb-1 mt-1">Selamat Datang Admin CAT.</h4> -->
+              <p class="text-muted mb-0">Selamat Datang Admin CAT.</p>
             </div>
-            <p class="text-muted mt-3 mb-0"><span class="text-success me-1"><i class="mdi mdi-arrow-up-bold me-1"></i>2.65%</span> since last week
-            </p>
+            <!-- <p class="text-muted mt-3 mb-0"><span class="text-success me-1"><i class="mdi mdi-arrow-up-bold me-1"></i>2.65%</span> since last week
+            </p> -->
           </div>
         </div>
-      </div> <!-- end col-->
-
-      <div class="col-md-6 col-xl-3">
+      </div> 
+      
+      <!-- <div class="col-md-6 col-xl-3">
         <div class="card">
           <div class="card-body">
             <div class="float-end mt-2">
@@ -52,7 +52,7 @@
             </p>
           </div>
         </div>
-      </div> <!-- end col-->
+      </div> 
 
       <div class="col-md-6 col-xl-3">
         <div class="card">
@@ -68,7 +68,7 @@
             </p>
           </div>
         </div>
-      </div> <!-- end col-->
+      </div>
 
       <div class="col-md-6 col-xl-3">
 
@@ -86,7 +86,7 @@
           </div>
         </div>
       </div>
-    </div>
+    </div> -->
 
 
     </div>

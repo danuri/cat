@@ -6,9 +6,9 @@
     <title>CAT Kementerian Agama</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta content="Premium Multipurpose Admin & Dashboard Template" name="description" />
-    <meta content="Biro Kepegawaian" name="author" />
+    <meta content="Biro Sumber Daya Manusia" name="author" />
     <!-- App favicon -->
-    <link rel="shortcut icon" href="<?= base_url()?>xassets/images/favicon.ico">
+    <link rel="shortcut icon" href="<?= base_url()?>assets/images/biro-sdm-ico.ico">
 
     <!-- Sweet Alert css-->
     <link href="<?= base_url()?>xassets/libs/sweetalert2/sweetalert2.min.css" rel="stylesheet" type="text/css" />
@@ -38,7 +38,7 @@
                 <div class="navbar-brand-box horizontal-logo">
                     <a href="cat" class="logo logo-dark">
                         <span class="logo-sm">
-                            <img src="<?= base_url()?>xassets/images/logo-sm.png" alt="" height="22">
+                            <img src="<?= base_url()?>xassets/images/logo-sm-biro-sdm-.png" alt="" height="22">
                         </span>
                         <span class="logo-lg">
                             CAT Kemenag
@@ -47,7 +47,7 @@
 
                     <a href="cat" class="logo logo-light">
                         <span class="logo-sm">
-                            <img src="<?= base_url()?>xassets/images/logo-sm.png" alt="" height="22">
+                            <img src="<?= base_url()?>xassets/images/logo-sm-biro-sdm-.png" alt="" height="22">
                         </span>
                         <span class="logo-lg">
                             CAT Kemenag

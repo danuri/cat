@@ -8,7 +8,7 @@
     <meta content="Premium Multipurpose Admin & Dashboard Template" name="description" />
     <meta content="Themesbrand" name="author" />
     <!-- App favicon -->
-    <link rel="shortcut icon" href="<?= base_url()?>xassets/images/favicon.ico">
+    <link rel="shortcut icon" href="<?= base_url()?>assets/images/biro-sdm-ico.ico">
 
     <!-- Sweet Alert css-->
     <link href="<?= base_url()?>xassets/libs/sweetalert2/sweetalert2.min.css" rel="stylesheet" type="text/css" />
@@ -314,7 +314,7 @@
                         </div>
                         <div class="col-sm-6">
                             <div class="text-sm-end d-none d-sm-block">
-                                Direktorat Penerangan Agama Islam
+                                Biro Sumber Daya Manusia
                             </div>
                         </div>
                     </div>

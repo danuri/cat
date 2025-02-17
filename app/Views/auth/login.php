@@ -2,6 +2,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Login - CAT</title>
+  <link rel="shortcut icon" href="<?= base_url()?>assets/images/biro-sdm-ico.ico">
   <style>
   @font-face { font-family: Arial !important; font-display: swap !important; }
   </style>
@@ -131,7 +132,7 @@
       }</style>
     </head>
     <body classname="snippet-body">
-      <div class="wrapper">
+      <div class="wrapper" style="max-width: 400px;">
         <div class="logo">
           <img src="https://www.freepnglogos.com/uploads/logo-depag-png/file-kementerian-agama-logo-wikimedia-commons-1.png" alt="">
         </div>

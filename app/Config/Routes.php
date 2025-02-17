@@ -76,7 +76,10 @@ $routes->group("admin", ["filter" => "auth"], function ($routes) {
 
 
     $routes->get('banksoal/category', 'Admin\Banksoal::index');
+    $routes->post('banksoal/category/add', 'Admin\Banksoal::categoryAdd');
     $routes->get('banksoal/category/edit/(:any)', 'Admin\Banksoal::categoryEdit/$1');
+    $routes->delete('banksoal/category/delete/(:any)', 'Admin\Banksoal::categoryDelete/$1');
+
 
     $routes->get('banksoal/choice', 'Admin\Banksoal::choice');
     $routes->get('banksoal/addchoice', 'Admin\Banksoal::addchoice');

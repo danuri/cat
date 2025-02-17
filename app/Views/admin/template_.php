@@ -8,7 +8,7 @@
     <meta content="Pelaporan Presensi" name="description" />
     <meta content="Danunih" name="author" />
     <!-- App favicon -->
-    <link rel="shortcut icon" href="<?= base_url()?>/assets/images/favicon.ico">
+    <link rel="shortcut icon" href="<?= base_url()?>/assets/images/biro-sdm-ico.ico">
 
     <!-- Layout config Js -->
     <script src="<?= base_url()?>/assets/js/layout.js"></script>
@@ -45,19 +45,19 @@
                 <div class="navbar-brand-box horizontal-logo">
                     <a href="index.html" class="logo logo-dark">
                         <span class="logo-sm">
-                            <img src="<?= base_url()?>/assets/images/logo-sm.png" alt="" height="22">
+                            <img src="<?= base_url()?>/assets/images/logo-sm-biro-sdm.png" alt="" height="22">
                         </span>
                         <span class="logo-lg">
-                            <img src="<?= base_url()?>/assets/images/logo-dark.png" alt="" height="21">
+                            <img src="<?= base_url()?>/assets/images/biro-sdm.png" alt="" height="21">
                         </span>
                     </a>
 
                     <a href="index.html" class="logo logo-light">
                         <span class="logo-sm">
-                            <img src="<?= base_url()?>/assets/images/logo-sm.png" alt="" height="22">
+                            <img src="<?= base_url()?>/assets/images/logo-sm-biro-sdm.png" alt="" height="22">
                         </span>
                         <span class="logo-lg">
-                            <img src="<?= base_url()?>/assets/images/logo-light.png" alt="" height="21">
+                            <img src="<?= base_url()?>/assets/images/biro-sdm.png" alt="" height="21">
                         </span>
                     </a>
                 </div>
@@ -159,7 +159,7 @@
                 <!-- Dark Logo-->
                 <a href="index.html" class="logo logo-dark">
                     <span class="logo-sm">
-                        <img src="<?= base_url()?>/assets/images/logo-sm.png" alt="" height="22">
+                        <img src="<?= base_url()?>/assets/images/logo-sm-biro-sdm.png" alt="" height="22">
                     </span>
                     <span class="logo-lg">
                         CAT Kemenag
@@ -168,10 +168,10 @@
                 <!-- Light Logo-->
                 <a href="index.html" class="logo logo-light">
                     <span class="logo-sm">
-                        <img src="<?= base_url()?>/assets/images/logo-sm.png" alt="" height="22">
+                        <img src="<?= base_url()?>/assets/images/logo-sm-biro-sdm.png" alt="" height="22">
                     </span>
                     <span class="logo-lg">
-                        <img src="<?= base_url()?>/assets/images/logo-light.png" alt="" height="21">
+                        <img src="<?= base_url()?>/assets/images/biro-sdm.png" alt="" height="21">
                     </span>
                 </a>
                 <button type="button" class="btn btn-sm p-0 fs-20 header-item float-end btn-vertical-sm-hover" id="vertical-hover">
@@ -262,7 +262,7 @@
                         </div>
                         <div class="col-sm-6">
                             <div class="text-sm-end d-none d-sm-block">
-                                by Biro Kepegawaian
+                                by Biro Sumber Daya Manusia
                             </div>
                         </div>
                     </div>
