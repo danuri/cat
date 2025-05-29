@@ -45,6 +45,10 @@ $routes->get('cat', 'Cat::index', ["filter" => "user"]);
 $routes->post('cat/save', 'Cat::save', ["filter" => "user"]);
 $routes->get('cat/selesai', 'Cat::selesai', ["filter" => "user"]);
 
+$routes->group("ajax", ["filter" => "auth"], function ($routes) {
+    $routes->get('soal/(:num)', 'Ajax::soal/$1');
+});
+
 $routes->group("admin", ["filter" => "auth"], function ($routes) {
     $routes->get('', 'Admin\Home::index');
 
@@ -79,12 +83,14 @@ $routes->group("admin", ["filter" => "auth"], function ($routes) {
     $routes->post('banksoal/category/add', 'Admin\Banksoal::categoryAdd');
     $routes->get('banksoal/category/edit/(:any)', 'Admin\Banksoal::categoryEdit/$1');
     $routes->delete('banksoal/category/delete/(:any)', 'Admin\Banksoal::categoryDelete/$1');
+    $routes->get('banksoal/category/soal/(:any)', 'Admin\Banksoal::categorySoal/$1');
 
 
     $routes->get('banksoal/choice', 'Admin\Banksoal::choice');
     $routes->get('banksoal/addchoice', 'Admin\Banksoal::addchoice');
     $routes->get('banksoal/deletechoice/(:num)', 'Admin\Banksoal::deletechoice/$1');
     $routes->post('banksoal/addchoice', 'Admin\Banksoal::savechoice');
+    $routes->post('banksoal/editchoice', 'Admin\Banksoal::savechoice');
 
     $routes->get('banksoal/essay', 'Admin\Banksoal::essay');
     $routes->get('banksoal/addessay', 'Admin\Banksoal::addessay');

@@ -41,6 +41,7 @@
                       <td><?= $row->jenis?></td>
                       <td><?= $row->nilai?></td>
                       <td>
+                        <a href="<?= site_url('admin/banksoal/category/soal/'.$row->id)?>" class="btn btn-success btn-sm">Soal</a> 
                         <a href="<?= site_url('admin/banksoal/category/edit/'.$row->id)?>" class="btn btn-primary btn-sm">Edit</a> 
                         <a href="<?= site_url('admin/banksoal/category/delete/'.encrypt($row->id))?>" class="btn btn-danger btn-sm" onclick="return confirm('Kategori akan dihapus?')">Delete</a>
                       </td>

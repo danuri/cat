@@ -25,6 +25,17 @@ class Banksoal extends BaseController
       // code...
     }
 
+    public function categorySoal($id)
+    {
+      $catm = new CategoryModel;
+      $data['category'] = $catm->find($id);
+      
+      $model = new ChoiceModel;
+      $data['soal'] = $model->where(['category_id'=>$id])->findAll();
+
+      return view('admin/banksoal/choice', $data);
+    }
+
     public function choice()
     {
       $model = new ChoiceModel;
@@ -66,7 +77,14 @@ class Banksoal extends BaseController
           'p5' => $this->request->getVar('p5')
       ];
 
-      $insert = $model->insert($data);
+      // Check if an ID is provided for editing
+      if ($this->request->getVar('id')) {
+          $data['id'] = $this->request->getVar('id');
+          $model->update($data['id'], $data);
+      } else {
+          $insert = $model->insert($data);
+      }
+
 
       return redirect()->back()->with('message', 'Soal telah ditambahkan');
     }
