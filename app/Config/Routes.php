@@ -77,7 +77,8 @@ $routes->group("admin", ["filter" => "auth"], function ($routes) {
     $routes->get('ujian/soal/(:any)', 'Admin\Ujian\Soal::index/$1');
     $routes->get('ujian/soal/delete/(:any)', 'Admin\Ujian\Soal::delete/$1');
     $routes->post('ujian/soal/add/(:any)', 'Admin\Ujian\Soal::add/$1');
-
+    
+    $routes->get('ujian/hasil/(:any)', 'Admin\Ujian\Hasil::index/$1');
 
     $routes->get('banksoal/category', 'Admin\Banksoal::index');
     $routes->post('banksoal/category/add', 'Admin\Banksoal::categoryAdd');

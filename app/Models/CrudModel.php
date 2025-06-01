@@ -212,4 +212,32 @@ class CrudModel extends Model
         $query = $this->db->query("SELECT * FROM TM_SATUAN_KERJA WHERE KODE_SATUAN_KERJA='$kelola' OR KODE_ATASAN='$kelola'")->getResult();
         return $query;
       }
+
+      public function hasilNilai($ujianid)
+      {
+        $query = $this->db->query("SELECT
+                  soal_peserta.peserta_id, 
+                  peserta.nama, 
+                  peserta.lokasi_formasi, 
+                  peserta_log.start_time, 
+                  peserta_log.finish_time, 
+                  peserta_log.`status`,
+                  peserta_log.finish_nilai
+                FROM
+                  soal_peserta
+                  INNER JOIN
+                  peserta
+                  ON 
+                    soal_peserta.peserta_id = peserta.nik
+                  INNER JOIN
+                  peserta_log
+                  ON 
+                    soal_peserta.ujian_id = peserta_log.ujian_id AND
+                    soal_peserta.peserta_id = peserta_log.peserta_id
+                WHERE
+                  soal_peserta.ujian_id = '$ujianid'
+                GROUP BY
+                  soal_peserta.peserta_id")->getResult();
+        return $query;
+      }
 }

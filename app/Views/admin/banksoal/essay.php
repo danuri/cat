@@ -36,8 +36,8 @@
                 <thead>
                   <tr>
                     <th>ID</th>
+                    <th>Kompetensi</th>
                     <th>Pertanyaan</th>
-                    <th>Pilihan Jawaban</th>
                     <th>Aksi</th>
                   </tr>
                 </thead>
@@ -45,8 +45,8 @@
                   <?php foreach ($soal as $row) {?>
                     <tr>
                       <td><?= $row->id?></td>
-                      <td><?= $row->pertanyaan?></td>
-                      <td><?= $row->bobot?></td>
+                      <td><?= $row->kompetensi?></td>
+                      <td><?= $row->soal?></td>
                       <td><a href="<?= site_url('admin/banksoal/editessay/'.$row->id)?>" class="btn btn-primary">Edit</a> <a href="<?= site_url('admin/banksoal/deleteessay/'.$row->id)?>" class="btn btn-danger" onclick="return confirm('Soal akan dihapus?')">Delete</a></td>
                     </tr>
                   <?php } ?>

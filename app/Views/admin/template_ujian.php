@@ -194,6 +194,13 @@
           </a>
         </li>
 
+        <li>
+          <a href="<?= site_url('admin/ujian/hasil/'.encrypt($ujianid))?>" class=" waves-effect">
+            <i class="uil-users-alt"></i>
+            <span>Hasil CAT</span>
+          </a>
+        </li>
+
       </ul>
     </div>
     <!-- Sidebar -->
