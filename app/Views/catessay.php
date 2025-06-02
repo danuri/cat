@@ -93,7 +93,7 @@
                                     <h4 class="card-title mb-0" id="soalno">...</h4>
                                     <h6 class="card-title mb-0" id="kompetensi">...</h6>
                                     <br>
-                                    <h6 class="card-title mb-0" id="pertanyaan">...</h6>
+                                    <p class="card-title mb-0" id="pertanyaan">...</p>
                                     <input type="hidden" name="soal_id" id="soal_id">
                                 </div><!-- end card header -->
 

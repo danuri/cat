@@ -16,7 +16,7 @@ class Activity extends BaseController
             'sesi_id' => session('sesi_id'),
             'page' => $this->request->getVar('page'),
             'status' => $this->request->getVar('status'),
-            'activity' => $this->request->getVar('activity')
+            'activity' => $this->request->getVar('reason')
         ];
         
         if ($model->insert($data)) {
