@@ -37,10 +37,10 @@
                 <div class="navbar-brand-box horizontal-logo">
                     <a href="<?= site_url()?>" class="logo logo-dark">
                         <span class="logo-sm">
-                            <img src="<?= base_url()?>xassets/images/logo-sm.png" alt="" height="22">
+                            <img src="<?= base_url()?>assets/images/sisdm.png" alt="" height="22">
                         </span>
                         <span class="logo-lg">
-                            <img src="https://www.freepnglogos.com/uploads/logo-depag-png/file-kementerian-agama-logo-wikimedia-commons-1.png" alt="" height="21">
+                            <img src="<?= base_url()?>assets/images/sisdm.png" alt="" height="40">
                         </span>
                     </a>
 
@@ -49,7 +49,7 @@
                             <img src="<?= base_url()?>xassets/images/logo-sm.png" alt="" height="22">
                         </span>
                         <span class="logo-lg">
-                            <img src="<?= base_url()?>xassets/images/logo-light.png" alt="" height="21">
+                            <img src="<?= base_url()?>xassets/images/logo-light.png" alt="" height="40">
                         </span>
                     </a>
                 </div>
