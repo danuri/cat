@@ -44,6 +44,9 @@ $routes->get('mulai', 'Home::mulai', ["filter" => "user"]);
 $routes->get('cat', 'Cat::index', ["filter" => "user"]);
 $routes->post('cat/save', 'Cat::save', ["filter" => "user"]);
 $routes->get('cat/selesai', 'Cat::selesai', ["filter" => "user"]);
+$routes->get('catess', 'CatEssay::index', ["filter" => "user"]);
+$routes->post('catess/save', 'CatEssay::save', ["filter" => "user"]);
+$routes->get('catess/selesai', 'CatEssay::selesai', ["filter" => "user"]);
 
 $routes->group("ajax", ["filter" => "auth"], function ($routes) {
     $routes->get('soal/(:num)', 'Ajax::soal/$1');

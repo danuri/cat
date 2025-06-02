@@ -42,6 +42,12 @@ class CrudModel extends Model
         return $query;
       }
 
+      public function getSoalEssay($catid,$jumlah)
+      {
+        $query = $this->db->query("SELECT * FROM bank_soal_essay WHERE kode='$catid' ORDER BY RAND() LIMIT 0, $jumlah")->getResult();
+        return $query;
+      }
+
       public function getNilai($nopes)
       {
       //   $query = $this->db->query("SELECT b.category_id, SUM(b.nilai) jumlah, c.nama
