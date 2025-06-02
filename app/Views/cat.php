@@ -40,7 +40,7 @@
               <?php
               $n = 1;
               foreach ($soals as $soal){?>
-                <button type="button" class="nomor btn <?php echo ($soal['jawaban_peserta'] > 0)? 'btn-success':'btn-danger';?> btn-page" id="btn<?php echo $n;?>" onclick="loadsoal(<?php echo $n;?>);"><?php echo $n;?></button>
+                <button type="button" class="nomor btn <?= ($soal['jawaban_peserta'] > 0)? 'btn-success':'btn-danger';?> btn-page" id="btn<?= $n;?>" onclick="loadsoal(<?= $n;?>);"><?= $n;?></button>
                 <?php $n++;} ?>
             </div>
 
@@ -84,7 +84,7 @@
                                 <span class="belum_terjawab"></span>
                               </div> -->
                               <div class="col">
-                                <a href="<?php echo site_url('cat/selesai');?>" onclick="return confirm('Apakah Anda yakin ingin mengakhiri ujian?')" class="btn btn-danger"><i class="fa fa-sign-out"></i> Selesai ujian?</a>
+                                <a href="<?= site_url('cat/selesai');?>" onclick="return confirm('Apakah Anda yakin ingin mengakhiri ujian?')" class="btn btn-danger"><i class="fa fa-sign-out"></i> Selesai ujian?</a>
                               </div>
                             </div>
                           </div>
@@ -157,17 +157,17 @@
 
         <script type="text/javascript">
         	jQuery(document).ready(function($) {
-        		$('.soal_terjawab').html('<?php echo $jumlah;?>');
+        		$('.soal_terjawab').html('<?= $jumlah;?>');
             //moment.tz.setDefault("Asia/Jakarta");
             var finishTime = moment.tz("<?= $log->finish_time?>","Asia/Jakarta");
 
         		$('#clock').countdown(finishTime.toDate(), function(event) {
         		  $(this).html(event.strftime('%H:%M:%S'));
         		});
-        		// $('#clock').countdown('<?php echo $log->finish_time;?>', function(event) {
+        		// $('#clock').countdown('<?= $log->finish_time;?>', function(event) {
         		//   $(this).html(event.strftime('%H:%M:%S'));
         		// });
-            // $('.ujian_ket').html('<?php echo $ujian->ket;?>');
+            // $('.ujian_ket').html('<?= $ujian->ket;?>');
         		//console.log(jsonObj[0]['pertanyaan']);
         		loadsoal(1);
             // $("#paging").niceScroll({cursorcolor:"#b3b3b3",autohidemode:false});
@@ -184,7 +184,7 @@
               var soal_terjawab = parseInt($('.soal_terjawab').html())+1;
         			console.log(parseInt($('.soal_terjawab').html()));
 
-        			$.post( "<?php echo site_url('cat/save');?>",
+        			$.post( "<?= site_url('cat/save');?>",
         				{ soal_id: soal_id, jawaban_peserta: jawaban }
         			).done(function( data ) {
         				if(data == 0){
@@ -278,16 +278,16 @@
         		}
         	?>
         	item = {}
-        	item ["id"] = '<?php echo $soal['id'];?>';
-        	item ["pertanyaan"] = "<?php echo str_replace('"','',$pertanyaan);?>";
-        	item ["p1"] = "<?php echo str_replace('"','',$p1);?>";
-        	item ["p2"] = "<?php echo str_replace('"','',$p2);?>";
-        	item ["p3"] = "<?php echo str_replace('"','',$p3);?>";
-        	item ["p4"] = "<?php echo str_replace('"','',$p4);?>";
-        	item ["p5"] = "<?php echo str_replace('"','',$p5);?>";
-        	item ["j"] = '<?php echo $soal['jawaban_peserta'];?>';
-        	item ["category_id"] = '<?php echo $soal['category_id'];?>';
-          item ["category_name"] = '<?php echo $soal['category_name'];?>';
+        	item ["id"] = '<?= $soal['id'];?>';
+        	item ["pertanyaan"] = "<?= str_replace('"','',$pertanyaan);?>";
+        	item ["p1"] = "<?= str_replace('"','&quot;',$p1);?>";
+        	item ["p2"] = "<?= str_replace('"','&quot;',$p2);?>";
+        	item ["p3"] = "<?= str_replace('"','&quot;',$p3);?>";
+        	item ["p4"] = "<?= str_replace('"','&quot;',$p4);?>";
+        	item ["p5"] = "<?= str_replace('"','&quot;',$p5);?>";
+        	item ["j"] = '<?= $soal['jawaban_peserta'];?>';
+        	item ["category_id"] = '<?= $soal['category_id'];?>';
+          item ["category_name"] = '<?= $soal['category_name'];?>';
 
         	jsonObj.push(item);
         	<?php

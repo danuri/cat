@@ -38,7 +38,7 @@
                 <div class="navbar-brand-box horizontal-logo">
                     <a href="cat" class="logo logo-dark">
                         <span class="logo-sm">
-                            <img src="<?= base_url()?>xassets/images/logo-sm-biro-sdm-.png" alt="" height="22">
+                            <img src="<?= base_url()?>assets/images/biro-sdm.png" alt="" height="22">
                         </span>
                         <span class="logo-lg">
                             CAT Kemenag
@@ -47,7 +47,7 @@
 
                     <a href="cat" class="logo logo-light">
                         <span class="logo-sm">
-                            <img src="<?= base_url()?>xassets/images/logo-sm-biro-sdm-.png" alt="" height="22">
+                            <img src="<?= base_url()?>assets/images/biro-sdm.png" alt="" height="22">
                         </span>
                         <span class="logo-lg">
                             CAT Kemenag
