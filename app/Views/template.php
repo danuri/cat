@@ -36,7 +36,7 @@
             <div class="d-flex">
                 <!-- LOGO -->
                 <div class="navbar-brand-box horizontal-logo">
-                    <a href="cat" class="logo logo-dark">
+                    <a href="" class="logo logo-dark">
                         <span class="logo-sm">
                             <img src="<?= base_url()?>assets/images/biro-sdm.png" alt="" height="22">
                         </span>
@@ -45,7 +45,7 @@
                         </span>
                     </a>
 
-                    <a href="cat" class="logo logo-light">
+                    <a href="" class="logo logo-light">
                         <span class="logo-sm">
                             <img src="<?= base_url()?>assets/images/biro-sdm.png" alt="" height="22">
                         </span>
