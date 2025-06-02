@@ -4,6 +4,7 @@
       url: '',                        // URL to send activity data
       timeout: 60000,                 // Inactivity timeout in ms (default: 1 min)
       extraData: {},                  // Optional extra data to include in requests
+      disableUserCopy: true,  // Disable user copy actions
       onSend: null                    // Optional callback after sending data
     }, options);
 
@@ -57,6 +58,25 @@
         sendActivity('visible', 'visibilitychange');
       }
     });
+
+    if (settings.disableUserCopy) {
+      this.css({
+        '-webkit-user-select': 'none',
+        '-moz-user-select': 'none',
+        '-ms-user-select': 'none',
+        'user-select': 'none'
+      });
+
+      this.on('copy cut paste contextmenu dragstart selectstart', function(e) {
+        e.preventDefault();
+      });
+
+      $(document).on('keydown', function(e) {
+        if ((e.ctrlKey || e.metaKey) && ['c', 'x', 'a'].includes(e.key.toLowerCase())) {
+          e.preventDefault();
+        }
+      });
+    }
 
     // Start initial inactivity timer
     resetInactivityTimer();
