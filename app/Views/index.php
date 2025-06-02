@@ -198,9 +198,12 @@
                     <div class="row">
                         <div class="col-lg-6">
                             <div class="card">
+                                <div class="card-header align-items-center d-flex">
+                                    <h4 class="card-title mb-0 flex-grow-1">Informasi Peserta</h4>
+                                </div>
                                 <div class="card-body">
                                   <div class="table-responsive table-card">
-                                    <table class="table table-bordered table-centered align-middle table-nowrap mb-0">
+                                    <table class="table table-bordered table-centered align-middle mb-0">
                                         <tbody>
                                           <tr>
                                             <td>Nomor Peserta</td>
