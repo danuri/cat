@@ -48,6 +48,8 @@ $routes->get('catess', 'CatEssay::index', ["filter" => "user"]);
 $routes->post('catess/save', 'CatEssay::save', ["filter" => "user"]);
 $routes->get('catess/selesai', 'CatEssay::selesai', ["filter" => "user"]);
 
+$routes->post('activity/store', 'Activity::store', ["filter" => "user"]);
+
 $routes->group("ajax", ["filter" => "auth"], function ($routes) {
     $routes->get('soal/(:num)', 'Ajax::soal/$1');
 });

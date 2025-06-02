@@ -162,6 +162,20 @@
 
     <!-- App js -->
     <script src="<?= base_url()?>xassets/js/app.js"></script>
-    
+    <script src="<?= base_url()?>assets/js/activity.js"></script>
+    <script>
+        $(document).ready(function() {
+            $(document).userActivityTracker({
+            url: '<?= site_url('activity/store')?>',
+            timeout: 60000,
+            extraData: {
+                page: window.location.href
+            },
+            onSend: function(response, sentData) {
+                console.log('Activity sent:', sentData);
+            }
+            });
+        });
+    </script>
 </body>
 </html>
