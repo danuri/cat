@@ -46,8 +46,8 @@
                     </a>
 
                     <a href="cat" class="logo logo-light">
-                        <span class="logo-sm">
-                            <img src="<?= base_url()?>assets/images/biro-sdm.png" alt="" height="22">
+                        <span class="logo-lg">
+                            <img src="<?= base_url()?>assets/images/biro-sdm.png" alt="" height="40">
                         </span>
                         <span class="logo-lg">
                             CAT Kemenag
