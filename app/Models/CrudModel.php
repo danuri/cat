@@ -44,7 +44,7 @@ class CrudModel extends Model
 
       public function getSoalEssay($catid,$jumlah)
       {
-        $query = $this->db->query("SELECT * FROM bank_soal_essay WHERE kode='$catid' ORDER BY RAND() LIMIT 0, $jumlah")->getResult();
+        $query = $this->db->query("SELECT * FROM bank_soal_essay WHERE kode='$catid' ORDER BY id ASC LIMIT 0, $jumlah")->getResult();
         return $query;
       }
 

@@ -53,9 +53,9 @@ class CatEssay extends BaseController
         );
         $soals[$i] = $input;
       }
-      usort($soals, function ($a, $b) {
-        return $a['category_id'] <=> $b['category_id']; 
-      });
+      // usort($soals, function ($a, $b) {
+      //   return $a['category_id'] <=> $b['category_id']; 
+      // });
       $data['soals'] = $soals;
       //echo $data;
       //exit();
