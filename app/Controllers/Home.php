@@ -20,27 +20,53 @@ class Home extends BaseController
 
         $user_id = session('nomor_peserta');
         $log = $model->where(['peserta_id'=>$user_id, 'ujian_id'=>session('ujian_id')])->first();
+		$data_ujian = $ujian->where(['id' => session('ujian_id')])->first();
 
-        if($log && $log->status == 1){
-          $data['status'] = 1;
-          $data['nilai'] = $crud->getNilaiV3(session('nomor_peserta'), session('ujian_id'));
-		  $data['ujian'] = $ujian->where(['id' => session('ujian_id')])->first();		  
-        } else {
-		  if ($log && strtotime($log->finish_time) <= time()) {
-			$nilai = $crud->getNilaiV4(session('nomor_peserta'), session('ujian_id'));
-			$data = array(
-				'status' => 1,
-				'finish_nilai' => $nilai[0]->nilai
-			);
-			$model->set($data)->where(['peserta_id'=>session('nomor_peserta'), 'ujian_id'=>session('ujian_id')])->update();
-			$data['status'] = 1;
-			$data['nilai'] = $crud->getNilaiV3(session('nomor_peserta'), session('ujian_id'));
-			$data['ujian'] = $ujian->where(['id' => session('ujian_id')])->first();
-		  } else {
-			$data['status'] = 0;
-			$data['ujian'] = $ujian->where(['id' => session('ujian_id')])->first();
-		  }
-        }
+		if ($data_ujian->tipe_soal == "essay") {
+			// tipe_soal ujian = essay
+			if($log && $log->status == 1){
+				$data['status'] = 1;
+				//$data['nilai'] = $crud->getNilaiV3(session('nomor_peserta'), session('ujian_id'));
+				$data['ujian'] = $ujian->where(['id' => session('ujian_id')])->first();		  
+			} else {
+				if ($log && strtotime($log->finish_time) <= time()) {
+					//$nilai = $crud->getNilaiV4(session('nomor_peserta'), session('ujian_id'));
+					$data = array(
+						'status' => 1,
+						//'finish_nilai' => $nilai[0]->nilai
+					);
+					$model->set($data)->where(['peserta_id'=>session('nomor_peserta'), 'ujian_id'=>session('ujian_id')])->update();
+					$data['status'] = 1;
+					//$data['nilai'] = $crud->getNilaiV3(session('nomor_peserta'), session('ujian_id'));
+					$data['ujian'] = $ujian->where(['id' => session('ujian_id')])->first();
+				} else {
+					$data['status'] = 0;
+					$data['ujian'] = $ujian->where(['id' => session('ujian_id')])->first();
+				}
+			}
+		} else {
+			// tipe_soal ujian = choice
+			if($log && $log->status == 1){
+				$data['status'] = 1;
+				$data['nilai'] = $crud->getNilaiV3(session('nomor_peserta'), session('ujian_id'));
+				$data['ujian'] = $ujian->where(['id' => session('ujian_id')])->first();		  
+			} else {
+				if ($log && strtotime($log->finish_time) <= time()) {
+					$nilai = $crud->getNilaiV4(session('nomor_peserta'), session('ujian_id'));
+					$data = array(
+						'status' => 1,
+						'finish_nilai' => $nilai[0]->nilai
+					);
+					$model->set($data)->where(['peserta_id'=>session('nomor_peserta'), 'ujian_id'=>session('ujian_id')])->update();
+					$data['status'] = 1;
+					$data['nilai'] = $crud->getNilaiV3(session('nomor_peserta'), session('ujian_id'));
+					$data['ujian'] = $ujian->where(['id' => session('ujian_id')])->first();
+				} else {
+					$data['status'] = 0;
+					$data['ujian'] = $ujian->where(['id' => session('ujian_id')])->first();
+				}
+			}
+		}       
 		
         return view('index', $data);
     }

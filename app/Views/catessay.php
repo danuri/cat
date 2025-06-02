@@ -233,7 +233,9 @@
         	item ["id"] = '<?= $soal['id'];?>';
           item ["kompetensi_dasar"] = '<?= $soal['kompetensi_dasar'];?>';
         	item ["pertanyaan"] = "<?= str_replace('"','',$pertanyaan);?>";
-        	item ["j"] = '<?= $soal['jawaban_peserta'];?>';
+          if (<?= json_encode($soal['jawaban_peserta']);?> != null) {
+          	item ["j"] = '<?= json_encode($soal['jawaban_peserta']);?>';
+          }
         	item ["category_id"] = '<?= $soal['category_id'];?>';
           item ["category_name"] = '<?= $soal['category_name'];?>';
 
