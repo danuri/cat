@@ -8,6 +8,7 @@ use App\Models\CatModel;
 use App\Models\LogModel;
 use App\Models\MapModel;
 use App\Models\UjianModel;
+use App\Models\CatEssayModel;
 
 class Home extends BaseController
 {
@@ -51,15 +52,15 @@ class Home extends BaseController
 
   	  $user_id = session('nomor_peserta');
   	  $peserta = $model->getRow('peserta', ['nomor_peserta' => $user_id, 'ujian_id' => session('ujian_id')]);
-
-  	  $soalpeserta = $model->getRow('soal_peserta', ['peserta_id' => $user_id, 'ujian_id' => session('ujian_id')]);
 	  $data_ujian = $ujian->where(['id' => session('ujian_id')])->first();
 
-      if($soalpeserta){
-        return redirect()->to('cat');
-      }
-
-  		if(!$model->getRow('peserta_log', ['ujian_id' => $peserta->ujian_id, 'peserta_id' => $peserta->nomor_peserta])){
+	  if ($data_ujian->tipe_soal == "essay") {
+		  // tipe_soal ujian = essay
+		  $soalpeserta = $model->getRow('soal_peserta_essay', ['peserta_id' => $user_id, 'ujian_id' => session('ujian_id')]);
+		  if($soalpeserta){
+			return redirect()->to('catess');
+		  }
+		  if(!$model->getRow('peserta_log', ['ujian_id' => $peserta->ujian_id, 'peserta_id' => $peserta->nomor_peserta])){
   			$now     = strtotime(date('Y-m-d H:i:s'));
   			$minutes = $data_ujian->lama_ujian;
   			$seconds = ($minutes * 60);
@@ -75,13 +76,44 @@ class Home extends BaseController
 
         	$log = new LogModel;
   			$log->insert($input);
-  		}
+  		  }
 
-  		if($model->getRow('soal_peserta', ['ujian_id' => $peserta->ujian_id, 'peserta_id' => $peserta->nomor_peserta]) == 0){
+  		  if($model->getRow('soal_peserta_essay', ['ujian_id' => $peserta->ujian_id, 'peserta_id' => $peserta->nomor_peserta]) == 0){
+  			$this->generate_soal_peserta_essay();
+  		  }
+
+  		  return redirect()->to('catess');
+
+	  } else {
+		  // tipe_soal ujian = choice
+		  $soalpeserta = $model->getRow('soal_peserta', ['peserta_id' => $user_id, 'ujian_id' => session('ujian_id')]);
+		  if($soalpeserta){
+			return redirect()->to('cat');
+		  }
+		  if(!$model->getRow('peserta_log', ['ujian_id' => $peserta->ujian_id, 'peserta_id' => $peserta->nomor_peserta])){
+  			$now     = strtotime(date('Y-m-d H:i:s'));
+  			$minutes = $data_ujian->lama_ujian;
+  			$seconds = ($minutes * 60);
+  			$future  = ($now + $seconds);
+
+  			$input = array(
+  									'ujian_id' => $peserta->ujian_id,
+  									'peserta_id' => $peserta->nomor_peserta,
+  									'start_time' => date('Y-m-d H:i:s', $now),
+  									'finish_time' => date('Y-m-d H:i:s', $future),
+  									'status' => 0
+  								 );
+
+        	$log = new LogModel;
+  			$log->insert($input);
+  		  }
+
+  		  if($model->getRow('soal_peserta', ['ujian_id' => $peserta->ujian_id, 'peserta_id' => $peserta->nomor_peserta]) == 0){
   			$this->generate_soal_peserta();
-  		}
+  		  }
 
-  		return redirect()->to('cat');
+  		  return redirect()->to('cat');
+	  }  		
   	}
 
   	public function generate_soal_peserta()
@@ -196,4 +228,53 @@ class Home extends BaseController
 	  	}
 	  }
   	}
+
+	public function generate_soal_peserta_essay()
+	{
+		$model = new CrudModel;
+		$catesasy = new CatEssayModel;
+		$map = new MapModel;
+		$category_model = new CategoryModel;
+
+		$ujian_id = session('ujian_id');
+		$categories = $map->where('ujian_id',$ujian_id)->findAll();
+		$soal = array();
+		$j = 0;
+
+		foreach ($categories as $row) {
+			$getsoal = $model->getSoalEssay($row->category_id,$row->jumlah_soal);
+			$category = $category_model->where('id', $row->category_id)->first();
+			
+			foreach ($getsoal as $rs) {
+			$soal[$j][] = [
+				'id' => $rs->id,
+				'pertanyaan' => $rs->soal,
+				'bobot' => $rs->bobot,
+				'kompetensi' => $rs->kompetensi,
+				'kompetensi_dasar' => $rs->kompetensi_dasar,
+				'category_id' => $rs->kode,
+			];
+			}
+			$j = $j+1;
+		}
+
+		//print_r($soal);
+		//exit;
+
+		for ($a=0; $a < count($soal); $a++) {
+			foreach ($soal[$a] as $row) {
+				$input = array(
+					'ujian_id' => session('ujian_id'),
+					'soal_id' => $row['id'],				
+					'category_id' => $row['category_id'],	
+					'peserta_id' => session('nomor_peserta'),
+					'kompetensi' => $row['kompetensi'],
+					'kompetensi_dasar' => $row['kompetensi_dasar'],
+					'pertanyaan' => $row['pertanyaan'],
+					'bobot' => $row['bobot']
+				);
+				$insert = $catesasy->insert($input);
+			}
+	  	}
+	}
 }

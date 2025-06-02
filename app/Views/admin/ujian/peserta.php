@@ -59,6 +59,7 @@
                 <tr>
                   <th>Peserta</th>
                   <th>Lokasi Formasi</th>
+                  <th>Status</th>
                   <th>Detail Ujian</th>
                   <th>Aksi</th>
                 </tr>
@@ -68,7 +69,7 @@
                   <tr>
                     <td>
                       <?= $row->nik?><br>
-                      <?= $row->nomor_peserta?><br>
+                      <!-- <?= $row->nomor_peserta?><br> -->
                       <b><?= $row->nama?></b><br>
                       <?= $row->jabatan?>
                     </td>
