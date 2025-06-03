@@ -31,48 +31,52 @@ class Cat extends BaseController
       $data_map = $map->where(['ujian_id' => session('ujian_id')])->findAll();
       //echo $data_map[0]->category_id;
       //exit();
-      $category_list = array();
-      for ($i=0; $i < count($data_map); $i++) {
-        $category_data = $category->where(['id'=>$data_map[$i]->category_id])->first();
-        $data['category'][$i] = $category_data;
-        $category_list[$i] = $category_data;
-      } 
-      $soals = array();
-      for ($i=0; $i < count($soal_list); $i++) {
-        $category_id = $soal_list[$i]->category_id;
-        $search_category = array_filter($category_list, function($obj) use ($category_id) {
-          return $obj->id === $category_id;
+      if ($data['log']->status == 1) {
+        return redirect()->to('/');
+      } else {
+        $category_list = array();
+        for ($i=0; $i < count($data_map); $i++) {
+          $category_data = $category->where(['id'=>$data_map[$i]->category_id])->first();
+          $data['category'][$i] = $category_data;
+          $category_list[$i] = $category_data;
+        } 
+        $soals = array();
+        for ($i=0; $i < count($soal_list); $i++) {
+          $category_id = $soal_list[$i]->category_id;
+          $search_category = array_filter($category_list, function($obj) use ($category_id) {
+            return $obj->id === $category_id;
+          });
+          $input = array(
+            'id' => $soal_list[$i]->id,
+            'pertanyaan' => $soal_list[$i]->pertanyaan,
+            'p1' => $soal_list[$i]->p1,
+            'p2' => $soal_list[$i]->p2,
+            'p3' => $soal_list[$i]->p3,
+            'p4' => $soal_list[$i]->p4,
+            'p5' => $soal_list[$i]->p5,
+            'jawaban_soal' => $soal_list[$i]->jawaban_soal,
+            'bobot_p1' => $soal_list[$i]->bobot_p1,
+            'bobot_p2' => $soal_list[$i]->bobot_p2,
+            'bobot_p3' => $soal_list[$i]->bobot_p3,
+            'bobot_p4' => $soal_list[$i]->bobot_p4,
+            'bobot_p5' => $soal_list[$i]->bobot_p5,
+            'value_type' => $soal_list[$i]->value_type,
+            'bobot' => $soal_list[$i]->bobot,
+            'category_id' => $soal_list[$i]->category_id,
+            'category_name' => array_values($search_category)[0]->nama,
+            'jawaban_peserta' => $soal_list[$i]->jawaban_peserta,
+            'jawaban_nilai' => $soal_list[$i]->jawaban_nilai
+          );
+          $soals[$i] = $input;
+        }
+        usort($soals, function ($a, $b) {
+          return $a['category_id'] <=> $b['category_id']; 
         });
-        $input = array(
-          'id' => $soal_list[$i]->id,
-          'pertanyaan' => $soal_list[$i]->pertanyaan,
-          'p1' => $soal_list[$i]->p1,
-          'p2' => $soal_list[$i]->p2,
-          'p3' => $soal_list[$i]->p3,
-          'p4' => $soal_list[$i]->p4,
-          'p5' => $soal_list[$i]->p5,
-          'jawaban_soal' => $soal_list[$i]->jawaban_soal,
-          'bobot_p1' => $soal_list[$i]->bobot_p1,
-          'bobot_p2' => $soal_list[$i]->bobot_p2,
-          'bobot_p3' => $soal_list[$i]->bobot_p3,
-          'bobot_p4' => $soal_list[$i]->bobot_p4,
-          'bobot_p5' => $soal_list[$i]->bobot_p5,
-          'value_type' => $soal_list[$i]->value_type,
-          'bobot' => $soal_list[$i]->bobot,
-          'category_id' => $soal_list[$i]->category_id,
-          'category_name' => array_values($search_category)[0]->nama,
-          'jawaban_peserta' => $soal_list[$i]->jawaban_peserta,
-          'jawaban_nilai' => $soal_list[$i]->jawaban_nilai
-        );
-        $soals[$i] = $input;
+        $data['soals'] = $soals;
+        //echo $data;
+        //exit();
+        return view('cat', $data);
       }
-      usort($soals, function ($a, $b) {
-        return $a['category_id'] <=> $b['category_id']; 
-      });
-      $data['soals'] = $soals;
-      //echo $data;
-      //exit();
-      return view('cat', $data);
     }
 
     public function save()
