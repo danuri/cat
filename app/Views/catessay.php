@@ -164,6 +164,7 @@
         			var jawaban = $('#jawaban').val();
         			var soal_id = $('#soal_id').val();
         			var nourut = $('#nourut').val();
+              var soal_terjawab = parseInt($('.soal_terjawab').html())+1;
               
         			$.post( "<?= site_url('catess/save');?>",
         				{ soal_id: soal_id, jawaban_peserta: jawaban }
@@ -177,6 +178,7 @@
 
         					$('#btn'+(parseInt(nourut)+1)).removeClass('btn-danger');
         					$('#btn'+(parseInt(nourut)+1)).addClass('btn-success');
+                  $('.soal_terjawab').html(soal_terjawab);
         					loadsoal(parseInt(nourut)+2);
         				}else{
         					alert('Silahkan isi jawaban');
