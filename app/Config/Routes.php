@@ -78,12 +78,16 @@ $routes->group("admin", ["filter" => "auth"], function ($routes) {
     $routes->get('ujian/peserta/(:any)', 'Admin\Ujian\Peserta::index/$1');
     $routes->post('ujian/peserta/add/(:any)', 'Admin\Ujian\Peserta::add/$1');
     $routes->get('ujian/peserta/delete/(:any)/(:any)', 'Admin\Peserta::delete/$1/$2');
+    $routes->post('ujian/peserta/catessay/submit', 'Admin\Peserta::submit');
 
     $routes->get('ujian/soal/(:any)', 'Admin\Ujian\Soal::index/$1');
     $routes->get('ujian/soal/delete/(:any)', 'Admin\Ujian\Soal::delete/$1');
     $routes->post('ujian/soal/add/(:any)', 'Admin\Ujian\Soal::add/$1');
     
     $routes->get('ujian/hasil/(:any)', 'Admin\Ujian\Hasil::index/$1');
+    $routes->get('ujian/hasilexport/(:any)', 'Admin\Ujian\Hasil::export/$1');
+    $routes->get('ujian/hasildetail/(:any)/(:any)', 'Admin\Ujian\Hasil::detail/$1/$2');
+    $routes->post('ujian/hasil/submit', 'Admin\Ujian\Hasil::submit');
 
     $routes->get('banksoal/category', 'Admin\Banksoal::index');
     $routes->post('banksoal/category/add', 'Admin\Banksoal::categoryAdd');

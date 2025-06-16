@@ -55,12 +55,13 @@
               </div>
             </div>
             <table class="table table-bordered table-striped datatable smalltext">
+            <!-- <table class="table table-bordered table-striped table-hover datapeserta dt-responsive"> -->
               <thead>
                 <tr>
                   <th>Peserta</th>
                   <th>Lokasi Formasi</th>
-                  <th>Status</th>
-                  <th>Detail Ujian</th>
+                  <!-- <th>Status</th> -->
+                  <!-- <th>Detail Ujian</th> -->
                   <th>Aksi</th>
                 </tr>
               </thead>
@@ -74,7 +75,8 @@
                       <?= $row->jabatan?>
                     </td>
                     <td><?= $row->lokasi_formasi?></td>
-                    <td><a href="<?= site_url('admin/ujian/peserta/detail/'.encrypt($row->id))?>" class="btn btn-sm btn-success">Lihat</a></td>
+                    <!-- <td></td> -->
+                    <!-- <td><a href="<?= site_url('admin/ujian/peserta/detail/'.encrypt($row->id))?>" class="btn btn-sm btn-success">Lihat</a></td> -->
                     <td><a href="#" onclick="alert('Data tidak bisa dihapus karna memiliki riwayat ujian')" class="btn btn-sm btn-primary">Delete</a></td>
                   </tr>
                 <?php } ?>
@@ -90,7 +92,41 @@
 <!-- /content area -->
 <?= $this->endSection() ?>
 <?= $this->section('script') ?>
-<script src="<?= base_url()?>/assets/js/jquery/jquery.min.js"></script>
+<!-- <script src="<?= base_url()?>/assets/libs/jquery/jquery.min.js"></script>
 <script src="<?= base_url()?>/assets/js/vendor/tables/datatables/datatables.min.js"></script>
-<script src="<?= base_url()?>/assets/js/custom.js"></script>
+<script src="<?= base_url()?>/assets/js/custom.js"></script> -->
+<!-- <script src="<?= base_url();?>assets/libs/datatables.net//js/jquery.dataTables.min.js"></script>
+<script src="<?= base_url();?>assets/libs/datatables.net-bs4/js/dataTables.bootstrap4.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/2.0.1/js/dataTables.buttons.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/2.0.1/js/buttons.colVis.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/2.0.1/js/buttons.html5.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/2.0.1/js/buttons.print.min.js"></script> -->
+<!-- <script type="text/javascript">
+  $(document).ready(function() {
+    $('.datapeserta').DataTable({
+      dom: 'Bfrtip',
+      lengthMenu: [
+              [ 10, 25, 50, -1 ],
+              [ '10 rows', '25 rows', '50 rows', 'Show all' ]
+          ],
+      buttons: [
+        'pageLength','copy',
+        {
+              extend: 'excel',
+              exportOptions: {
+                  orthogonal: 'sort'
+              },
+              customizeData: function ( data ) {
+                  for (var i=0; i<data.body.length; i++){
+                      for (var j=0; j<data.body[i].length; j++ ){
+                          data.body[i][j] = '\u200C' + data.body[i][j];
+                      }
+                  }
+              }
+              }
+      ]
+  	});
+  });
+</script> -->
 <?= $this->endSection() ?>

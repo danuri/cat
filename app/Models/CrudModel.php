@@ -223,7 +223,9 @@ class CrudModel extends Model
       {
         $query = $this->db->query("SELECT
                   soal_peserta.peserta_id, 
+                  peserta.nik,  
                   peserta.nama, 
+                  peserta.jabatan,
                   peserta.lokasi_formasi, 
                   peserta_log.start_time, 
                   peserta_log.finish_time, 
@@ -244,6 +246,36 @@ class CrudModel extends Model
                   soal_peserta.ujian_id = '$ujianid'
                 GROUP BY
                   soal_peserta.peserta_id")->getResult();
+        return $query;
+      }
+
+      public function hasilNilaiEssay($ujianid)
+      {
+        $query = $this->db->query("SELECT
+                  soal_peserta_essay.peserta_id, 
+                  peserta.nik,
+                  peserta.nama,
+                  peserta.jabatan, 
+                  peserta.lokasi_formasi, 
+                  peserta_log.start_time, 
+                  peserta_log.finish_time, 
+                  peserta_log.`status`,
+                  peserta_log.finish_nilai
+                FROM
+                  soal_peserta_essay
+                  INNER JOIN
+                  peserta
+                  ON 
+                    soal_peserta_essay.peserta_id = peserta.nik
+                  INNER JOIN
+                  peserta_log
+                  ON 
+                    soal_peserta_essay.ujian_id = peserta_log.ujian_id AND
+                    soal_peserta_essay.peserta_id = peserta_log.peserta_id
+                WHERE
+                  soal_peserta_essay.ujian_id = '$ujianid'
+                GROUP BY
+                  soal_peserta_essay.peserta_id")->getResult();
         return $query;
       }
 }
