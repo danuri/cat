@@ -22,8 +22,10 @@
 
     <div class="row pb-4 gy-3">
       <div class="col-sm-4">
-        <a href="<?= site_url('admin/ujian/peserta/add/'.encrypt($ujianid))?>" class="btn btn-primary"><i class="las la-plus me-1"></i> Peserta Baru</a>
-        <a href="#" class="btn btn-success"><i class="las la-plus me-1"></i> Import</a>
+        <!-- <a href="<?= site_url('admin/ujian/peserta/add/'.encrypt($ujianid))?>" class="btn btn-primary"><i class="las la-plus me-1"></i> Peserta Baru</a> -->
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addpeserta"><i class="las la-plus me-1"></i>Peserta Baru</button>
+        <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#importpeserta"><i class="las la-plus me-1"></i>Import</button>
+        <a href="<?php echo base_url();?>downloads/Template_Import_Peserta.xlsx" class="btn btn-info"><i class="las la-download me-1"></i>Template Excel</a>
       </div>
 
       <div class="col-sm-auto ms-auto">
@@ -32,6 +34,18 @@
         </div>
       </div>
     </div>
+    <?php if (session()->getFlashdata('message')): ?>
+      <div class="alert alert-success alert-dismissible fade show" role="alert">
+        <?= session()->getFlashdata('message'); ?>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
+    <?php endif; ?>
+    <?php if (session()->getFlashdata('error')): ?>
+      <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        <?= session()->getFlashdata('error'); ?>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
+    <?php endif; ?>
 
     <div class="row">
       <div class="col-xl-12">
@@ -77,13 +91,135 @@
                     <td><?= $row->lokasi_formasi?></td>
                     <!-- <td></td> -->
                     <!-- <td><a href="<?= site_url('admin/ujian/peserta/detail/'.encrypt($row->id))?>" class="btn btn-sm btn-success">Lihat</a></td> -->
-                    <td><a href="#" onclick="alert('Data tidak bisa dihapus karna memiliki riwayat ujian')" class="btn btn-sm btn-primary">Delete</a></td>
+                    <td>
+                      <button type="button" class="btn btn-sm btn-warning" data-bs-toggle="modal" onclick="editpeserta('<?= $row->id?>','<?= $row->nik?>','<?= $row->nama?>','<?= $row->jabatan?>','<?= $row->lokasi_formasi?>','<?= $row->sesi_id?>','<?= $row->ujian_id?>')">Edit</button>
+                      <a href="<?= site_url('admin/ujian/peserta-delete/'.encrypt($row->id))?>" onclick="alert('Apakah Anda yakin hapus peserta ini (<?= $row->nik?> - <?= $row->nama?>)?')" class="btn btn-sm btn-primary">Delete</a>
+                    </td>
                   </tr>
                 <?php } ?>
               </tbody>
             </table>
         </div>
         </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+  <div class="modal fade" id="importpeserta" role="dialog" data-backdrop="static" data-keyboard="false">
+      <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 class="title" id="defaultModalLabel">Import Peserta</h4>
+          </div>
+          <div class="modal-body" id="">
+            <form class="" action="<?php echo site_url('admin/ujian/peserta/import');?>" method="post" id="import_peserta" enctype="multipart/form-data">
+              <div class="form-group">
+                <label for="">Upload Excel</label><br>
+                <input type="file" name="fileexcel" accept=".xlsx" id="fileexcel" required>
+                <input type="hidden" class="form-control" name="ujianid" id="ujianid" value="<?= $ujian->id?>">
+              </div>			      
+            </form>
+          </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary waves-effect" onclick="$('#import_peserta').submit()">IMPORT</button>
+          <button type="button" class="btn btn-danger waves-effect" data-bs-dismiss="modal">BATAL</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<div class="modal fade" id="addpeserta" role="dialog" data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="title" id="defaultModalLabel">Tambah Peserta</h4>
+        </div>
+        <div class="modal-body" id="">
+          <form class="" action="<?php echo site_url('admin/ujian/peserta/add');?>" method="post" id="tambahpeserta" enctype="multipart/form-data">
+            <div class="form-group">
+              <label for="">Ujian</label>
+              <input type="text" class="form-control" value="<?= $ujian->nama?>" readonly>
+              <input type="hidden" class="form-control" name="ujianid" id="ujianid" value="<?= $ujian->id?>">
+            </div>
+			      <div class="form-group">
+              <label for="">Sesi</label>
+              <select class="form-control" name="sesiid" id="sesiid" required>
+                <?php foreach ($sesi as $row) {?>
+                  <option value="<?= $row->id?>"><?="Tanggal: ".$row->tanggal." - "."Lokasi: ".$row->lokasi." - Ruang: ".$row->ruang." - Sesi: ".$row->sesi?></option>
+                <?php } ?>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="">NIP Peserta / Nomor Peserta</label>
+              <input type="text" class="form-control" name="nik" id="nik" required>
+            </div>
+            <div class="form-group">
+              <label for="">Nama Peserta</label>
+              <input type="text" class="form-control" name="nama" id="nama" required>
+            </div>
+            <div class="form-group">
+              <label for="">Jabatan</label>
+              <input type="text" class="form-control" name="jabatan" id="jabatan" required>
+            </div>
+            <div class="form-group">
+              <label for="">Lokasi Formasi</label>
+              <input type="text" class="form-control" name="lokasi_formasi" id="lokasi_formasi" required>
+            </div>
+          </form>
+        </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary waves-effect" onclick="$('#tambahpeserta').submit()">SIMPAN</button>
+        <button type="button" class="btn btn-danger waves-effect" data-bs-dismiss="modal">BATAL</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="editpeserta" role="dialog" data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="title" id="defaultModalLabel">Edit Peserta</h4>
+        </div>
+        <div class="modal-body" id="">
+          <form class="" action="<?php echo site_url('admin/ujian/peserta/edit');?>" method="post" id="updatepeserta" enctype="multipart/form-data">
+            <input type="hidden" class="form-control" name="edit_id" id="edit_id">
+            <div class="form-group">
+              <label for="">Ujian</label>
+              <input type="text" class="form-control" value="<?= $ujian->nama?>" readonly>
+              <input type="hidden" class="form-control" name="edit_ujianid" id="edit_ujianid" value="<?= $ujian->id?>">
+            </div>
+			      <div class="form-group">
+              <label for="">Sesi</label>
+              <select class="form-control" name="edit_sesiid" id="edit_sesiid">
+                <?php foreach ($sesi as $row) {?>
+                  <option value="<?= $row->id?>"><?="Tanggal: ".$row->tanggal." - "."Lokasi: ".$row->lokasi." - Ruang: ".$row->ruang." - Sesi: ".$row->sesi?></option>
+                <?php } ?>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="">NIP Peserta / Nomor Peserta</label>
+              <input type="text" class="form-control" name="edit_nik" id="edit_nik">
+              <input type="hidden" class="form-control" name="edit_nik_asli" id="edit_nik_asli">
+            </div>
+            <div class="form-group">
+              <label for="">Nama Peserta</label>
+              <input type="text" class="form-control" name="edit_nama" id="edit_nama">
+            </div>
+            <div class="form-group">
+              <label for="">Jabatan</label>
+              <input type="text" class="form-control" name="edit_jabatan" id="edit_jabatan">
+            </div>
+            <div class="form-group">
+              <label for="">Lokasi Formasi</label>
+              <input type="text" class="form-control" name="edit_lokasi_formasi" id="edit_lokasi_formasi">
+            </div>
+          </form>
+        </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary waves-effect" onclick="$('#updatepeserta').submit()">SIMPAN</button>
+        <button type="button" class="btn btn-danger waves-effect" data-bs-dismiss="modal">BATAL</button>
       </div>
     </div>
   </div>
@@ -102,31 +238,16 @@
 <script src="https://cdn.datatables.net/buttons/2.0.1/js/buttons.colVis.min.js"></script>
 <script src="https://cdn.datatables.net/buttons/2.0.1/js/buttons.html5.min.js"></script>
 <script src="https://cdn.datatables.net/buttons/2.0.1/js/buttons.print.min.js"></script> -->
-<!-- <script type="text/javascript">
-  $(document).ready(function() {
-    $('.datapeserta').DataTable({
-      dom: 'Bfrtip',
-      lengthMenu: [
-              [ 10, 25, 50, -1 ],
-              [ '10 rows', '25 rows', '50 rows', 'Show all' ]
-          ],
-      buttons: [
-        'pageLength','copy',
-        {
-              extend: 'excel',
-              exportOptions: {
-                  orthogonal: 'sort'
-              },
-              customizeData: function ( data ) {
-                  for (var i=0; i<data.body.length; i++){
-                      for (var j=0; j<data.body[i].length; j++ ){
-                          data.body[i][j] = '\u200C' + data.body[i][j];
-                      }
-                  }
-              }
-              }
-      ]
-  	});
-  });
-</script> -->
+<script type="text/javascript">
+  function editpeserta(id, nik, nama, jabatan, lokasi_formasi, sesi_id, ujian_id) {
+    $('#edit_id').val(id);
+    $('#edit_nik').val(nik);
+    $('#edit_nik_asli').val(nik);
+    $('#edit_nama').val(nama);
+    $('#edit_jabatan').val(jabatan);
+    $('#edit_lokasi_formasi').val(lokasi_formasi);
+    $('#edit_sesiid').val(sesi_id);
+    $('#editpeserta').modal('show');
+  }
+</script>
 <?= $this->endSection() ?>

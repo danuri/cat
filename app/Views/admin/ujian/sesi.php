@@ -82,6 +82,7 @@
               <table class="table table-bordered table-striped datatable smalltext">
                 <thead>
                   <tr>
+                    <th>Sesi Id</th>
                     <th>Lokasi</th>
                     <th>Ruang</th>
                     <th>Sesi</th>
@@ -93,6 +94,7 @@
                 <tbody>
                   <?php foreach ($sesi as $row) {?>
                     <tr>
+                      <td><?= $row->id?></td>
                       <td><?= $row->kode_lokasi?></td>
                       <td><?= $row->ruang?></td>
                       <td><?= $row->sesi?></td>

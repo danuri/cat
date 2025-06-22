@@ -76,9 +76,11 @@ $routes->group("admin", ["filter" => "auth"], function ($routes) {
 
     $routes->get('ujian/peserta/detail/(:any)', 'Admin\Ujian\Peserta::detail/$1');
     $routes->get('ujian/peserta/(:any)', 'Admin\Ujian\Peserta::index/$1');
-    $routes->post('ujian/peserta/add/(:any)', 'Admin\Ujian\Peserta::add/$1');
-    $routes->get('ujian/peserta/delete/(:any)/(:any)', 'Admin\Peserta::delete/$1/$2');
-    $routes->post('ujian/peserta/catessay/submit', 'Admin\Peserta::submit');
+    $routes->post('ujian/peserta/add', 'Admin\Ujian\Peserta::add');
+    $routes->post('ujian/peserta/edit', 'Admin\Ujian\Peserta::edit');
+    $routes->get('ujian/peserta-delete/(:any)', 'Admin\Ujian\Peserta::delete/$1');
+    $routes->post('ujian/peserta/import', 'Admin\Ujian\Peserta::import');
+    // $routes->post('ujian/peserta/catessay/submit', 'Admin\Ujian\Peserta::submit');
 
     $routes->get('ujian/soal/(:any)', 'Admin\Ujian\Soal::index/$1');
     $routes->get('ujian/soal/delete/(:any)', 'Admin\Ujian\Soal::delete/$1');
