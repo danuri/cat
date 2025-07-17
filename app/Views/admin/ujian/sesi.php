@@ -95,7 +95,7 @@
                   <?php foreach ($sesi as $row) {?>
                     <tr>
                       <td><?= $row->id?></td>
-                      <td><?= $row->kode_lokasi?></td>
+                      <td><?= $row->lokasi?></td>
                       <td><?= $row->ruang?></td>
                       <td><?= $row->sesi?></td>
                       <td><?= $row->tanggal?></td>

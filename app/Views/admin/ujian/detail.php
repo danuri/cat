@@ -35,10 +35,41 @@
               </div>
               <div class="row mb-3">
                   <div class="col-lg-3">
+                      <label for="kodeujian" class="form-label">Kode Ujian</label>
+                  </div>
+                  <div class="col-lg-9">
+                      <input type="text" class="form-control" id="kodeujian" name="kodeujian" placeholder="Kode Ujian" value="<?= $ujian->kode?>">
+                  </div>
+              </div>
+              <div class="row mb-3">
+                  <div class="col-lg-3">
                       <label for="keterangan" class="form-label">Keterangan</label>
                   </div>
                   <div class="col-lg-9">
                       <textarea name="keterangan" id="keterangan" class="form-control" rows="3"><?= $ujian->ket?></textarea>
+                  </div>
+              </div>
+              <div class="row mb-3">
+                  <div class="col-lg-3">
+                      <label for="tipesoal" class="form-label">Tipe Ujian</label>
+                  </div>
+                  <div class="col-lg-9">
+                      <select name="tipesoal" id="tipesoal" class="form-control">
+                          <option value="choice">Pilihan Ganda</option>
+                          <option value="essay">Essay</option>
+                          <option value="wawancara">Wawancara</option>
+                      </select>
+                  </div>
+              </div>
+              <div class="row mb-3">
+                  <div class="col-lg-3">
+                      <label for="showhasil" class="form-label">Tampilkan Hasil Ujian?</label>
+                  </div>
+                  <div class="col-lg-9">
+                      <select name="showhasil" id="showhasil" class="form-control">
+                          <option value="Y">Ya</option>
+                          <option value="N">Tidak</option>
+                      </select>
                   </div>
               </div>
               <div class="row mb-3">
@@ -52,7 +83,7 @@
                       </div>
                   </div>
               </div>
-              <div class="row mb-3">
+              <!-- <div class="row mb-3">
                   <div class="col-lg-3">
                       <label for="waktuujian" class="form-label">Tanggal Ujian</label>
                   </div>
@@ -60,7 +91,7 @@
                     <input type="datetime-local" class="form-control" id="waktuujian" name="waktuujian" value="<?= $ujian->waktu_ujian?>">
                     <p>Ujian tidak dapat berlangsung sebelum waktu yang ditentukan</p>
                   </div>
-              </div>
+              </div> -->
               <div class="text-end">
                   <button type="submit" class="btn btn-primary">Simpan</button>
               </div>
@@ -101,4 +132,10 @@
 <script src="<?= base_url()?>/assets/js/jquery/jquery.min.js"></script>
 <script src="<?= base_url()?>/assets/js/vendor/tables/datatables/datatables.min.js"></script>
 <script src="<?= base_url()?>/assets/js/custom.js"></script>
+<script type="text/javascript">
+  jQuery(document).ready(function($) {
+    $("#tipesoal").val("<?= $ujian->tipe_soal?>");
+    $("#showhasil").val("<?= $ujian->show_hasil?>");
+  });
+</script>
 <?= $this->endSection() ?>

@@ -47,6 +47,14 @@
               </div>
               <div class="row mb-3">
                   <div class="col-lg-3">
+                      <label for="kodeujian" class="form-label">Kode Ujian</label>
+                  </div>
+                  <div class="col-lg-9">
+                      <input type="text" class="form-control" id="kodeujian" name="kodeujian" placeholder="Kode Ujian" value="<?= $ujian->kode?>">
+                  </div>
+              </div>
+              <div class="row mb-3">
+                  <div class="col-lg-3">
                       <label for="keterangan" class="form-label">Keterangan</label>
                   </div>
                   <div class="col-lg-9">

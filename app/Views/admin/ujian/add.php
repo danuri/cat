@@ -47,6 +47,14 @@
               </div>
               <div class="row mb-3">
                   <div class="col-lg-3">
+                      <label for="kodeujian" class="form-label">Kode Ujian</label>
+                  </div>
+                  <div class="col-lg-9">
+                      <input type="text" class="form-control" id="kodeujian" name="kodeujian" placeholder="Kode Ujian">
+                  </div>
+              </div>
+              <div class="row mb-3">
+                  <div class="col-lg-3">
                       <label for="keterangan" class="form-label">Keterangan</label>
                   </div>
                   <div class="col-lg-9">
@@ -64,7 +72,7 @@
                       </div>
                   </div>
               </div>
-              <div class="row mb-3">
+              <!-- <div class="row mb-3">
                   <div class="col-lg-3">
                       <label for="waktuujian" class="form-label">Tanggal Ujian</label>
                   </div>
@@ -80,7 +88,7 @@
                   <div class="col-lg-9">
                     <input type="number" class="form-control" id="pin" name="pin">
                   </div>
-              </div>
+              </div> -->
               <div class="text-end">
                   <button type="submit" class="btn btn-primary">Simpan</button>
               </div>

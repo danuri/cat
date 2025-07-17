@@ -27,10 +27,14 @@ class Ujian extends BaseController
 
       $data = [
           'nama' => $this->request->getVar('namaujian'),
+          'kode' => $this->request->getVar('kodeujian'),
           'ket' => $this->request->getVar('keterangan'),
-          'waktu_ujian' => $this->request->getVar('waktuujian'),
           'lama_ujian' => $this->request->getVar('lamaujian'),
           'status' => 0,
+          'tanggal' => date('Y-m-d H:i:s'),
+          'waktu_ujian' => date('Y-m-d H:i:s'),
+          'tipe_soal' => $this->request->getVar('tipesoal'),
+          'show_hasil' => $this->request->getVar('showhasil'),
           'updated_by' => session('nip')
       ];
       $update = $model->insert($data);
@@ -60,10 +64,12 @@ class Ujian extends BaseController
 
       $data = [
           'nama' => $this->request->getVar('namaujian'),
+          'kode' => $this->request->getVar('kodeujian'),
           'ket' => $this->request->getVar('keterangan'),
-          'waktu_ujian' => $this->request->getVar('waktuujian'),
           'lama_ujian' => $this->request->getVar('lamaujian'),
           'status' => 0,
+          'tipe_soal' => $this->request->getVar('tipesoal'),
+          'show_hasil' => $this->request->getVar('showhasil'),
           'updated_by' => session('nip')
       ];
       $update = $model->update($id,$data);

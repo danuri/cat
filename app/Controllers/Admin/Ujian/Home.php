@@ -28,10 +28,14 @@ class Home extends BaseController
 
       $data = [
           'nama' => $this->request->getVar('namaujian'),
+          'kode' => $this->request->getVar('kodeujian'),
           'ket' => $this->request->getVar('keterangan'),
           'waktu_ujian' => $this->request->getVar('waktuujian'),
           'lama_ujian' => $this->request->getVar('lamaujian'),
-          'status' => 0,
+          'show_hasil' => $this->request->getVar('showhasil'),
+          'tipe_soal' => $this->request->getVar('tipesoal'),
+          //'status' => 0,
+
           'updated_by' => session('nip')
       ];
       $update = $model->update($id,$data);

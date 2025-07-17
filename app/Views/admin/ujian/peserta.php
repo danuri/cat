@@ -74,8 +74,7 @@
                 <tr>
                   <th>Peserta</th>
                   <th>Lokasi Formasi</th>
-                  <!-- <th>Status</th> -->
-                  <!-- <th>Detail Ujian</th> -->
+                  <th>Info Ujian</th>
                   <th>Aksi</th>
                 </tr>
               </thead>
@@ -84,12 +83,13 @@
                   <tr>
                     <td>
                       <?= $row->nik?><br>
-                      <!-- <?= $row->nomor_peserta?><br> -->
                       <b><?= $row->nama?></b><br>
                       <?= $row->jabatan?>
                     </td>
                     <td><?= $row->lokasi_formasi?></td>
-                    <!-- <td></td> -->
+                    <td>
+                      <?= $row->nik?><br>
+                    </td>
                     <!-- <td><a href="<?= site_url('admin/ujian/peserta/detail/'.encrypt($row->id))?>" class="btn btn-sm btn-success">Lihat</a></td> -->
                     <td>
                       <button type="button" class="btn btn-sm btn-warning" data-bs-toggle="modal" onclick="editpeserta('<?= $row->id?>','<?= $row->nik?>','<?= $row->nama?>','<?= $row->jabatan?>','<?= $row->lokasi_formasi?>','<?= $row->sesi_id?>','<?= $row->ujian_id?>')">Edit</button>
