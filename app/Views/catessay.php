@@ -84,7 +84,23 @@
                                 <span class="belum_terjawab"></span>
                               </div> -->
                               <div class="col">
-                                <a href="<?= site_url('catess/selesai');?>" onclick="return confirm('Apakah Anda yakin ingin mengakhiri ujian?')" class="btn btn-danger"><i class="fa fa-sign-out"></i> Selesai ujian?</a>
+                                <?php 
+                                  // Check if using Safe Exam Browser
+                                  $isSEB = (strpos($_SERVER['HTTP_USER_AGENT'] ?? '', 'SEB') !== false);
+                                  if (!$isSEB) {                
+                                ?>
+                                    <a href="<?= site_url('catess/selesai');?>" onclick="return confirm('Apakah Anda yakin ingin mengakhiri ujian?')" class="btn btn-danger"><i class="fa fa-sign-out"></i> Selesai ujian?</a>
+                                <?php } else { ?>
+                                    <div class="mt-3">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="confirmCheck" name="confirmCheck" value="1">
+                                            <label class="form-check-label" for="confirmCheck">
+                                                Saya yakin ingin mengakhiri ujian
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <a id="confirmExit" href="<?= site_url('catess/selesai');?>" class="btn btn-danger" style="display: none;"><i class="fa fa-sign-out"></i> Selesai ujian?</a>
+                                <?php } ?>
                               </div>
                             </div>
                           </div>
@@ -145,6 +161,15 @@
 
         <script type="text/javascript">
         	jQuery(document).ready(function($) {
+            // Munculkan tautan ketika checkbox diklik
+            $('#confirmCheck').on('click', function(event) {
+                if ($(this).is(':checked')) {
+                    $('#confirmExit').css('display', 'block'); // Menampilkan tautan
+                } else {
+                    $('#confirmExit').css('display', 'none'); // Menyembunyikan tautan jika tidak dicentang
+                }
+            });
+
         		$('.soal_terjawab').html('<?= $jumlah;?>');
             //moment.tz.setDefault("Asia/Jakarta");
             var finishTime = moment.tz("<?= $log->finish_time?>","Asia/Jakarta");
@@ -164,8 +189,11 @@
         			var jawaban = $('#jawaban').val();
         			var soal_id = $('#soal_id').val();
         			var nourut = $('#nourut').val();
-              var soal_terjawab = parseInt($('.soal_terjawab').html())+1;
-              
+              if (jsonObj[nourut]['j'] != null && jsonObj[nourut]['j'] != '') {
+                var soal_terjawab = $('.soal_terjawab').html();
+              }else{
+                var soal_terjawab = parseInt($('.soal_terjawab').html())+1;
+              }
         			$.post( "<?= site_url('catess/save');?>",
         				{ soal_id: soal_id, jawaban_peserta: jawaban }
         			).done(function( data ) {
