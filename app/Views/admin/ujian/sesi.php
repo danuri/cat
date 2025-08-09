@@ -100,7 +100,7 @@
                       <td><?= $row->sesi?></td>
                       <td><?= $row->tanggal?></td>
                       <td><?= $row->pin?></td>
-                      <td><a href="<?= site_url('admin/ujian/sesi/delete/'.$row->id)?>" class="btn btn-sm btn-danger" onclick="return confirm('Lokasi akan dihapus?')">Delete</a></td>
+                      <td><a href="<?= site_url('admin/ujian/sesi/delete/'.encrypt($row->id))?>" class="btn btn-sm btn-danger" onclick="return confirm('Lokasi akan dihapus?')">Delete</a></td>
                     </tr>
                   <?php } ?>
                 </tbody>
