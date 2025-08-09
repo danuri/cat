@@ -38,7 +38,7 @@ class Sesi extends BaseController
       return redirect()->back()->with('message', 'Sesi telah ditambahkan');
     }
 
-    public function delete($ujianid, $id)
+    public function delete($id)
     {
       $model = new SesiModel;
       $insert = $model->delete($id);
