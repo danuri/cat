@@ -41,8 +41,7 @@ class Sesi extends BaseController
     public function delete($id)
     {
       $model = new SesiModel;
-      $sesiid = decrypt($id);
-      $insert = $model->delete($sesiid);
+      $insert = $model->delete($id);
 
       return redirect()->back()->with('message', 'Sesi telah dihapus');
     }

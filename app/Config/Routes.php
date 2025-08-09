@@ -73,7 +73,7 @@ $routes->group("admin", ["filter" => "auth"], function ($routes) {
     $routes->get('ujian/sesi/(:any)', 'Admin\Ujian\Sesi::index/$1');
     $routes->post('ujian/sesi/add/(:any)', 'Admin\Ujian\Sesi::add/$1');
     //$routes->get('ujian/sesi/delete/(:any)/(:any)', 'Admin\Ujian::delete/$1/$2');
-    $routes->get('ujian/sesi/delete/(:any)', 'Admin\Ujian\Sesi::delete/$1');
+    $routes->get('ujian/sesi-delete/(:any)', 'Admin\Ujian\Sesi::delete/$1');
 
     $routes->get('ujian/peserta/detail/(:any)', 'Admin\Ujian\Peserta::detail/$1');
     $routes->get('ujian/peserta/(:any)', 'Admin\Ujian\Peserta::index/$1');
