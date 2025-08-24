@@ -14,6 +14,12 @@ class CatEssay extends BaseController
 {
     public function index()
     {
+      // check user agent
+      $check = $this->checkUserAgent();
+      if (!$check) {
+        return view('errors/error');
+      }
+
       $cat = new CatEssayModel;
       $log = new LogModel;
       $ujian = new UjianModel;
@@ -66,6 +72,12 @@ class CatEssay extends BaseController
 
     public function save()
     {
+      // check user agent
+      $check = $this->checkUserAgent();
+      if (!$check) {
+        return view('errors/error');
+      }
+
       $cat = new CatEssayModel;
       $log = new LogModel;
       $category = new CategoryModel;
@@ -97,6 +109,12 @@ class CatEssay extends BaseController
 
     public function selesai()
     {
+      // check user agent
+      $check = $this->checkUserAgent();
+      if (!$check) {
+        return view('errors/error');
+      }
+      
       $log = new LogModel;
       $crud = new CrudModel;
          

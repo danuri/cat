@@ -20,6 +20,21 @@ class Banksoal extends BaseController
       return view('admin/banksoal/category', $data);
     }
 
+    public function categoryAdd()
+    {
+      $catmodel = new CategoryModel;
+      $data = [
+        'standar' => $this->request->getPost('standar'),
+        'nama' => $this->request->getPost('nama'),
+        'jenis' => $this->request->getPost('jenis'),
+        'nilai' => $this->request->getPost('nilai'),
+        'tipe' => $this->request->getPost('tipe'),
+      ];
+
+      $catmodel->insert($data);
+      return redirect()->back()->with('message', 'Ujian telah ditambahkan');
+    }
+
     public function categoryEdit($id)
     {
       // code...

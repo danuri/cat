@@ -14,6 +14,12 @@ class Cat extends BaseController
 {
     public function index()
     {
+      // check user agent
+      $check = $this->checkUserAgent();
+      if (!$check) {
+        return view('errors/error');
+      }
+
       $cat = new CatModel;
       $log = new LogModel;
       $ujian = new UjianModel;
@@ -77,10 +83,17 @@ class Cat extends BaseController
         //exit();
         return view('cat', $data);
       }
+    
     }
 
     public function save()
     {
+      // check user agent
+      $check = $this->checkUserAgent();
+      if (!$check) {
+        return view('errors/error');
+      }
+
       $cat = new CatModel;
       $log = new LogModel;
       $category = new CategoryModel;
@@ -143,6 +156,12 @@ class Cat extends BaseController
 
     public function selesai()
     {
+      // check user agent
+      $check = $this->checkUserAgent();
+      if (!$check) {
+        return view('errors/error');
+      }
+      
       $log = new LogModel;
       $crud = new CrudModel;
          
@@ -155,5 +174,22 @@ class Cat extends BaseController
 
       $log->set($data)->where(['peserta_id'=>session('nomor_peserta'), 'ujian_id'=>session('ujian_id')])->update();   
       return redirect()->to('');
+    }
+
+    public function checkUserAgent() {
+      $userAgent = $this->request->getHeaderLine('User-Agent'); // Perhatikan: tanpa spasi
+      $allowedSuffix = env('SEB_SUFFIX'); // Nilai default opsional
+      $sebToolsEnabled = env('SEB_TOOLS', false); // Default false jika tidak ada di .env
+        
+      // Jika SEB_TOOLS aktif, periksa suffix
+      if ($sebToolsEnabled) {
+        if (substr($userAgent, -strlen($allowedSuffix)) === $allowedSuffix) {
+          return true;
+        }
+      } else {
+        return true;
+      }
+        
+      return false;
     }
 }

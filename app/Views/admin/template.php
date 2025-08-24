@@ -158,7 +158,7 @@
       <!-- Left Menu Start -->
       <ul class="metismenu list-unstyled" id="side-menu">
         <li>
-          <a href="/admin">
+          <a href="<?= site_url('admin')?>">
             <!-- <i class="uil-home-alt"></i><span class="badge rounded-pill bg-primary float-end">01</span> -->
             <i class="uil-home-alt"></i>
             <span>Dashboard</span>
@@ -181,8 +181,8 @@
             </a>
             <ul class="sub-menu mm-collapse" aria-expanded="false" style="height: 0px;">
                 <li><a href="<?= site_url('admin/banksoal/category')?>">Kategori</a></li>
-                <li><a href="<?= site_url('admin/banksoal/choice')?>">Soal Pilihan</a></li>
-                <li><a href="<?= site_url('admin/banksoal/essay')?>">Soal Essay</a></li>
+                <!-- <li><a href="<?= site_url('admin/banksoal/choice')?>">Soal Pilihan</a></li> -->
+                <!-- <li><a href="<?= site_url('admin/banksoal/essay')?>">Soal Essay</a></li> -->
             </ul>
         </li>
 

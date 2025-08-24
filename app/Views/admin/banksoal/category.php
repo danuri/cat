@@ -16,6 +16,19 @@
       </div>
     </div>
 
+    <?php if (session()->getFlashdata('message')): ?>
+      <div class="alert alert-success alert-dismissible fade show" role="alert">
+        <?= session()->getFlashdata('message'); ?>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
+    <?php endif; ?>
+    <?php if (session()->getFlashdata('error')): ?>
+      <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        <?= session()->getFlashdata('error'); ?>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
+    <?php endif; ?>
+
     <div class="row">
       <div class="col-xl-12">
         <div class="card">
@@ -38,7 +51,17 @@
                       <td><?= $row->id?></td>
                       <td><?= $row->standar?></td>
                       <td><?= $row->nama?></td>
-                      <td><?= $row->jenis?></td>
+                      <td>
+                        <?php
+                          if ($row->jenis == 'choice') {
+                              echo "Pilihan Ganda";
+                          } elseif ($row->jenis == 'essay') {
+                              echo "Essay";
+                          } else {
+                              echo "Interview";
+                          }
+                        ?>
+                      </td>
                       <td><?= $row->nilai?></td>
                       <td>
                         <a href="<?= site_url('admin/banksoal/category/soal/'.$row->id)?>" class="btn btn-success btn-sm">Soal</a> 
@@ -77,18 +100,29 @@
 			      <div class="form-group">
               <label for="">Jenis</label>
               <select class="form-control" name="jenis" id="jenis">
+                <option>-- Pilihan --</option>
                 <option value="choice">Pilihan Ganda</option>
+                <option value="essay">Essay</option>
                 <option value="interview">Wawancara</option>
               </select>
             </div>
-            <div class="form-group" id="tipePilihanGroup" style="display: none;">
-              <label for="">Tipe Pilihan</label>
-              <input type="text" class="form-control" name="tipe_pilihan" id="tipe_pilihan">
+            <div class="form-group" id="nilaiChoice" style="display: none;">
+              <label for="">Nilai Per Soal</label>
+              <input type="text" class="form-control" name="nilai" id="nilai">
+            </div>
+            <div class="form-group" id="tipeChoice" style="display: none;">
+              <label for="">Tipe Choice</label>
+              <select class="form-control" name="jenis" id="jenis">
+                <option>-- Pilihan --</option>
+                <option value="1">Pilihan Pertama Benar</option>
+                <option value="2">Pilihan Tidak Dirandom</option>
+                <option value="3">Pilihan Mempunyai Nilai semuanya</option>
+              </select>
             </div>
           </form>
         </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-primary waves-effect" onclick="$('#tambahkategori').submit()">SIMPAN</button>
+        <button type="button" class="btn btn-primary waves-effect" onclick="$('#tambahcategory').submit()">SIMPAN</button>
         <button type="button" class="btn btn-danger waves-effect" data-bs-dismiss="modal">BATAL</button>
       </div>
     </div>
@@ -98,19 +132,27 @@
 <?= $this->section('script') ?>
 <script src="<?= base_url()?>/assets/js/jquery/jquery.min.js"></script>
 <script>
-  $(document).ready(function() {
-    $('#jenis').change(function() {
-      if ($(this).val() === 'choice') {
-        $('#tipePilihanGroup').show();
-      } else {
-        $('#tipePilihanGroup').hide();
-      }
+    $(document).ready(function() {
+      $('#jenis').change(function() {
+        if ($(this).val() === 'choice') {
+          $('#nilaiChoice').show();
+          $('#tipeChoice').show();
+        } else {
+          $('#nilaiChoice').hide();
+          $('#tipeChoice').hide();
+        }
+      });
+
     });
-  });
 
     function addpenguji() {
       $('#tambahpenguji').trigger('reset');
       $('#addpenguji').modal('show');
+    }
+
+    function addcategory() {
+      $('#tambahcategory').trigger('reset');
+      $('#addcategory').modal('show');
     }
 </script>
 <?= $this->endSection() ?>

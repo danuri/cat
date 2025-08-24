@@ -14,6 +14,11 @@ class Home extends BaseController
 {
     public function index()
     {
+		// check user agent
+      	$check = $this->checkUserAgent();
+      	if (!$check) {
+        	return view('errors/error');
+      	}
         $model = new LogModel;		
         $crud = new CrudModel;
 		$ujian = new UjianModel;
@@ -73,6 +78,12 @@ class Home extends BaseController
 
     public function mulai()
   	{
+	  // check user agent
+	  $check = $this->checkUserAgent();
+	  if (!$check) {
+		return view('errors/error');
+	  }
+
       $model = new CrudModel;
 	  $ujian = new UjianModel;
 
@@ -144,6 +155,12 @@ class Home extends BaseController
 
   	public function generate_soal_peserta()
   	{
+	  // check user agent
+ 	  $check = $this->checkUserAgent();
+        if (!$check) {
+        	return view('errors/error');
+      }	
+
       $model = new CrudModel;
       $cat = new CatModel;
       $map = new MapModel;
@@ -303,4 +320,21 @@ class Home extends BaseController
 			}
 	  	}
 	}
+
+	public function checkUserAgent() {
+      $userAgent = $this->request->getHeaderLine('User-Agent'); // Perhatikan: tanpa spasi
+      $allowedSuffix = env('SEB_SUFFIX'); // Nilai default opsional
+      $sebToolsEnabled = env('SEB_TOOLS', false); // Default false jika tidak ada di .env
+        
+      // Jika SEB_TOOLS aktif, periksa suffix
+      if ($sebToolsEnabled) {
+        if (substr($userAgent, -strlen($allowedSuffix)) === $allowedSuffix) {
+          return true;
+        }
+      } else {
+        return true;
+      }
+        
+      return false;
+    }
 }

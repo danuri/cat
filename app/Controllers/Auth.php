@@ -10,11 +10,23 @@ class Auth extends BaseController
 {
     public function index()
     {
-        return view('auth/login');
+      // check user agent
+      $check = $this->checkUserAgent();
+      if (!$check) {
+        return view('errors/error');
+      }
+    
+      return view('auth/login'); 
     }
 
     public function login()
     {
+      // check user agent
+      $check = $this->checkUserAgent();
+      if (!$check) {
+        return view('errors/error');
+      }
+
       // $agent = $this->request->getUserAgent();
       // if(str_contains($agent,'ukompenyuluh')){
         $user = $this->request->getVar('nik');
@@ -63,5 +75,23 @@ class Auth extends BaseController
     {
       session()->destroy();
       return redirect()->to('');
+    }
+
+    public function checkUserAgent()
+    {
+      $userAgent = $this->request->getHeaderLine('User-Agent'); // Perhatikan: tanpa spasi
+      $allowedSuffix = env('SEB_SUFFIX'); // Nilai default opsional
+      $sebToolsEnabled = env('SEB_TOOLS', false); // Default false jika tidak ada di .env
+        
+      // Jika SEB_TOOLS aktif, periksa suffix
+      if ($sebToolsEnabled) {
+        if (substr($userAgent, -strlen($allowedSuffix)) === $allowedSuffix) {
+          return true;
+        }
+      } else {
+        return true;
+      }
+        
+      return false;
     }
 }
