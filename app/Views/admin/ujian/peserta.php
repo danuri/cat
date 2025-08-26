@@ -51,31 +51,39 @@
       <div class="col-xl-12">
         <div class="card">
           <div class="card-body">
+          <form method="get" action="<?= site_url('admin/ujian/peserta/'.encrypt($ujian->id)) ?>">
             <div class="row mb-5">
               <div class="col-3">
-                <select class="form-select" name="">
+                <select class="form-select" name="filter_lokasi" onchange="this.form.submit()">
                   <option value="">Filter Lokasi</option>
+                  <?php foreach ($lokasi as $row) {?>
+                    <option value="<?= $row->id?>"><?= $row->lokasi?></option>
+                  <?php } ?>
                 </select>
               </div>
               <div class="col-3">
-                <select class="form-select" name="">
+                <select class="form-select" name="filter_sesi" onchange="this.form.submit()">
                   <option value="">Filter Sesi</option>
+                  <?php foreach ($sesi as $row) {?>
+                    <option value="<?= $row->id?>">Tanggal: <?=$row->tanggal?> - Lokasi: <?=$row->lokasi?> - Ruang: <?=$row->ruang?> - Sesi: <?=$row->sesi?></option>
+                  <?php } ?>
                 </select>
               </div>
-              <div class="col-3">
+              <!-- <div class="col-3">
                 <select class="form-select" name="">
                   <option value="">Filter Ruang</option>
                 </select>
-              </div>
+              </div> -->
             </div>
+          </form>
             <table class="table table-bordered table-striped datatable smalltext">
             <!-- <table class="table table-bordered table-striped table-hover datapeserta dt-responsive"> -->
               <thead>
                 <tr>
-                  <th>Peserta</th>
-                  <th>Lokasi Formasi</th>
-                  <th>Info Ujian</th>
-                  <th>Aksi</th>
+                  <th style="width: 30%;">Peserta</th>
+                  <th style="width: 30%;">Lokasi Formasi</th>
+                  <th style="width: 28%;">Info Ujian</th>
+                  <th style="width: 12%;">Aksi</th>
                 </tr>
               </thead>
               <tbody>
@@ -88,7 +96,8 @@
                     </td>
                     <td><?= $row->lokasi_formasi?></td>
                     <td>
-                      <?= $row->nik?><br>
+                      <?= $ujian->nama?><br>
+                      Lokasi: <?= $row->lokasi?><br>
                     </td>
                     <!-- <td><a href="<?= site_url('admin/ujian/peserta/detail/'.encrypt($row->id))?>" class="btn btn-sm btn-success">Lihat</a></td> -->
                     <td>

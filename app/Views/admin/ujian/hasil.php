@@ -34,38 +34,75 @@
         <div class="card">
           <div class="card-body">
             <div class="row mb-5">
+              <!-- <div class="col-3">
+                <a href="<?= site_url('/admin/ujian/hasilexport/'.encrypt($ujianid));?>?lokasiid=<?= encrypt($lokasiid)?>&sesiid=<?= encrypt($sesiid)?>" target="_blank" class="btn btn-success"><i class="icon-arrow-left-circle"></i> Download Hasil Peserta</a></li>
+              </div>               -->
               <div class="col-3">
-                <a href="<?= site_url('/admin/ujian/hasilexport/'.encrypt($ujianid));?>" target="_blank" class="btn btn-success"><i class="icon-arrow-left-circle"></i> Download Hasil Peserta</a></li>
+              <form action="<?= site_url('/admin/ujian/hasilexport/'.encrypt($ujianid));?>" method="get" target="_blank">
+                <input type="hidden" name="lokasiid" id="lokasiid" value="<?= $lokasiid?>">
+                <input type="hidden" name="sesiid" id="sesiid" value="<?= $sesiid?>">
+                <button type="submit" class="btn btn-success">
+                  <i class="icon-arrow-left-circle"></i> Download Hasil Peserta
+                </button>
+              </form>
               </div>
             </div>
+            <form method="get" action="<?= site_url('/admin/ujian/hasil/'.encrypt($ujian->id)) ?>">
+            <div class="row mb-5">
+              <div class="col-3">
+                <select class="form-select" name="filter_lokasi" onchange="this.form.submit()">
+                  <option value="">Filter Lokasi</option>
+                  <?php foreach ($lokasi as $row) {?>
+                    <option value="<?= $row->id?>"><?= $row->lokasi?></option>
+                  <?php } ?>
+                </select>
+              </div>
+              <div class="col-3">
+                <select class="form-select" name="filter_sesi" onchange="this.form.submit()">
+                  <option value="">Filter Sesi</option>
+                  <?php foreach ($sesi as $row) {?>
+                    <option value="<?= $row->id?>">Tanggal: <?=$row->tanggal?> - Lokasi: <?=$row->lokasi?> - Ruang: <?=$row->ruang?> - Sesi: <?=$row->sesi?></option>
+                  <?php } ?>
+                </select>
+              </div>
+              <!-- <div class="col-3">
+                <select class="form-select" name="">
+                  <option value="">Filter Ruang</option>
+                </select>
+              </div> -->
+            </div>
+          </form>
             <table class="table table-bordered table-striped datatable smalltext">
               <thead>
                 <tr>
                   <!-- <th>Nomor</th>
                   <th>Nama</th> -->
-                  <th>Peserta</th>
-                  <th>Lokasi</th>
-                  <th>Mulai</th>
-                  <th>Selesai</th>
-                  <th>Nilai</th>
-                  <th>Detail</th>
+                  <th style="width: 25%;">Peserta</th>
+                  <th style="width: 25%;">Lokasi Formasi</th>
+                  <th style="width: 20%;">Info Ujian</th>
+                  <th style="width: 10%;">Mulai</th>
+                  <th style="width: 10%;">Selesai</th>
+                  <th style="width: 5%;">Nilai</th>
+                  <th style="width: 5%;">Detail</th>
                 </tr>
               </thead>
               <tbody>
                 <?php foreach ($hasil as $row) {?>
                   <tr>
-                    <!-- <td><?= $row->peserta_id?></td>
-                    <td><?= $row->nama?></td> -->
                     <td>
-                      <?= $row->nik?><br>
-                      <b><?= $row->nama?></b><br>
-                      <?= $row->jabatan?>
+                      <?= $row->nip_peserta?><br>
+                      <b><?= $row->nama_peserta?></b><br>
+                      <?= $row->jabatan_peserta?>
                     </td>
                     <td><?= $row->lokasi_formasi?></td>
+                    <td>
+                      <?= $row->nama_ujian?><br>
+                      Lokasi: <?= $row->lokasi?><br>
+                    </td>
                     <td><?= $row->start_time?></td>
                     <td><?= $row->finish_time?></td>
                     <td><?= $row->finish_nilai?></td>
-                    <td><a href="<?= site_url('admin/ujian/hasildetail/'.encrypt($row->peserta_id).'/'.encrypt($ujianid))?>" class="btn btn-sm btn-success">Lihat</a></td>
+                    <td><a href="<?= site_url('admin/ujian/hasildetail/'.encrypt($row->nip_peserta).'/'.encrypt($ujianid))?>" class="btn btn-sm btn-success">Lihat</a></td>
                 </tr>
                 <?php } ?>
               </tbody>

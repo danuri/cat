@@ -221,31 +221,83 @@ class CrudModel extends Model
 
       public function hasilNilai($ujianid)
       {
-        $query = $this->db->query("SELECT
-                  soal_peserta.peserta_id, 
-                  peserta.nik,  
-                  peserta.nama, 
-                  peserta.jabatan,
-                  peserta.lokasi_formasi, 
-                  peserta_log.start_time, 
-                  peserta_log.finish_time, 
-                  peserta_log.`status`,
-                  peserta_log.finish_nilai
-                FROM
-                  soal_peserta
-                  INNER JOIN
-                  peserta
-                  ON 
-                    soal_peserta.peserta_id = peserta.nik
-                  INNER JOIN
-                  peserta_log
-                  ON 
-                    soal_peserta.ujian_id = peserta_log.ujian_id AND
-                    soal_peserta.peserta_id = peserta_log.peserta_id
-                WHERE
-                  soal_peserta.ujian_id = '$ujianid'
-                GROUP BY
-                  soal_peserta.peserta_id")->getResult();
+        // $query = $this->db->query("SELECT
+        //           soal_peserta.peserta_id, 
+        //           peserta.nik,  
+        //           peserta.nama, 
+        //           peserta.jabatan,
+        //           peserta.lokasi_formasi, 
+        //           peserta_log.start_time, 
+        //           peserta_log.finish_time, 
+        //           peserta_log.`status`,
+        //           peserta_log.finish_nilai
+        //         FROM
+        //           soal_peserta
+        //         INNER JOIN
+        //           peserta
+        //         ON 
+        //           soal_peserta.peserta_id = peserta.nik
+        //         INNER JOIN
+        //           peserta_log
+        //         ON 
+        //           soal_peserta.ujian_id = peserta_log.ujian_id AND
+        //           soal_peserta.peserta_id = peserta_log.peserta_id
+        //         WHERE
+        //           soal_peserta.ujian_id = '$ujianid'
+        //         GROUP BY
+        //           soal_peserta.peserta_id")->getResult();
+        $query = $this->db->query("SELECT a.peserta_id AS nip_peserta,
+                      d.nama AS nama_peserta,
+                      d.jabatan AS jabatan_peserta,
+                      d.lokasi_formasi,
+                      a.start_time,
+                      a.finish_time,
+                      a.finish_nilai,
+                      b.lokasi,
+                      c.nama AS nama_ujian
+                      FROM peserta_log a
+                      INNER JOIN sesi b ON b.ujian_id = a.ujian_id
+                      INNER JOIN ujian c ON c.id = a.ujian_id
+                      INNER JOIN peserta d ON d.nomor_peserta = a.peserta_id AND d.ujian_id = a.ujian_id AND d.sesi_id = b.id
+                      WHERE a.ujian_id = ?", [$ujianid])->getResult();
+        return $query;
+      }
+
+      public function hasilNilaiByLokasi($ujianid, $kodelokasi)
+      {
+        $query = $this->db->query("SELECT a.peserta_id AS nip_peserta,
+                      d.nama AS nama_peserta,
+                      d.jabatan AS jabatan_peserta,
+                      d.lokasi_formasi,
+                      a.start_time,
+                      a.finish_time,
+                      a.finish_nilai,
+                      b.lokasi,
+                      c.nama AS nama_ujian
+                      FROM peserta_log a
+                      INNER JOIN sesi b ON b.ujian_id = a.ujian_id
+                      INNER JOIN ujian c ON c.id = a.ujian_id
+                      INNER JOIN peserta d ON d.nomor_peserta = a.peserta_id AND d.ujian_id = a.ujian_id AND d.sesi_id = b.id
+                      WHERE a.ujian_id = ? AND b.kode_lokasi = ?", [$ujianid, $kodelokasi])->getResult();
+        return $query;
+      }
+
+      public function hasilNilaiBySesi($ujianid, $sesi_id)
+      {
+        $query = $this->db->query("SELECT a.peserta_id AS nip_peserta,
+                      d.nama AS nama_peserta,
+                      d.jabatan AS jabatan_peserta,
+                      d.lokasi_formasi,
+                      a.start_time,
+                      a.finish_time,
+                      a.finish_nilai,
+                      b.lokasi,
+                      c.nama AS nama_ujian
+                      FROM peserta_log a
+                      INNER JOIN sesi b ON b.ujian_id = a.ujian_id
+                      INNER JOIN ujian c ON c.id = a.ujian_id
+                      INNER JOIN peserta d ON d.nomor_peserta = a.peserta_id AND d.ujian_id = a.ujian_id AND d.sesi_id = b.id
+                      WHERE a.ujian_id = ? AND b.id = ?", [$ujianid, $sesi_id])->getResult();
         return $query;
       }
 

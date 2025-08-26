@@ -9,19 +9,36 @@ use App\Models\UjianModel;
 use App\Models\CatEssayModel;
 use App\Models\SesiModel;
 use App\Models\LogModel;
+use App\Models\LokasiModel;
 
 class Peserta extends BaseController
 {
     public function index($id)
     {
+      $lokasiFilter = $this->request->getGet('filter_lokasi');
+      $sesiFilter   = $this->request->getGet('filter_sesi');
+
       $model = new PesertaModel;      
       $ujian = new UjianModel;
       $sesi = new SesiModel;
+      $lokasi = new LokasiModel;
       $ujianid = decrypt($id);
-      $data['peserta'] = $model->where('ujian_id',$ujianid)->findAll();
+      
+      //$data['peserta'] = $model->where('ujian_id',$ujianid)->findAll();
+      $query= $model->getUsers($ujianid);
+
+      if (!empty($lokasiFilter)) {
+        $query->where('sesi.kode_lokasi', $lokasiFilter);
+      }
+      if (!empty($sesiFilter)) {
+        $query->where('sesi.id', $sesiFilter);
+      }
+
+      $data['peserta'] = $query->findAll();
       $data['ujianid'] = $ujianid;
       $data['ujian'] = $ujian->where('id',$ujianid)->first();
       $data['sesi'] = $sesi->where('ujian_id',$ujianid)->findAll();
+      $data['lokasi'] = $lokasi->where('ujian_id',$ujianid)->findAll();
       return view('admin/ujian/peserta', $data);
     }
 

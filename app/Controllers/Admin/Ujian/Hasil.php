@@ -11,40 +11,81 @@ use App\Models\PesertaModel;
 use App\Models\CatEssayModel;
 use App\Models\CatModel;
 use App\Models\LogModel;
+use App\Models\SesiModel;
+use App\Models\LokasiModel;
 
 class Hasil extends BaseController
 {
     public function index($id)
     {
-        //
+        $lokasiFilter = $this->request->getGet('filter_lokasi');
+        $sesiFilter   = $this->request->getGet('filter_sesi');
+        $data['lokasiid'] = $lokasiFilter;
+        $data['sesiid'] = $sesiFilter;
+
         $id = decrypt($id);
         $model = new CrudModel;
         $ujian = new UjianModel;
+        $sesi = new SesiModel;
+        $lokasi = new LokasiModel;
         $data['ujian'] = $ujian->find($id);
         $data['ujianid'] = $id;
+        $data['sesi'] = $sesi->where('ujian_id',$id)->findAll();
+        $data['lokasi'] = $lokasi->where('ujian_id',$id)->findAll();
+        
         if ($data['ujian']->tipe_soal == "essay") {
             // tipe soal = essay
-            $data['hasil'] = $model->hasilNilaiEssay($id);
-            return view('admin/ujian/hasil', $data);
+            if (!empty($lokasiFilter)) {
+              $data['hasil'] = $model->hasilNilaiByLokasi($id, $lokasiFilter); 
+              return view('admin/ujian/hasil', $data);
+            } elseif (!empty($sesiFilter)) {
+              $data['hasil'] = $model->hasilNilaiBySesi($id, $sesiFilter); 
+              return view('admin/ujian/hasil', $data);
+            } else {              
+              $data['hasil'] = $model->hasilNilai($id); 
+              return view('admin/ujian/hasil', $data);
+            }
         } else {
-            // tipe soal = choice            
-            $data['hasil'] = $model->hasilNilai($id);
-            return view('admin/ujian/hasil', $data);
+            // tipe soal = choice         
+            if (!empty($lokasiFilter)) {
+              $data['hasil'] = $model->hasilNilaiByLokasi($id, $lokasiFilter); 
+              return view('admin/ujian/hasil', $data);
+            } elseif (!empty($sesiFilter)) {
+              $data['hasil'] = $model->hasilNilaiBySesi($id, $sesiFilter); 
+              return view('admin/ujian/hasil', $data);
+            } else {              
+              $data['hasil'] = $model->hasilNilai($id); 
+              return view('admin/ujian/hasil', $data);
+            }
         }
     }
 
     public function export($id)
     {
+      $lokasiFilter = $this->request->getGet('lokasiid');
+      $sesiFilter   = $this->request->getGet('sesiid');
       $ujianid = decrypt($id);
       $model = new CrudModel();
       $ujian = new UjianModel;
       $data_ujian = $ujian->find($ujianid);
       if ($data_ujian->tipe_soal == "essay") {
         // tipe soal = essay
-        $data = $model->hasilNilaiEssay($ujianid);
+        if (!empty($lokasiFilter)) {
+          $data = $model->hasilNilaiByLokasi($ujianid, $lokasiFilter); 
+        } elseif (!empty($sesiFilter)) {
+          $data = $model->hasilNilaiBySesi($ujianid, $sesiFilter); 
+        } else {              
+          $data = $model->hasilNilai($ujianid); 
+        }
       } else {
         // tipe soal = choice
-        $data = $model->hasilNilai($ujianid);
+        if (!empty($lokasiFilter)) {
+          $data = $model->hasilNilaiByLokasi($ujianid, $lokasiFilter); 
+        } elseif (!empty($sesiFilter)) {
+          $data = $model->hasilNilaiBySesi($ujianid, $sesiFilter); 
+        } else {              
+          $data = $model->hasilNilai($ujianid); 
+        }
       }
       
       $spreadsheet = new Spreadsheet();
@@ -53,20 +94,26 @@ class Hasil extends BaseController
       $sheet->setCellValue('A1', 'NO PESERTA');
       $sheet->setCellValue('B1', 'NAMA');
       $sheet->setCellValue('C1', 'JABATAN');
-      $sheet->setCellValue('D1', 'LOKASI');
+      $sheet->setCellValue('D1', 'LOKASI FORMASI');
       $sheet->setCellValue('E1', 'MULAI');
       $sheet->setCellValue('F1', 'SELESAI');
       $sheet->setCellValue('G1', 'NILAI');
+      $sheet->setCellValue('H1', 'LOKASI UJIAN');
+      $sheet->setCellValue('I1', 'NAMA UJIAN');
+      // kasih style bold ke header (A1 sampai I1)
+      $sheet->getStyle('A1:I1')->getFont()->setBold(true);
 
       $i = 2;
       foreach ($data as $row) {
-        $sheet->getCell('A'.$i)->setValueExplicit($row->peserta_id,\PhpOffice\PhpSpreadsheet\Cell\DataType::TYPE_STRING);
-        $sheet->setCellValue('B'.$i, $row->nama);
-        $sheet->setCellValue('C'.$i, $row->jabatan);
+        $sheet->getCell('A'.$i)->setValueExplicit($row->nip_peserta,\PhpOffice\PhpSpreadsheet\Cell\DataType::TYPE_STRING);
+        $sheet->setCellValue('B'.$i, $row->nama_peserta);
+        $sheet->setCellValue('C'.$i, $row->jabatan_peserta);
         $sheet->setCellValue('D'.$i, $row->lokasi_formasi);
         $sheet->setCellValue('E'.$i, $row->start_time);
         $sheet->setCellValue('F'.$i, $row->finish_time);
         $sheet->setCellValue('G'.$i, $row->finish_nilai);
+        $sheet->setCellValue('H'.$i, $row->lokasi);
+        $sheet->setCellValue('I'.$i, $row->nama_ujian);
         $i++;
       }
 

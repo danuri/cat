@@ -39,4 +39,12 @@ class PesertaModel extends Model
     protected $afterFind      = [];
     protected $beforeDelete   = [];
     protected $afterDelete    = [];
+
+    public function getUsers($ujianid)
+    {
+        return $this->select('peserta.id, peserta.nik, peserta.nomor_peserta, peserta.nama, peserta.jabatan, peserta.lokasi_formasi, peserta.ujian_id, peserta.sesi_id, sesi.lokasi')
+                    ->join('sesi', 'sesi.id = peserta.sesi_id', 'left')
+                    ->where('peserta.ujian_id', $ujianid);
+                    //->findAll();
+    }
 }
