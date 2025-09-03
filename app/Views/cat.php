@@ -288,16 +288,22 @@
         	foreach ($soals as $soal) {
         		$pertanyaan = str_replace('\u0000', '', json_encode($soal['pertanyaan']));
             $pertanyaan = str_replace('\n', '<br>', json_encode($soal['pertanyaan']));
+            $pertanyaan = str_replace('\"', '', $soal['pertanyaan']);
         		$p1 = str_replace('\u0000', '', json_encode($soal['p1']));
             $p1 = str_replace('\n', '<br>', json_encode($soal['p1']));
+            $p1 = str_replace('\"', '', $soal['p1']);
         		$p2 = str_replace('\u0000', '', json_encode($soal['p2']));
             $p2 = str_replace('\n', '<br>', json_encode($soal['p2']));
+            $p2 = str_replace('\"', '<br>', $soal['p2']);
         		$p3 = str_replace('\u0000', '', json_encode($soal['p3']));
             $p3 = str_replace('\n', '<br>', json_encode($soal['p3']));
+            $p3 = str_replace('\"', '<br>', $soal['p3']);
         		$p4 = str_replace('\u0000', '', json_encode($soal['p4']));
             $p4 = str_replace('\n', '<br>', json_encode($soal['p4']));
+            $p4 = str_replace('\"', '<br>', $soal['p4']);
         		$p5 = str_replace('\u0000', '', json_encode($soal['p5']));
             $p5 = str_replace('\n', '<br>', json_encode($soal['p5']));
+            $p5 = str_replace('\"', '<br>', $soal['p5']);
 
             if($soal['category_id'] == 13){
         			$p1 = explode('##',$soal['p1'])[0];
