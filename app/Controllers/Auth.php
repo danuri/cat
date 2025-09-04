@@ -5,6 +5,7 @@ namespace App\Controllers;
 use App\Controllers\BaseController;
 use App\Models\PesertaModel;
 use App\Models\SesiModel;
+use DateTime;
 
 class Auth extends BaseController
 {
@@ -37,38 +38,41 @@ class Auth extends BaseController
 
         $sesi = new SesiModel;
         $findsesi = $sesi->where(['pin'=>$pin])->first();
+        $tgl_sesi = new Datetime($findsesi->tanggal);
+        $tgl_today = new Datetime(date("Y-m-d"));
+        //dd($tgl_today);
+        if ($tgl_sesi == $tgl_today) {
+          if($findsesi){
+            $model = new PesertaModel;
+            $find = $model->where(['nomor_peserta'=>$nopes,'nik'=>$pass,'sesi_id'=>$findsesi->id])->first();
 
-        if($findsesi){
-          $model = new PesertaModel;
-          $find = $model->where(['nomor_peserta'=>$nopes,'nik'=>$pass,'sesi_id'=>$findsesi->id])->first();
+            if($find){
+              $newdata = [
+                'user_id'  => $find->id,
+                'nik'  => $find->nik,
+                'nomor_peserta'  => $find->nomor_peserta,
+                'ujian_id'  => $find->ujian_id,
+                'nama'  => $find->nama,
+                'jabatan'  => $find->jabatan,
+                'lokasi_formasi'  => $find->lokasi_formasi,
+                'pin'  => $find->pin,
+                'sesi_id'  => $find->sesi_id,
+                'logged_in' => true,
+              ];
 
-          if($find){
-            $newdata = [
-              'user_id'  => $find->id,
-              'nik'  => $find->nik,
-              'nomor_peserta'  => $find->nomor_peserta,
-              'ujian_id'  => $find->ujian_id,
-              'nama'  => $find->nama,
-              'jabatan'  => $find->jabatan,
-              'lokasi_formasi'  => $find->lokasi_formasi,
-              'pin'  => $find->pin,
-              'sesi_id'  => $find->sesi_id,
-              'logged_in' => true,
-            ];
+              session()->set($newdata);
 
-            session()->set($newdata);
+              return redirect()->to('/');
 
-            return redirect()->to('/');
-
+            }else{
+              return redirect()->back()->with('message', 'Username atau PIN tidak sesuai');
+            }
           }else{
-            return redirect()->back()->with('message', 'Username atau PIN tidak sesuai');
+            return redirect()->back()->with('message', 'PIN Sesi tidak ditemukan');
           }
-        }else{
-          return redirect()->back()->with('message', 'PIN Sesi tidak ditemukan');
+        } else {
+            return redirect()->back()->with('message', 'PIN Sesi sudah expired');
         }
-      // }else{
-      //   return redirect()->back()->with('message', 'Silahkan gunakan Safe Exam Browser');
-      // }
     }
 
     public function logout()
